@@ -1,0 +1,17 @@
+{
+  "code": 200,
+  "charge": {
+    "id": 10000,
+    "total": 34725,
+    "status": "waiting",
+    "custom_id": "MyID",
+    "created_at": "2015-03-26",
+    "history": [ {
+      "status": "new",
+      "timestamp": "2015-03-26 08:46:00"
+    }, {
+      "status": "waiting",
+      "timestamp": "2015-03-26 09:22:15"
+    } ]
+  }
+}

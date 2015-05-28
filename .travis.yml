@@ -1,0 +1,8 @@
+language: php
+php:
+- "5.5"
+notifications:
+ email: false
+script: phpunit -c tests/config.xml tests
+install:
+- composer install

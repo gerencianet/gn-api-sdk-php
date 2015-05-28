@@ -1,0 +1,18 @@
+{
+  "code": 200,
+  "subscription": {
+    "id": 20000,
+    "value": 10000,
+    "status": "new",
+    "payment_method": null,
+    "interval": 1,
+    "repeats": 2,
+    "processed_amount": 0,
+    "created_at": "2015-03-26 08:47:56",
+    "history": [ {
+      "charge_id": 12000,
+      "status": "new",
+      "created_at": "2015-03-26 08:47:56"
+    } ]
+  }
+}
