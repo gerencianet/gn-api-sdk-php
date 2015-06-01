@@ -32,12 +32,12 @@ abstract class ApiBase {
   /**
    * Define API Gerencianet url
    */
-  const BASE_URL = 'https://api.gerencianet.com.br/v1';
+  const BASE_URL = 'http://ceciliagnapi.gerencianet.com.br:4400';
 
   /**
    * Define Gerencianet test url
    */
-  const BASE_TEST_URL = 'https://sandbox.gerencianet.com.br/v1';
+  const BASE_TEST_URL = 'http://ceciliagnapi.gerencianet.com.br:4400';
 
   /**
    * Define url to get access token

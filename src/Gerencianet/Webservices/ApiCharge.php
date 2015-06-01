@@ -56,11 +56,11 @@ class ApiCharge extends ApiBase {
   private $_customer;
 
    /**
-   * Subscription's attributes
+   * Plan's attributes
    *
-   * @var Subscription
+   * @var Plan
    */
-  private $_subscription;
+  private $_planId;
 
   /**
    * Construct method
@@ -94,7 +94,7 @@ class ApiCharge extends ApiBase {
    * @param  Array $items
    * @return ApiCharge
    */
-  public function addItems($items) {
+  public function addItems(Array $items) {
     foreach($items as $item) {
       $this->_cart[] = $item->toArray();
     }
@@ -127,7 +127,7 @@ class ApiCharge extends ApiBase {
    * @param  Array $shippings
    * @return ApiCharge
    */
-  public function addShippings($shippings) {
+  public function addShippings(Array $shippings) {
     foreach($shippings as $shipping) {
       $this->_shippings[] = $shipping->toArray();
     }
@@ -184,23 +184,23 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Set subscription of charge
+   * Set plan of subscription
    *
-   * @param  Subscription $subscription
+   * @param  Plan $plan
    * @return ApiCharge
    */
-  public function subscription(Subscription $subscription) {
-    $this->_subscription = $subscription;
+  public function planId($planId) {
+    $this->_planId = $planId;
     return $this;
   }
 
   /**
-   * Get subscription of charge
+   * Get plan of subscription
    *
-   * @return Subscription
+   * @return Plan
    */
-  public function getSubscription() {
-    return $this->_subscription;
+  public function getPlanId() {
+    return $this->_planId;
   }
 
   /**
@@ -226,8 +226,8 @@ class ApiCharge extends ApiBase {
       $this->_data['customer'] = $this->_customer->toArray();
     }
 
-    if($this->_subscription) {
-      $this->_data['subscription'] = $this->_subscription->toArray();
+    if($this->_planId) {
+      $this->_data['plan_id'] = $this->_planId;
     }
 
     return $this;

@@ -12,6 +12,8 @@ use Gerencianet\Webservices\ApiNotification;
 use Gerencianet\Webservices\ApiNotificationUrl;
 use Gerencianet\Webservices\ApiPayment;
 use Gerencianet\Webservices\ApiPaymentData;
+use Gerencianet\Webservices\ApiPlan;
+use Gerencianet\Webservices\ApiDeletePlan;
 
 /**
  * Library to use Gerencianet's Api
@@ -155,6 +157,26 @@ class Gerencianet {
    */
   public function detailCharge() {
     $api = new ApiDetailCharge($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Detail the charge
+   *
+   * @return ApiDetailCharge
+   */
+  public function createPlan() {
+    $api = new ApiPlan($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Delete a Plan
+   *
+   * @return ApiDeletePlan
+   */
+  public function deletePlan() {
+    $api = new ApiDeletePlan($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
