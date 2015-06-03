@@ -11,7 +11,6 @@ namespace Gerencianet\Webservices;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
@@ -25,7 +24,7 @@ namespace Gerencianet\Webservices;
 class ApiNotification extends ApiBase {
 
   /**
-   * Transaction's notification token
+   * Charge's notification token
    *
    * @var string
    */

@@ -11,14 +11,13 @@ namespace Gerencianet\Webservices;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
 /**
- * Gerencianet's charge class
+ * Gerencianet's plan class
  *
- * Implements how to use Gerencianet's charge
+ * Implements how to use Gerencianet's plan
  *
  * @package Gerencianet
  */
@@ -39,7 +38,7 @@ class ApiPlan extends ApiBase {
   private $_interval;
 
   /**
-   * How many times a transaction must be created
+   * How many times a charge must be created
    *
    * @var integer
    */

@@ -5,13 +5,11 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Gerencianet\Gerencianet;
 use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
-use Gerencianet\Models\GerencianetException;
 use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
-use Gerencianet\Models\Subscription;
-use Gerencianet\Webservices\ApiBase;
+use Gerencianet\Models\GerencianetException;
 
 echo 'SDK GN API';
 echo '<pre>';
@@ -74,9 +72,6 @@ try {
   $shipping3->name('Shipping 3')
             ->value(2500);
 
-  $subscription = new Subscription();
-  $subscription->repeats(2)
-               ->interval(1);
 
   echo '</br>Installments for Mastercard:</br>';
   $respPaymentDataCard = $apiGN->getPaymentData()
@@ -106,7 +101,7 @@ try {
                       ->run()
                       ->response();
   print_r($respCharge);
-  $chargeId = $respCharge['charge']['id'];
+  $chargeId = $respCharge['data']['charge_id'];
 
 
   echo '</br>Associating customer to a charge:</br>';
@@ -145,7 +140,7 @@ try {
                        ->run()
                        ->response();
   print_r($respCharge2);
-  $chargeId2 = $respCharge2['charge']['id'];
+  $chargeId2 = $respCharge2['data']['charge_id'];
   $paymentToken = 'payment_token';
 
 
@@ -161,24 +156,36 @@ try {
   print_r($respPayment2);
 
 
+  echo '</br>Create a plan:</br>';
+  $responsePlan = $apiGN->createPlan()
+                        ->name('Plan 1')
+                        ->repeats(2)
+                        ->interval(1)
+                        ->run()
+                        ->response();
+  print_r($responsePlan);
+  $planId = $responsePlan['data']['plan_id'];
+
+
   echo '</br>Subscription:</br>';
   $respSubscription = $apiGN->createCharge()
                             ->addItem($item2)
                             ->addShipping($shipping3)
-                            ->subscription($subscription)
+                            ->planId($planId)
                             ->customer($customer)
                             ->run()
                             ->response();
   print_r($respSubscription);
-  $chargeId3 = $respSubscription['charge']['id'];
-  $subscriptionId = $respSubscription['charge']['subscription_id'];
+  $chargeId3 = $respSubscription['data']['charge_id'];
+  $subscriptionId = $respSubscription['data']['subscription_id'];
+  $paymentToken2 = 'payment_token';
 
 
   echo '</br>Paying subscription:</br>';
   $respPaymentSubscription = $apiGN->createPayment()
                                    ->chargeId($chargeId3)
                                    ->method('credit_card')
-                                   ->paymentToken($paymentToken)
+                                   ->paymentToken($paymentToken2)
                                    ->billingAddress($address)
                                    ->run()
                                    ->response();
@@ -218,6 +225,21 @@ try {
                                   ->run()
                                   ->response();
   print_r($respCancelSubscription);
+
+
+  echo '</br>Delete a plan:</br>';
+  $responsePlan1 = $apiGN->createPlan()
+                         ->name('Plan to delete')
+                         ->repeats(3)
+                         ->interval(10)
+                         ->run()
+                         ->response();
+  $planId1 = $responsePlan1['data']['plan_id'];
+  $responseDeletePlan = $apiGN->deletePlan()
+                        ->planId($planId1)
+                        ->run()
+                        ->response();
+  print_r($responseDeletePlan);
 
 } catch(GerencianetException $e) {
   Gerencianet::error($e);

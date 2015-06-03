@@ -11,28 +11,27 @@ namespace Gerencianet\Webservices;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
 /**
- * Gerencianet's notification url class
+ * Gerencianet's notification URL class
  *
- * Implements how to use Gerencianet's notification url
+ * Implements how to use Gerencianet's notification URL
  *
  * @package Gerencianet
  */
 class ApiNotificationUrl extends ApiBase {
 
   /**
-   * Url that specify where transaction's notifications must be sent
+   * URL that specify where charge's notifications must be sent
    *
    * @var string
    */
   private $_notificationUrl;
 
   /**
-   * Charge id that will be associated with the transaction
+   * Charge id that will be updated
    *
    * @var integer
   */
@@ -51,7 +50,7 @@ class ApiNotificationUrl extends ApiBase {
   }
 
   /**
-   * Sets the value of notification url
+   * Sets the value of notification URL
    *
    * @param string $notificationUrl
    * @return ApiNotificationUrl
@@ -62,7 +61,7 @@ class ApiNotificationUrl extends ApiBase {
   }
 
   /**
-   * Gets the value of notification url
+   * Gets the value of notification URL
    *
    * @return string
    */

@@ -12,7 +12,6 @@ use Gerencianet\Models\GerencianetException;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
@@ -30,17 +29,17 @@ use GuzzleHttp\Exception\ServerException;
 abstract class ApiBase {
 
   /**
-   * Define API Gerencianet url
+   * Define API Gerencianet URL
    */
-  const BASE_URL = 'http://ceciliagnapi.gerencianet.com.br:4400';
+  const BASE_URL = 'https://api.gerencianet.com.br/v1';
 
   /**
-   * Define Gerencianet test url
+   * Define Gerencianet test URL
    */
-  const BASE_TEST_URL = 'http://ceciliagnapi.gerencianet.com.br:4400';
+  const BASE_TEST_URL = 'https://sandbox.gerencianet.com.br/v1';
 
   /**
-   * Define url to get access token
+   * Define URL to get access token
    *
    * @var string
    */
@@ -54,7 +53,7 @@ abstract class ApiBase {
   private $_isTest = false;
 
   /**
-   * Final url to send the cURL
+   * Final URL to send the cURL
    *
    * @var string
    */
@@ -148,7 +147,7 @@ abstract class ApiBase {
   }
 
   /**
-   * Set url to reach Gerencianet
+   * Set URL to reach Gerencianet
    *
    * @param string  $url
    */
@@ -247,13 +246,6 @@ abstract class ApiBase {
    */
   public function response() {
     return $this->_response;
-  }
-
-  /**
-   * This function prints the response like a JSON.
-   */
-  public function respond() {
-    echo json_encode($this->_response);
   }
 
   /**
