@@ -11,7 +11,6 @@ namespace Gerencianet\Models;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
@@ -24,14 +23,14 @@ namespace Gerencianet\Models;
 class Metadata {
 
   /**
-   * Custom identifier of a transaction
+   * Custom identifier of a charge
    *
    * @var string
    */
   private $_customId;
 
   /**
-   * Url that specify where transaction's notifications must be sent
+   * URL that specify where charge's notifications must be sent
    *
    * @var string
    */
@@ -58,7 +57,7 @@ class Metadata {
   }
 
   /**
-   * Set the value of notification url
+   * Set the value of notification URL
    *
    * @param string $notificationUrl
    * @return Metadata
@@ -69,7 +68,7 @@ class Metadata {
   }
 
   /**
-   * Get the value of notification url
+   * Get the value of notification URL
    *
    * @return string
    */

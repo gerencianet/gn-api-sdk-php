@@ -24,7 +24,6 @@ use Gerencianet\Webservices\ApiDeletePlan;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
@@ -91,7 +90,7 @@ class Gerencianet {
   }
 
   /**
-   * Generate a transaction using checkout
+   * Generate a payment to charge using checkout
    *
    * @return ApiPayment
    */
@@ -121,7 +120,7 @@ class Gerencianet {
   }
 
   /**
-   * Updated charge' notification url
+   * Updated charge's notification URL
    *
    * @return ApiNotificationUrl
    */
@@ -161,9 +160,9 @@ class Gerencianet {
   }
 
   /**
-   * Detail the charge
+   * Create the plan
    *
-   * @return ApiDetailCharge
+   * @return ApiPlan
    */
   public function createPlan() {
     $api = new ApiPlan($this->_clientId, $this->_clientSecret, $this->_isTest);
@@ -171,7 +170,7 @@ class Gerencianet {
   }
 
   /**
-   * Delete a Plan
+   * Delete a plan
    *
    * @return ApiDeletePlan
    */
@@ -195,6 +194,15 @@ class Gerencianet {
     } else {
       echo $e;
     }
+  }
+
+  /**
+   * This function converts the response in JSON.
+   *
+   * @return string
+   */
+  public static function json($response) {
+    return json_encode($response);
   }
 
 }

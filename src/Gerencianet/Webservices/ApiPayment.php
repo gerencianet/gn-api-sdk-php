@@ -12,7 +12,6 @@ use Gerencianet\Models\Address;
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
- * @version 0.1.0
  * @license http://opensource.org/licenses/MIT
  */
 
@@ -47,7 +46,7 @@ class ApiPayment extends ApiBase {
   private $_expireAt;
 
   /**
-   * Installments of transaction. It defines how many times a transaction will be
+   * Installments of payment. It defines how many times the value of charge will be
    * divided when using credit card
    *
    * @var string
@@ -55,7 +54,7 @@ class ApiPayment extends ApiBase {
   private $_installments;
 
   /**
-   * Charge id that will be associated with the transaction
+   * Charge id that will be paid
    *
    * @var integer
   */
@@ -81,7 +80,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Set a billing address of transaction
+   * Set a billing address of payment
    *
    * @param  Address $address
    * @return ApiPayment
@@ -92,7 +91,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Get billing address of transaction
+   * Get billing address of payment
    *
    * @return Address
    */
@@ -101,7 +100,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Set the method used to pay this transaction. It can be 'credit_card' or 'banking_billet'
+   * Set the method used to pay this charge. It can be 'credit_card' or 'banking_billet'
    *
    * @param  string $method
    * @return ApiPayment
@@ -112,7 +111,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Get the method used to pay this transaction
+   * Get the method used to pay this charge
    *
    * @return string
    */
@@ -121,8 +120,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Set an expiration date of transaction. The required format is 'YYYY-mm-dd'
-   * and must be used just for 'banking_billet'
+   * Set an expiration date of banking billet. The required format is 'YYYY-mm-dd'
    *
    * @param  string $expireAt
    * @return ApiPayment
@@ -134,7 +132,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Get an expiration date of transaction
+   * Get an expiration date of banking billet
    *
    * @return string
    */
@@ -143,7 +141,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Set the amount of installments of transaction
+   * Set the amount of installments of payment
    *
    * @param  integer $installments
    * @return ApiPayment
@@ -154,7 +152,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Get the amount of installments of transaction
+   * Get the amount of installments of payment
    *
    * @return integer
    */
@@ -163,7 +161,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Set charge id of transaction
+   * Set charge id
    *
    * @param  integer $chargeId
    * @return ApiPayment
@@ -174,7 +172,7 @@ class ApiPayment extends ApiBase {
   }
 
   /**
-   * Get charge id of transaction
+   * Get charge id
    *
    * @return integer
    */

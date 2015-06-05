@@ -51,11 +51,20 @@ class Base extends PHPUnit_Framework_TestCase {
                     ->notificationUrl('http://your_domain/your_notification_url');
   }
 
-  public function createSubscription() {
-    $subscription = new Subscription();
+  public function createPlan() {
+    $apiGN = self::createApiGN();
 
-    return $subscription->repeats(2)
-                        ->interval(1);
+    return $apiGN->createPlan()
+                 ->name('Teste')
+                 ->repeats(10)
+                 ->interval(1);
+  }
+
+  public function deletePlan() {
+    $apiGN = self::createApiGN();
+
+    return $apiGN->deletePlan()
+                 ->planId(13000);
   }
 
   public function createCharge() {
@@ -76,12 +85,14 @@ class Base extends PHPUnit_Framework_TestCase {
          ->value(5000)
          ->amount(2);
 
+    $planId = 13000;
+
     $apiGN = self::createApiGN();
 
     return $apiGN->createCharge()
                  ->addItem($item)
                  ->metadata(self::createMetadata())
-                 ->subscription(self::createSubscription());
+                 ->planId($planId);
   }
 
   public function createAddress() {

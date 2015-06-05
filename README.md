@@ -34,7 +34,6 @@ use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
-use Gerencianet\Models\Subscription;
 use Gerencianet\Models\GerencianetException;
 ```
 

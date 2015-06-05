@@ -30,12 +30,12 @@ class ApiChargeTest extends Base {
                    ->response();
 
     $this->assertEquals($resp['code'], 200);
-    $this->assertNotEmpty($resp['charge']);
-    $this->assertEquals($resp['charge']['id'], 10000);
-    $this->assertEquals($resp['charge']['total'], 34725);
-    $this->assertEquals($resp['charge']['status'], 'new');
-    $this->assertEquals($resp['charge']['custom_id'], 'MyID');
-    $this->assertEquals($resp['charge']['created_at'], '2015-03-26');
+    $this->assertNotEmpty($resp['data']);
+    $this->assertEquals($resp['data']['charge_id'], 10000);
+    $this->assertEquals($resp['data']['total'], 34725);
+    $this->assertEquals($resp['data']['status'], 'new');
+    $this->assertEquals($resp['data']['custom_id'], 'MyID');
+    $this->assertEquals($resp['data']['created_at'], '2015-03-26 08:46:00');
   }
 
   public function testChargeToSubscription() {
@@ -45,7 +45,7 @@ class ApiChargeTest extends Base {
     $this->assertNotEmpty($charge->getItems());
     $this->assertEquals(count($charge->getItems()), 1);
     $this->assertNotEmpty($charge->getMetadata());
-    $this->assertNotEmpty($charge->getSubscription());
+    $this->assertNotEmpty($charge->getPlanId());
   }
 
   public function testExecuteChargeToSubscription() {
@@ -61,12 +61,12 @@ class ApiChargeTest extends Base {
                    ->response();
 
     $this->assertEquals($resp['code'], 200);
-    $this->assertNotEmpty($resp['charge']);
-    $this->assertEquals($resp['charge']['id'], 12000);
-    $this->assertEquals($resp['charge']['subscription_id'], 20000);
-    $this->assertEquals($resp['charge']['total'], 10000);
-    $this->assertEquals($resp['charge']['status'], 'new');
-    $this->assertEquals($resp['charge']['custom_id'], 'MyID');
-    $this->assertEquals($resp['charge']['created_at'], '2015-03-26');
+    $this->assertNotEmpty($resp['data']);
+    $this->assertEquals($resp['data']['charge_id'], 12000);
+    $this->assertEquals($resp['data']['subscription_id'], 20000);
+    $this->assertEquals($resp['data']['total'], 10000);
+    $this->assertEquals($resp['data']['status'], 'new');
+    $this->assertEquals($resp['data']['custom_id'], 'MyID');
+    $this->assertEquals($resp['data']['created_at'], '2015-03-26 08:57:56');
   }
 }
