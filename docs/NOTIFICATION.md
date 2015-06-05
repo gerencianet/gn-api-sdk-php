@@ -33,8 +33,8 @@ Response:
 ```js
 {
   "code": 200,
-  "charge": {
-    "id": 10000,
+  "data": {
+    "charge_id": 10000,
     "total": 34725,
     "status": "waiting",
     "custom_id": "MyID",

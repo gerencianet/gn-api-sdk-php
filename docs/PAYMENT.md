@@ -22,8 +22,8 @@ You'll receive the payment info in the callback, such as the barcode and the ban
 ```js
 {
   "code": 200,
-  "response": {
-    "transaction": 11200,
+  "data": {
+    "charge_id": 11200,
     "total": 34875,
     "payment": "banking_billet",
     "barcode": "99999.99999 99999.999999 99999.999999 9 99999999999999",
@@ -54,12 +54,12 @@ If everything went well, the response will come with the total value, installmen
 ```js
 {
   "code": 200,
-  "response": {
-   "transaction": 11000,
-   "total": 36999,
-   "payment": "credit_card",
-   "installments": 3,
-   "installment_value": 12333
+  "data": {
+     "charge_id": 11000,
+     "total": 36999,
+     "payment": "credit_card",
+     "installments": 3,
+     "installment_value": 12333
   }
 }
 ```

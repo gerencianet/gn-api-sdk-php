@@ -27,7 +27,7 @@ $response = $apiGN->createCharge()
 Deleting a plan (works just for plans that hasn't a subscription associated):
 ```php
 $apiGN->deletePlan()
-	  ->planId($plan_id)	
+	->planId($plan_id)	
       ->run();
 ```
 
