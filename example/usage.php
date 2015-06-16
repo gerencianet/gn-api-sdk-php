@@ -72,6 +72,9 @@ try {
   $shipping3->name('Shipping 3')
             ->value(2500);
 
+  $postOfficeService = new PostOfficeService();
+  $postOfficeService->sendTo('customer');
+
 
   echo '</br>Installments for Mastercard:</br>';
   $respPaymentDataCard = $apiGN->getPaymentData()
@@ -118,6 +121,7 @@ try {
                        ->chargeId($chargeId)
                        ->method('banking_billet')
                        ->expireAt('2015-12-31')
+                       ->postOfficeService($postOfficeService)
                        ->run()
                        ->response();
   print_r($respPayment);

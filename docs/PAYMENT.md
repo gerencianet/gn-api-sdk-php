@@ -33,6 +33,21 @@ You'll receive the payment info in the callback, such as the barcode and the ban
 }
 ```
 
+If you want to receive or send to the customer the banking billet, you need to instantiate the class PostOfficeService and put this instance in the payment:
+
+```php
+$postOfficeService = new PostOfficeService();
+$postOfficeService->sendTo('customer');
+
+$response = $apiGN->createPayment()
+                  ->chargeId($chargeId)
+                  ->method('banking_billet')
+                  ->postOfficeService($postOfficeService) // This parameter is optional
+                  ...
+                  ->run()
+                  ->response();
+```
+
 ### 2. Credit Card
 
 If you need a faster payment confirmation, we recommend the credit card payment method. As we know, the credit card information is confidential, so, you need to prepare your system to send this information in a securely way. See how to send it and receive the payment token in our official documentation. Here we show how to do the backend part:

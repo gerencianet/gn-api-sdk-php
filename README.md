@@ -32,6 +32,7 @@ use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
+use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
 use Gerencianet\Models\GerencianetException;

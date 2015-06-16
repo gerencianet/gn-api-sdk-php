@@ -5,10 +5,10 @@ namespace Gerencianet\Models;
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
@@ -17,7 +17,7 @@ namespace Gerencianet\Models;
 /**
  * Gerencianet's address class
  *
- * Class that abstract and return item array as required for api
+ * Class that abstract and return address attributes as required for api
  * @package Gerencianet
  */
 class Address {

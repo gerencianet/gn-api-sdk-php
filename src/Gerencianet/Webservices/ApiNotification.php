@@ -5,10 +5,10 @@ namespace Gerencianet\Webservices;
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
