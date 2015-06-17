@@ -261,10 +261,12 @@ class ApiPayment extends ApiBase {
         $this->_data['payment']['banking_billet']['expire_at'] = $this->_expireAt;
       }
 
-      $postOfficeService = $this->_postOfficeService->toArray();
+      if($this->_postOfficeService){
+        $postOfficeService = $this->_postOfficeService->toArray();
 
-      if(!empty($postOfficeService)) {
-        $this->_data['payment']['banking_billet']['post_office_service'] = $postOfficeService;
+        if(!empty($postOfficeService)) {
+          $this->_data['payment']['banking_billet']['post_office_service'] = $postOfficeService;
+        }
       }
 
     }

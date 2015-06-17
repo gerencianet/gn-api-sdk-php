@@ -215,10 +215,12 @@ class ApiCharge extends ApiBase {
       $this->_data['shippings'] = $this->_shippings;
     }
 
-    $metadata = $this->_metadata->toArray();
+    if($this->_metadata) {
+      $metadata = $this->_metadata->toArray();
 
-    if(!empty($metadata)) {
-      $this->_data['metadata'] = $metadata;
+      if(!empty($metadata)) {
+        $this->_data['metadata'] = $metadata;
+      }
     }
 
     if($this->_customer) {
