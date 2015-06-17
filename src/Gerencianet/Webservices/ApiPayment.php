@@ -259,6 +259,8 @@ class ApiPayment extends ApiBase {
 
       if($this->_expireAt) {
         $this->_data['payment']['banking_billet']['expire_at'] = $this->_expireAt;
+      } else {
+        $this->_data['payment']['banking_billet']['expire_at'] = null;
       }
 
       if($this->_postOfficeService){
