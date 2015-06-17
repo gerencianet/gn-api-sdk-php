@@ -6,6 +6,7 @@ use Gerencianet\Webservices\ApiBase;
 use Gerencianet\Webservices\ApiCancelSubscription;
 use Gerencianet\Webservices\ApiCharge;
 use Gerencianet\Webservices\ApiCustomer;
+use Gerencianet\Webservices\ApiDeletePlan;
 use Gerencianet\Webservices\ApiDetailCharge;
 use Gerencianet\Webservices\ApiDetailSubscription;
 use Gerencianet\Webservices\ApiNotification;
@@ -13,7 +14,7 @@ use Gerencianet\Webservices\ApiNotificationUrl;
 use Gerencianet\Webservices\ApiPayment;
 use Gerencianet\Webservices\ApiPaymentData;
 use Gerencianet\Webservices\ApiPlan;
-use Gerencianet\Webservices\ApiDeletePlan;
+use Gerencianet\Webservices\ApiUpdateBillet;
 
 /**
  * Library to use Gerencianet's Api
@@ -176,6 +177,16 @@ class Gerencianet {
    */
   public function deletePlan() {
     $api = new ApiDeletePlan($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Updated a billet
+   *
+   * @return ApiUpdateBillet
+   */
+  public function updateBillet() {
+    $api = new ApiUpdateBillet($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 

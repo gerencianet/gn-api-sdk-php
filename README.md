@@ -96,6 +96,7 @@ $ phpunit -c tests/config.xml tests
 - [Detailing charges and subscriptions](/docs/DETAIL.md)
 - [Marketplace](/docs/MARKETPLACE.md)
 - [Getting Payment Data](/docs/PAYMENT_DATA.md)
+- [Updating banking billet](/docs/UPDATE_BILLET.md)
 
 ## License ##
 [MIT](LICENSE)
