@@ -8,10 +8,10 @@ use Gerencianet\Models\Subscription;
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
@@ -215,10 +215,12 @@ class ApiCharge extends ApiBase {
       $this->_data['shippings'] = $this->_shippings;
     }
 
-    $metadata = $this->_metadata->toArray();
+    if($this->_metadata) {
+      $metadata = $this->_metadata->toArray();
 
-    if(!empty($metadata)) {
-      $this->_data['metadata'] = $metadata;
+      if(!empty($metadata)) {
+        $this->_data['metadata'] = $metadata;
+      }
     }
 
     if($this->_customer) {

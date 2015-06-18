@@ -11,10 +11,13 @@ class ApiPaymentTest extends Base {
 
     $chargeId = 11000;
 
+    $postOfficeService = self::createPostOfficeService();
+
     $payment = $apiGN->createPayment()
                      ->chargeId($chargeId)
                      ->method('banking_billet')
-                     ->expireAt('2020-03-19');
+                     ->expireAt('2020-03-19')
+                     ->postOfficeService($postOfficeService);
 
     $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('bankingBillet', 200)]);
 

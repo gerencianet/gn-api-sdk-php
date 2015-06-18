@@ -6,22 +6,23 @@ use Gerencianet\Webservices\ApiBase;
 use Gerencianet\Webservices\ApiCancelSubscription;
 use Gerencianet\Webservices\ApiCharge;
 use Gerencianet\Webservices\ApiCustomer;
+use Gerencianet\Webservices\ApiDeletePlan;
 use Gerencianet\Webservices\ApiDetailCharge;
 use Gerencianet\Webservices\ApiDetailSubscription;
 use Gerencianet\Webservices\ApiNotification;
-use Gerencianet\Webservices\ApiNotificationUrl;
+use Gerencianet\Webservices\ApiUpdateChargeMetadata;
 use Gerencianet\Webservices\ApiPayment;
 use Gerencianet\Webservices\ApiPaymentData;
 use Gerencianet\Webservices\ApiPlan;
-use Gerencianet\Webservices\ApiDeletePlan;
+use Gerencianet\Webservices\ApiUpdateBillet;
 
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
@@ -176,6 +177,16 @@ class Gerencianet {
    */
   public function deletePlan() {
     $api = new ApiDeletePlan($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Updated a billet
+   *
+   * @return ApiUpdateBillet
+   */
+  public function updateBillet() {
+    $api = new ApiUpdateBillet($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 

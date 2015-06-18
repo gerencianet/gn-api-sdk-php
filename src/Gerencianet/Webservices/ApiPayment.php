@@ -6,10 +6,10 @@ use Gerencianet\Models\Address;
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
@@ -66,6 +66,13 @@ class ApiPayment extends ApiBase {
    * @var string
    */
   protected $_paymentToken;
+
+  /**
+   * Post office service to banking billet
+   *
+   * @var PostOfficeService
+   */
+  private $_postOfficeService;
 
   /**
    * Construct method
@@ -194,12 +201,32 @@ class ApiPayment extends ApiBase {
   /**
    * Get payment token
    *
-   * @param  string $paymentToken
-   * @return ApiPayment
+   * @return string
    */
   public function getPaymentToken() {
     return $this->_paymentToken;
   }
+
+  /**
+   * Set post office service
+   *
+   * @param  PostOfficeService $postOfficeService
+   * @return ApiPayment
+   */
+  public function postOfficeService($postOfficeService) {
+    $this->_postOfficeService = $postOfficeService;
+    return $this;
+  }
+
+  /**
+   * Get post office service
+   *
+   * @return PostOfficeService
+   */
+  public function getPostOfficeService() {
+    return $this->_postOfficeService;
+  }
+
 
   /**
    * Map parameters into data object
@@ -232,7 +259,18 @@ class ApiPayment extends ApiBase {
 
       if($this->_expireAt) {
         $this->_data['payment']['banking_billet']['expire_at'] = $this->_expireAt;
+      } else {
+        $this->_data['payment']['banking_billet']['expire_at'] = null;
       }
+
+      if($this->_postOfficeService){
+        $postOfficeService = $this->_postOfficeService->toArray();
+
+        if(!empty($postOfficeService)) {
+          $this->_data['payment']['banking_billet']['post_office_service'] = $postOfficeService;
+        }
+      }
+
     }
 
     return $this;

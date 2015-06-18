@@ -6,10 +6,10 @@ use Gerencianet\Models\GerencianetException;
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
@@ -129,8 +129,8 @@ abstract class ApiBase {
    * @return ApiBase
    */
   public function getAccessToken() {
-      $this->send(true);
-       console.log(json_encode($this->_response)); 
+    $this->send(true);
+
     if(isset($this->_response['error']) && $this->_response['error'] == "invalid_client") {
       $error = [
         'code' => 401,
@@ -198,10 +198,6 @@ abstract class ApiBase {
       'client_id' => $this->_clientId,
       'client_secret' => $this->_clientSecret
       ];
-      echo $this->_clientId;
-      echo "<br >";
-      echo $this->_clientSecret;
-      echo "<br >";
       $url = $this->_accessTokenUrl;
     } else {
       $_data = json_encode($this->_data);

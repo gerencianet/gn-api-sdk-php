@@ -5,6 +5,7 @@ use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
+use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
 use Gerencianet\Models\Subscription;
@@ -115,6 +116,12 @@ class Base extends PHPUnit_Framework_TestCase {
                     ->birth('1977-01-15')
                     ->phoneNumber('5044916523')
                     ->address(self::createAddress());
+  }
+
+  public function createPostOfficeService() {
+    $postOfficeService = new PostOfficeService();
+
+    return $postOfficeService->sendTo('customer');
   }
 
   public function getMockResponse($filename) {

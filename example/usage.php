@@ -7,6 +7,7 @@ use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
+use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
 use Gerencianet\Models\GerencianetException;
@@ -14,8 +15,8 @@ use Gerencianet\Models\GerencianetException;
 echo 'SDK GN API';
 echo '<pre>';
 
-$apiKey = 'Client_Id_efa72f36a4645867e8a16e68879b201ce73734ad';
-$apiSecret = 'Client_Secret_60ed6ddaa9dda2ff669af954e92ae1761d271298';
+$apiKey = 'your_client_id';
+$apiSecret = 'your_client_secret';
 
 try {
   $apiGN = new Gerencianet($apiKey, $apiSecret, true);
@@ -72,6 +73,9 @@ try {
   $shipping3->name('Shipping 3')
             ->value(2500);
 
+  $postOfficeService = new PostOfficeService();
+  $postOfficeService->sendTo('customer');
+
 
   echo '</br>Installments for Mastercard:</br>';
   $respPaymentDataCard = $apiGN->getPaymentData()
@@ -101,12 +105,12 @@ try {
                       ->run()
                       ->response();
   print_r($respCharge);
-  $chargeId = $respCharge['data']['charge_id'];
+  $chargeIdBillet = $respCharge['data']['charge_id'];
 
 
   echo '</br>Associating customer to a charge:</br>';
   $respCustomer = $apiGN->createCustomer()
-                        ->chargeId($chargeId)
+                        ->chargeId($chargeIdBillet)
                         ->customer($customer)
                         ->run()
                         ->response();
@@ -115,9 +119,10 @@ try {
 
   echo '</br>Paying with banking billet:</br>';
   $respPayment = $apiGN->createPayment()
-                       ->chargeId($chargeId)
+                       ->chargeId($chargeIdBillet)
                        ->method('banking_billet')
                        ->expireAt('2015-12-31')
+                       ->postOfficeService($postOfficeService)
                        ->run()
                        ->response();
   print_r($respPayment);
@@ -125,7 +130,7 @@ try {
 
   echo '</br>Detailing a charge:</br>';
   $respDetailCharge = $apiGN->detailCharge()
-                            ->chargeId($chargeId)
+                            ->chargeId($chargeIdBillet)
                             ->run()
                             ->response();
   print_r($respDetailCharge);
@@ -140,13 +145,13 @@ try {
                        ->run()
                        ->response();
   print_r($respCharge2);
-  $chargeId2 = $respCharge2['data']['charge_id'];
+  $chargeIdCard = $respCharge2['data']['charge_id'];
   $paymentToken = 'payment_token';
 
 
   echo '</br>Paying with credit card:</br>';
   $respPayment2 = $apiGN->createPayment()
-                        ->chargeId($chargeId2)
+                        ->chargeId($chargeIdCard)
                         ->method('credit_card')
                         ->installments(3)
                         ->paymentToken($paymentToken)
@@ -176,14 +181,14 @@ try {
                             ->run()
                             ->response();
   print_r($respSubscription);
-  $chargeId3 = $respSubscription['data']['charge_id'];
+  $chargeIdSubscription = $respSubscription['data']['charge_id'];
   $subscriptionId = $respSubscription['data']['subscription_id'];
   $paymentToken2 = 'payment_token';
 
 
   echo '</br>Paying subscription:</br>';
   $respPaymentSubscription = $apiGN->createPayment()
-                                   ->chargeId($chargeId3)
+                                   ->chargeId($chargeIdSubscription)
                                    ->method('credit_card')
                                    ->paymentToken($paymentToken2)
                                    ->billingAddress($address)
@@ -193,13 +198,13 @@ try {
 
 
   echo '</br>Update charge metadata:</br>';
-  $respUpdateNotification = $apiGN->updateChargeMetadata()
-                                  ->chargeId($chargeId2)
-                                  ->notificationUrl('http://your_domain/your_new_notification_url')
-                                  ->customId('new_id')
-                                  ->run()
-                                  ->response();
-  print_r($respUpdateNotification);
+  $respUpdateMetadata = $apiGN->updateChargeMetadata()
+                              ->chargeId($chargeIdBillet)
+                              ->notificationUrl('http://your.domain/your_new_notification_url')
+                              ->customId('new_id')
+                              ->run()
+                              ->response();
+  print_r($respUpdateMetadata);
 
 
   echo '</br>Notification:</br>';
@@ -241,6 +246,15 @@ try {
                         ->run()
                         ->response();
   print_r($responseDeletePlan);
+
+
+  echo '</br>Update billet expire_at:</br>';
+  $respUpdateBillet = $apiGN->updateBillet()
+                            ->chargeId($chargeIdBillet)
+                            ->expireAt('2016-12-31')
+                            ->run()
+                            ->response();
+  print_r($respUpdateBillet);
 
 } catch(GerencianetException $e) {
   Gerencianet::error($e);

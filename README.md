@@ -32,6 +32,7 @@ use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
+use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
 use Gerencianet\Models\GerencianetException;
@@ -95,6 +96,7 @@ $ phpunit -c tests/config.xml tests
 - [Detailing charges and subscriptions](/docs/DETAIL.md)
 - [Marketplace](/docs/MARKETPLACE.md)
 - [Getting Payment Data](/docs/PAYMENT_DATA.md)
+- [Updating banking billet](/docs/UPDATE_BILLET.md)
 
 ## License ##
 [MIT](LICENSE)

@@ -5,10 +5,10 @@ namespace Gerencianet\Webservices;
 /**
  * Library to use Gerencianet's Api
  *
- * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
- * @author Talita Campos <suportetecnico@gerencianet.com.br>
- * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
  * @author Cecilia Deveza <suportetecnico@gerencianet.com.br>
+ * @author Danniel Hugo <suportetecnico@gerencianet.com.br>
+ * @author Francisco Thiene <suportetecnico@gerencianet.com.br>
+ * @author Talita Campos <suportetecnico@gerencianet.com.br>
  * @author Thomaz Feitoza <suportetecnico@gerencianet.com.br>
  *
  * @license http://opensource.org/licenses/MIT
@@ -125,9 +125,12 @@ class ApiUpdateChargeMetadata extends ApiBase {
   public function mapData() {
     $this->_data['charge_id'] = $this->_chargeId;
 
-    $this->_data['notification_url'] = $this->_notificationUrl;
-
-    $this->_data['custom_id'] = $this->_customId;
+    if($this->_notificationUrl){
+      $this->_data['notification_url'] = $this->_notificationUrl;
+    }
+    if($this->_customId){
+      $this->_data['custom_id'] = $this->_customId;  
+    }
 
     return $this;
   }
