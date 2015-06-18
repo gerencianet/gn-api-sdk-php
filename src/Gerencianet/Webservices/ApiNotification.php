@@ -39,7 +39,7 @@ class ApiNotification extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/notification');
+    $this->setUrl('/notification/detail');
   }
 
   /**

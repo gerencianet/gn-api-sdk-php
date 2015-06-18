@@ -14,8 +14,8 @@ use Gerencianet\Models\GerencianetException;
 echo 'SDK GN API';
 echo '<pre>';
 
-$apiKey = 'your_client_id';
-$apiSecret = 'your_client_secret';
+$apiKey = 'Client_Id_efa72f36a4645867e8a16e68879b201ce73734ad';
+$apiSecret = 'Client_Secret_60ed6ddaa9dda2ff669af954e92ae1761d271298';
 
 try {
   $apiGN = new Gerencianet($apiKey, $apiSecret, true);
@@ -192,10 +192,11 @@ try {
   print_r($respPaymentSubscription);
 
 
-  echo '</br>Update notification URL:</br>';
-  $respUpdateNotification = $apiGN->updateNotificationUrl()
-                                  ->notificationUrl('http://your_domain/your_new_notification_url')
+  echo '</br>Update charge metadata:</br>';
+  $respUpdateNotification = $apiGN->updateChargeMetadata()
                                   ->chargeId($chargeId2)
+                                  ->notificationUrl('http://your_domain/your_new_notification_url')
+                                  ->customId('new_id')
                                   ->run()
                                   ->response();
   print_r($respUpdateNotification);

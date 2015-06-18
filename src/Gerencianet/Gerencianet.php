@@ -80,6 +80,16 @@ class Gerencianet {
   }
 
   /**
+   * Update charge's metadata
+   *
+   * @return ApiUpdateChargeMetadata
+   */
+  public function updateChargeMetadata() {
+    $api = new ApiUpdateChargeMetadata($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
    * Add a customer to charge
    *
    * @return ApiCustomer
@@ -116,16 +126,6 @@ class Gerencianet {
    */
   public function getNotifications() {
     $api = new ApiNotification($this->_clientId, $this->_clientSecret, $this->_isTest);
-    return $api;
-  }
-
-  /**
-   * Updated charge's notification URL
-   *
-   * @return ApiNotificationUrl
-   */
-  public function updateNotificationUrl() {
-    $api = new ApiNotificationUrl($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 

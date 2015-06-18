@@ -76,7 +76,7 @@ class ApiPayment extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/payment/pay');
+    $this->setUrl('/charge/pay');
   }
 
   /**

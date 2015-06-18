@@ -11,7 +11,7 @@ class ApiNotificationUrlTest extends Base {
 
     $chargeId = 10000;
 
-    $notificationUrl = $apiGN->updateNotificationUrl()
+    $notificationUrl = $apiGN->updateChargeMetadata()
                              ->chargeId($chargeId)
                              ->notificationUrl('http://your_domain/your_notification_url');
 
@@ -25,7 +25,7 @@ class ApiNotificationUrlTest extends Base {
 
     $chargeId = 10000;
 
-    $notificationUrl = $apiGN->updateNotificationUrl()
+    $notificationUrl = $apiGN->updateChargeMetadata()
                              ->chargeId($chargeId)
                              ->notificationUrl('http://your_domain/your_notification_url');
 

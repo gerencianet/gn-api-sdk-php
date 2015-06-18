@@ -31,12 +31,12 @@ abstract class ApiBase {
   /**
    * Define API Gerencianet URL
    */
-  const BASE_URL = 'https://api.gerencianet.com.br/v1';
+  const BASE_URL = 'http://ceciliagnapi.gerencianet.com.br:4400';
 
   /**
    * Define Gerencianet test URL
    */
-  const BASE_TEST_URL = 'https://sandbox.gerencianet.com.br/v1';
+  const BASE_TEST_URL = 'http://ceciliagnapi.gerencianet.com.br:4400';
 
   /**
    * Define URL to get access token
@@ -129,8 +129,8 @@ abstract class ApiBase {
    * @return ApiBase
    */
   public function getAccessToken() {
-    $this->send(true);
-
+      $this->send(true);
+       console.log(json_encode($this->_response)); 
     if(isset($this->_response['error']) && $this->_response['error'] == "invalid_client") {
       $error = [
         'code' => 401,
@@ -198,7 +198,10 @@ abstract class ApiBase {
       'client_id' => $this->_clientId,
       'client_secret' => $this->_clientSecret
       ];
-
+      echo $this->_clientId;
+      echo "<br >";
+      echo $this->_clientSecret;
+      echo "<br >";
       $url = $this->_accessTokenUrl;
     } else {
       $_data = json_encode($this->_data);

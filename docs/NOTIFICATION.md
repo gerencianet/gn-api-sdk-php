@@ -6,7 +6,7 @@ Any changes that happen in the charges will trigger an event that notifies the n
 
 It's also possible to set or change the notification_url for existing charges:
 ```php
-$response = $apiGN->updateNotificationUrl()
+$response = $apiGN->updateChargeMetadata()
                   ->notificationUrl('http://your_domain/your_new_notification_url')
                   ->chargeId($chargeId)
                   ->run()

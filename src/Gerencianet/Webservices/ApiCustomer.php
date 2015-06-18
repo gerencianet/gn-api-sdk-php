@@ -47,7 +47,7 @@ class ApiCustomer extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/customer');
+    $this->setUrl('/charge/customer/associate');
   }
 
   /**
