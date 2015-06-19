@@ -109,7 +109,7 @@ try {
 
 
   echo '</br>Associating customer to a charge:</br>';
-  $respCustomer = $apiGN->createCustomer()
+  $respCustomer = $apiGN->associateCustomer()
                         ->chargeId($chargeIdBillet)
                         ->customer($customer)
                         ->run()
@@ -209,7 +209,7 @@ try {
 
   echo '</br>Notification:</br>';
   $notificationToken = 'notification_token';
-  $respNotification = $apiGN->getNotifications()
+  $respNotification = $apiGN->detailNotification()
                             ->notificationToken($notificationToken)
                             ->run()
                             ->response();

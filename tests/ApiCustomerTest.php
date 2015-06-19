@@ -8,11 +8,11 @@ class ApiCustomerTest extends Base {
 
   public function testCustomer() {
     $apiGN = self::createApiGN();
-    $customerData = self::createCustomer();
+    $customerData = self::associateCustomer();
 
     $chargeId = 10000;
 
-    $customerToCharge = $apiGN->createCustomer()
+    $customerToCharge = $apiGN->associateCustomer()
                               ->chargeId($chargeId)
                               ->customer($customerData);
 
@@ -27,11 +27,11 @@ class ApiCustomerTest extends Base {
 
   public function testExecuteCustomer() {
     $apiGN = self::createApiGN();
-    $customerData = self::createCustomer();
+    $customerData = self::associateCustomer();
 
     $chargeId = 10000;
 
-    $customerToCharge = $apiGN->createCustomer()
+    $customerToCharge = $apiGN->associateCustomer()
                               ->chargeId($chargeId)
                               ->customer($customerData);
 

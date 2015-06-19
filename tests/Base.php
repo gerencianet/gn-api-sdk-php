@@ -107,7 +107,8 @@ class Base extends PHPUnit_Framework_TestCase {
                    ->state('MG');
   }
 
-  public function createCustomer() {
+  public function associateCustomer() {
+
     $customer = new Customer();
 
     return $customer->name('Gorbadoc Oldbuck')

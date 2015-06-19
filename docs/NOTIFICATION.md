@@ -23,7 +23,7 @@ Response:
 Assuming that a charge has a valid `notification_url`, it will receive a post containing a token when the notification time comes. This token must be used to get the information about what was altered on the charge:
 ```php
 $notificationToken = $_POST['notification'];
-$response = $apiGN->getNotifications()
+$response = $apiGN->detailNotifications()
                   ->notificationToken($notificationToken)
                   ->run()
                   ->response();

@@ -95,7 +95,7 @@ class Gerencianet {
    *
    * @return ApiCustomer
    */
-  public function createCustomer() {
+  public function associateCustomer() {
     $api = new ApiCustomer($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
@@ -121,11 +121,11 @@ class Gerencianet {
   }
 
   /**
-   * Get notifications of a token
+   * Detail a notification using its token
    *
    * @return ApiNotification
    */
-  public function getNotifications() {
+  public function detailNotification() {
     $api = new ApiNotification($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }

@@ -5,7 +5,7 @@ require_once __DIR__.'/Base.php';
 class CustomerTest extends Base {
 
   public function testCustomer() {
-    $customer = self::createCustomer();
+    $customer = self::associateCustomer();
 
     $this->assertNotEmpty($customer);
     $this->assertEquals($customer->getName(), 'Gorbadoc Oldbuck');
