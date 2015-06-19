@@ -22,7 +22,7 @@ use Gerencianet\Models\Address;
  *
  * @package Gerencianet
  */
-class ApiPayment extends ApiBase {
+class ApiChargePay extends ApiBase {
 
   /**
    * Billing address
@@ -90,7 +90,7 @@ class ApiPayment extends ApiBase {
    * Set a billing address of payment
    *
    * @param  Address $address
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function billingAddress(Address $address) {
     $this->_billingAddress = $address;
@@ -110,7 +110,7 @@ class ApiPayment extends ApiBase {
    * Set the method used to pay this charge. It can be 'credit_card' or 'banking_billet'
    *
    * @param  string $method
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function method($method) {
     $this->_method = $method;
@@ -130,7 +130,7 @@ class ApiPayment extends ApiBase {
    * Set an expiration date of banking billet. The required format is 'YYYY-mm-dd'
    *
    * @param  string $expireAt
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function expireAt($expireAt) {
     $expireAt = str_replace('/', '-', $expireAt);
@@ -151,7 +151,7 @@ class ApiPayment extends ApiBase {
    * Set the amount of installments of payment
    *
    * @param  integer $installments
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function installments($installments) {
     $this->_installments = (int)$installments;
@@ -171,7 +171,7 @@ class ApiPayment extends ApiBase {
    * Set charge id
    *
    * @param  integer $chargeId
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function chargeId($chargeId) {
     $this->_chargeId = (int)$chargeId;
@@ -191,7 +191,7 @@ class ApiPayment extends ApiBase {
    * Set payment token. Must be used just for 'credit_card'
    *
    * @param  string $paymentToken
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function paymentToken($paymentToken) {
     $this->_paymentToken = $paymentToken;
@@ -211,7 +211,7 @@ class ApiPayment extends ApiBase {
    * Set post office service
    *
    * @param  PostOfficeService $postOfficeService
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function postOfficeService($postOfficeService) {
     $this->_postOfficeService = $postOfficeService;
@@ -232,7 +232,7 @@ class ApiPayment extends ApiBase {
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function mapData() {
     $this->_data['charge_id'] = $this->_chargeId;

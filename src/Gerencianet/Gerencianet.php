@@ -3,18 +3,19 @@
 namespace Gerencianet;
 use Gerencianet\Models\GerencianetException;
 use Gerencianet\Webservices\ApiBase;
+use Gerencianet\Webservices\ApiAssociateChargeCustomer;
 use Gerencianet\Webservices\ApiCancelSubscription;
 use Gerencianet\Webservices\ApiCharge;
-use Gerencianet\Webservices\ApiCustomer;
+use Gerencianet\Webservices\ApiChargePay;
 use Gerencianet\Webservices\ApiDeletePlan;
 use Gerencianet\Webservices\ApiDetailCharge;
+use Gerencianet\Webservices\ApiDetailNotification;
 use Gerencianet\Webservices\ApiDetailSubscription;
-use Gerencianet\Webservices\ApiNotification;
-use Gerencianet\Webservices\ApiUpdateChargeMetadata;
-use Gerencianet\Webservices\ApiPayment;
 use Gerencianet\Webservices\ApiPaymentData;
 use Gerencianet\Webservices\ApiPlan;
+use Gerencianet\Webservices\ApiSubscription;
 use Gerencianet\Webservices\ApiUpdateBillet;
+use Gerencianet\Webservices\ApiUpdateChargeMetadata;
 
 /**
  * Library to use Gerencianet's Api
@@ -93,20 +94,20 @@ class Gerencianet {
   /**
    * Add a customer to charge
    *
-   * @return ApiCustomer
+   * @return ApiAssociateChargeCustomer
    */
   public function associateCustomer() {
-    $api = new ApiCustomer($this->_clientId, $this->_clientSecret, $this->_isTest);
+    $api = new ApiAssociateChargeCustomer($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
-  /**
+    /**
    * Generate a subscription
    *
    * @return ApiSubscription
    */
   public function createSubscription() {
-    $api = new ApiCharge($this->_clientId, $this->_clientSecret, $this->_isTest);
+    $api = new ApiSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
@@ -114,10 +115,10 @@ class Gerencianet {
   /**
    * Generate a payment to charge using checkout
    *
-   * @return ApiPayment
+   * @return ApiChargePay
    */
   public function createPayment() {
-    $api = new ApiPayment($this->_clientId, $this->_clientSecret, $this->_isTest);
+    $api = new ApiChargePay($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
@@ -134,10 +135,10 @@ class Gerencianet {
   /**
    * Detail a notification using its token
    *
-   * @return ApiNotification
+   * @return ApiDetailNotification
    */
   public function detailNotification() {
-    $api = new ApiNotification($this->_clientId, $this->_clientSecret, $this->_isTest);
+    $api = new ApiDetailNotification($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
