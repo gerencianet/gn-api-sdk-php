@@ -17,23 +17,23 @@ use Gerencianet\Models\Metadata;
  */
 
 /**
- * Gerencianet's charge class
+ * Gerencianet's subscription class
  *
- * Implements how to use Gerencianet's charge
+ * Implements how to use Gerencianet's subscription
  *
  * @package Gerencianet
  */
-class ApiCharge extends ApiBase {
+class ApiSubscription extends ApiBase {
 
   /**
-   * Set of items for this charge
+   * Set of items for this subscription
    *
    * @var array
    */
   private $_cart;
 
   /**
-   * Set of shippings for this charge
+   * Set of shippings for this subscription
    *
    * @var array
    */
@@ -53,6 +53,13 @@ class ApiCharge extends ApiBase {
    */
   private $_customer;
 
+   /**
+   * Plan's attributes
+   *
+   * @var Plan
+   */
+  private $_planId;
+
   /**
    * Construct method
    *
@@ -62,7 +69,7 @@ class ApiCharge extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/charge');
+    $this->setUrl('/subscription');
     $this->_cart = [];
     $this->_shippings = [];
     $this->_metadata = new Metadata();
@@ -72,7 +79,7 @@ class ApiCharge extends ApiBase {
    * Add a new item to the set of items
    *
    * @param  Item $item
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function addItem($item) {
     $this->_cart[] = $item->toArray();
@@ -83,7 +90,7 @@ class ApiCharge extends ApiBase {
    * Add a array of new items to the set of items
    *
    * @param  Array $items
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function addItems(Array $items) {
     foreach($items as $item) {
@@ -93,7 +100,7 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Get items of charge
+   * Get items of subscription
    *
    * @return array
    */
@@ -105,7 +112,7 @@ class ApiCharge extends ApiBase {
    * Add a new shipping to the set of shippings
    *
    * @param  Shipping $shipping
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function addShipping($shipping) {
     $this->_shippings[] = $shipping->toArray();
@@ -116,7 +123,7 @@ class ApiCharge extends ApiBase {
    * Add a array of new shippings to the set of shippings
    *
    * @param  Array $shippings
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function addShippings(Array $shippings) {
     foreach($shippings as $shipping) {
@@ -126,7 +133,7 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Get shippings of charge
+   * Get shippings of subscription
    *
    * @return array
    */
@@ -135,10 +142,10 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Set a metadata of charge
+   * Set a metadata of subscription
    *
    * @param  Metadata $metadata
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function metadata(Metadata $metadata) {
     $this->_metadata = $metadata;
@@ -146,7 +153,7 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Get metadata of charge
+   * Get metadata of subscription
    *
    * @return Metadata
    */
@@ -155,10 +162,10 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Set a customer of charge
+   * Set a customer of subscription
    *
    * @param  Customer $customer
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function customer(Customer $customer) {
     $this->_customer = $customer;
@@ -166,7 +173,7 @@ class ApiCharge extends ApiBase {
   }
 
   /**
-   * Get the customer of charge
+   * Get the customer of subscription
    *
    * @return Customer
    */
@@ -175,10 +182,30 @@ class ApiCharge extends ApiBase {
   }
 
   /**
+   * Set plan of subscription
+   *
+   * @param  Plan $plan
+   * @return ApiSubscription
+   */
+  public function planId($planId) {
+    $this->_planId = $planId;
+    return $this;
+  }
+
+  /**
+   * Get plan of subscription
+   *
+   * @return Plan
+   */
+  public function getPlanId() {
+    return $this->_planId;
+  }
+
+  /**
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
-   * @return ApiCharge
+   * @return ApiSubscription
    */
   public function mapData() {
     $this->_data['items'] = $this->_cart;
@@ -198,6 +225,8 @@ class ApiCharge extends ApiBase {
     if($this->_customer) {
       $this->_data['customer'] = $this->_customer->toArray();
     }
+
+    $this->_data['plan_id'] = $this->_planId;
 
     return $this;
   }

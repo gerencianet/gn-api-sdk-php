@@ -101,6 +101,17 @@ class Gerencianet {
   }
 
   /**
+   * Generate a subscription
+   *
+   * @return ApiSubscription
+   */
+  public function createSubscription() {
+    $api = new ApiCharge($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+
+  /**
    * Generate a payment to charge using checkout
    *
    * @return ApiPayment

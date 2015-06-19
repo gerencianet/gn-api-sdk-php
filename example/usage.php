@@ -173,7 +173,7 @@ try {
 
 
   echo '</br>Subscription:</br>';
-  $respSubscription = $apiGN->createCharge()
+  $respSubscription = $apiGN->createSubscription()
                             ->addItem($item2)
                             ->addShipping($shipping3)
                             ->planId($planId)
