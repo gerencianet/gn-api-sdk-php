@@ -53,11 +53,11 @@ try {
 
   $metadata = new Metadata();
   $metadata->customId('MyID')
-           ->notificationUrl('http://your_domain/your_notification_url');
+           ->notificationUrl('http://your.domain/your_notification_url');
 
   $metadata2 = new Metadata();
   $metadata2->customId('MyID2')
-            ->notificationUrl('http://your_domain/your_notification_url');
+            ->notificationUrl('http://your.domain/your_notification_url');
 
   $shipping1 = new Shipping();
   $shipping1->payeeCode('payee_code_to_repass')
