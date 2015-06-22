@@ -21,7 +21,7 @@ namespace Gerencianet\Webservices;
  *
  * @package Gerencianet
  */
-class ApiNotificationUrl extends ApiBase {
+class ApiUpdateChargeMetadata extends ApiBase {
 
   /**
    * URL that specify where charge's notifications must be sent
@@ -29,6 +29,13 @@ class ApiNotificationUrl extends ApiBase {
    * @var string
    */
   private $_notificationUrl;
+
+  /**
+   * Id that represents the charge at the integrator's system
+   *
+   * @var string
+   */
+  private $_customId;
 
   /**
    * Charge id that will be updated
@@ -46,17 +53,28 @@ class ApiNotificationUrl extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/notification/update');
+    $this->setUrl('/charge/metadata/update');
   }
 
   /**
    * Sets the value of notification URL
    *
    * @param string $notificationUrl
-   * @return ApiNotificationUrl
+   * @return ApiUpdateChargeMetadata
    */
   public function notificationUrl($notificationUrl) {
     $this->_notificationUrl = $notificationUrl;
+    return $this;
+  }
+
+  /**
+   * Sets the value of custom id
+   *
+   * @param string $customId
+   * @return ApiUpdateChargeMetadata
+   */
+  public function customId($customId) {
+    $this->_customId = $customId;
     return $this;
   }
 
@@ -70,10 +88,19 @@ class ApiNotificationUrl extends ApiBase {
   }
 
   /**
+   * Gets the value of custom id
+   *
+   * @return string
+   */
+  public function getCustomId() {
+    return $this->_customId;
+  }
+
+  /**
    * Set charge id of charge
    *
    * @param  integer $chargeId
-   * @return ApiNotificationUrl
+   * @return ApiUpdateChargeMetadata
    */
   public function chargeId($chargeId) {
     $this->_chargeId = (int)$chargeId;
@@ -93,12 +120,17 @@ class ApiNotificationUrl extends ApiBase {
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
-   * @return ApiNotificationUrl
+   * @return ApiUpdateChargeMetadata
    */
   public function mapData() {
     $this->_data['charge_id'] = $this->_chargeId;
 
-    $this->_data['notification_url'] = $this->_notificationUrl;
+    if($this->_notificationUrl){
+      $this->_data['notification_url'] = $this->_notificationUrl;
+    }
+    if($this->_customId){
+      $this->_data['custom_id'] = $this->_customId;  
+    }
 
     return $this;
   }

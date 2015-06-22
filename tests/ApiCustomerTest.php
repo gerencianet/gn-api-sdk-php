@@ -12,7 +12,7 @@ class ApiCustomerTest extends Base {
 
     $chargeId = 10000;
 
-    $customerToCharge = $apiGN->createCustomer()
+    $customerToCharge = $apiGN->associateCustomer()
                               ->chargeId($chargeId)
                               ->customer($customerData);
 
@@ -31,7 +31,7 @@ class ApiCustomerTest extends Base {
 
     $chargeId = 10000;
 
-    $customerToCharge = $apiGN->createCustomer()
+    $customerToCharge = $apiGN->associateCustomer()
                               ->chargeId($chargeId)
                               ->customer($customerData);
 

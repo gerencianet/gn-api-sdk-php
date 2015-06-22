@@ -9,7 +9,6 @@ use Gerencianet\Models\Metadata;
 use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
-use Gerencianet\Models\Subscription;
 use Gerencianet\Webservices\ApiBase;
 use GuzzleHttp\Stream\Stream;
 use GuzzleHttp\Message\Response;
@@ -93,7 +92,7 @@ class Base extends PHPUnit_Framework_TestCase {
 
     $apiGN = self::createApiGN();
 
-    return $apiGN->createCharge()
+    return $apiGN->createSubscription()
                  ->addItem(self::itemWithoutRepass())
                  ->metadata(self::metadata())
                  ->planId($planId);

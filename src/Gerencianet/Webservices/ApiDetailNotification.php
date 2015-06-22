@@ -21,7 +21,7 @@ namespace Gerencianet\Webservices;
  *
  * @package Gerencianet
  */
-class ApiNotification extends ApiBase {
+class ApiDetailNotification extends ApiBase {
 
   /**
    * Charge's notification token
@@ -39,14 +39,14 @@ class ApiNotification extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/notification');
+    $this->setUrl('/notification/detail');
   }
 
   /**
    * Set the notification token
    *
    * @param  string $notificationToken
-   * @return ApiNotification
+   * @return ApiDetailNotification
    */
   public function notificationToken($notificationToken) {
     $this->_notificationToken = $notificationToken;
@@ -56,7 +56,7 @@ class ApiNotification extends ApiBase {
   /**
    * Get the notification token
    *
-   * @return ApiNotification
+   * @return ApiDetailNotification
    */
   public function getNotificationToken() {
     return $this->_notificationToken;
@@ -67,7 +67,7 @@ class ApiNotification extends ApiBase {
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
-   * @return ApiNotification
+   * @return ApiDetailNotification
    */
   public function mapData() {
     $this->_data['notification'] = $this->_notificationToken;

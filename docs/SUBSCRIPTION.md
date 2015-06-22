@@ -9,15 +9,15 @@ The `interval` parameter defines the interval, in months, that a charge has to b
 Creating a plan:
 ```php
 $plan = $apiGN->createPlan()
-      		  ->name("My first plan")
-      		  ->repeats(2)
-      		  ->interval(1);
+      	  ->name("My first plan")
+      	  ->repeats(2)
+      	  ->interval(1);
 ```
 
 
 Creating a subscription:
 ```php
-$response = $apiGN->createCharge()
+$response = $apiGN->createSubscription()
                   ...
                   ->planId($plan["plan"]["id"])
                   ->run()

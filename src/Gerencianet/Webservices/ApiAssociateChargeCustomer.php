@@ -22,7 +22,7 @@ use Gerencianet\Models\Customer;
  *
  * @package Gerencianet
  */
-class ApiCustomer extends ApiBase {
+class ApiAssociateChargeCustomer extends ApiBase {
 
   /**
    * Charge id that will be associated to the customer
@@ -47,14 +47,14 @@ class ApiCustomer extends ApiBase {
    */
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
-    $this->setUrl('/customer');
+    $this->setUrl('/charge/customer/associate');
   }
 
   /**
    * Set charge id of charge
    *
    * @param  integer $chargeId
-   * @return ApiPayment
+   * @return ApiAssociateChargeCustomer
    */
   public function chargeId($chargeId) {
     $this->_chargeId = (int)$chargeId;
@@ -74,7 +74,7 @@ class ApiCustomer extends ApiBase {
    * Set a customer of charge
    *
    * @param  Customer $customer
-   * @return ApiCustomer
+   * @return ApiAssociateChargeCustomer
    */
   public function customer(Customer $customer) {
     $this->_customer = $customer;
@@ -94,18 +94,11 @@ class ApiCustomer extends ApiBase {
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
-   * @return ApiCustomer
+   * @return ApiAssociateChargeCustomer
    */
   public function mapData() {
     $this->_data['charge_id'] = $this->_chargeId;
-
-    if($this->_customer) {
-      $this->_data['name'] = $this->_customer->getName();
-      $this->_data['email'] = $this->_customer->getEmail();
-      $this->_data['document'] = $this->_customer->getDocument();
-      $this->_data['birth'] = $this->_customer->getBirth();
-      $this->_data['phone_number'] = $this->_customer->getPhoneNumber();
-    }
+    $this->_data['customer'] = $this->_customer->toArray();
 
     return $this;
   }

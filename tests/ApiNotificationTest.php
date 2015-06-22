@@ -6,10 +6,10 @@ require_once __DIR__.'/Base.php';
 
 class ApiNotificationTest extends Base {
 
-  public function testGetNotifications() {
+  public function testDetailNotifications() {
     $apiGN = self::createApiGN();
 
-    $notification = $apiGN->getNotifications()
+    $notification = $apiGN->detailNotification()
                           ->notificationToken('notificationToken');
 
     $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('notification', 200)]);

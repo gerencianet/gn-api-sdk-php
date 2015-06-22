@@ -53,11 +53,11 @@ try {
 
   $metadata = new Metadata();
   $metadata->customId('MyID')
-           ->notificationUrl('http://your_domain/your_notification_url');
+           ->notificationUrl('http://your.domain/your_notification_url');
 
   $metadata2 = new Metadata();
   $metadata2->customId('MyID2')
-            ->notificationUrl('http://your_domain/your_notification_url');
+            ->notificationUrl('http://your.domain/your_notification_url');
 
   $shipping1 = new Shipping();
   $shipping1->payeeCode('payee_code_to_repass')
@@ -109,7 +109,7 @@ try {
 
 
   echo '</br>Associating customer to a charge:</br>';
-  $respCustomer = $apiGN->createCustomer()
+  $respCustomer = $apiGN->associateCustomer()
                         ->chargeId($chargeIdBillet)
                         ->customer($customer)
                         ->run()
@@ -175,7 +175,7 @@ try {
 
 
   echo '</br>Subscription:</br>';
-  $respSubscription = $apiGN->createCharge()
+  $respSubscription = $apiGN->createSubscription()
                             ->addItem($item2)
                             ->addShipping($shipping3)
                             ->planId($planId)
@@ -199,18 +199,19 @@ try {
   print_r($respPaymentSubscription);
 
 
-  echo '</br>Update notification URL:</br>';
-  $respUpdateNotification = $apiGN->updateNotificationUrl()
-                                  ->notificationUrl('http://your_domain/your_new_notification_url')
-                                  ->chargeId($chargeIdCard)
-                                  ->run()
-                                  ->response();
-  print_r($respUpdateNotification);
+  echo '</br>Update charge metadata:</br>';
+  $respUpdateMetadata = $apiGN->updateChargeMetadata()
+                              ->chargeId($chargeIdBillet)
+                              ->notificationUrl('http://your.domain/your_new_notification_url')
+                              ->customId('new_id')
+                              ->run()
+                              ->response();
+  print_r($respUpdateMetadata);
 
 
   echo '</br>Notification:</br>';
   $notificationToken = 'notification_token';
-  $respNotification = $apiGN->getNotifications()
+  $respNotification = $apiGN->detailNotification()
                             ->notificationToken($notificationToken)
                             ->run()
                             ->response();

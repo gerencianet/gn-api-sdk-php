@@ -4,7 +4,7 @@ If you created charges without customers because you didn't know them or was pla
 
 ```php
 $chargeId = ''; // The value returned by createCharge function
-$response = $apiGN->createCustomer()
+$response = $apiGN->associateCustomer()
                   ->chargeId($chargeId)
                   ->customer($customer)
                   ->run()
