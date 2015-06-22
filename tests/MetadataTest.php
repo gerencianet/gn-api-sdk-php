@@ -4,7 +4,7 @@ require_once __DIR__.'/Base.php';
 
 class MetadataTest extends Base {
 
-  public function testMetadata() {
+  public function testNotification() {
     $metadata = self::createMetadata();
 
     $this->assertNotEmpty($metadata);
