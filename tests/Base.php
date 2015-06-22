@@ -87,7 +87,7 @@ class Base extends PHPUnit_Framework_TestCase {
                  ->metadata(self::metadata());
   }
 
-  public function createChargeToSubscription() {
+  public function createSubscription() {
     $planId = 13000;
 
     $apiGN = self::createApiGN();

@@ -4,9 +4,9 @@ use GuzzleHttp\Subscriber\Mock;
 
 require_once __DIR__.'/Base.php';
 
-class ApiCustomerTest extends Base {
+class ApiAssociateChargeCustomerTest extends Base {
 
-  public function testCustomer() {
+  public function testAssociateChargeToCustomer() {
     $apiGN = self::createApiGN();
     $customerData = self::customer();
 
@@ -25,7 +25,7 @@ class ApiCustomerTest extends Base {
     $this->assertEquals($customerToCharge->getCustomer()->getPhoneNumber(), '5044916523');
   }
 
-  public function testExecuteCustomer() {
+  public function testExecuteAssociateChargeToCustomer() {
     $apiGN = self::createApiGN();
     $customerData = self::customer();
 
