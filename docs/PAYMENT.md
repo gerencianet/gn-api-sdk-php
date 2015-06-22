@@ -17,6 +17,26 @@ $response = $apiGN->createPayment()
 
 If you don't set the `expire_at` attribute, the date will be today + 3 days.
 
+If you want to set instructions (at most 4 instructions) for a banking billet, you will have two options:
+
+* Adding one instruction at a time:
+```php
+$response = $apiGN->createPayment()
+                  ...
+                  ->addInstruction('Instruction 1');
+                  ->run()
+                  ->response();
+```
+
+* Adding many instructions:
+```php
+$response = $apiGN->createPayment()
+                  ...
+                  ->addInstructions(['Instruction 1', 'Instruction 2', 'Instruction 3']);
+                  ->run()
+                  ->response();
+```
+
 You'll receive the payment info in the callback, such as the barcode and the banking billet link:
 
 ```js

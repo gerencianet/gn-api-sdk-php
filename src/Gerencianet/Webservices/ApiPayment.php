@@ -68,11 +68,18 @@ class ApiPayment extends ApiBase {
   protected $_paymentToken;
 
   /**
-   * Post office service to banking billet
+   * Post office service for banking billet
    *
    * @var PostOfficeService
    */
   private $_postOfficeService;
+
+  /**
+   * Set of instructions for banking billet
+   *
+   * @var array
+   */
+  private $_instructions;
 
   /**
    * Construct method
@@ -84,6 +91,7 @@ class ApiPayment extends ApiBase {
   public function __construct($clientId, $clientSecret, $isTest) {
     parent::__construct($clientId, $clientSecret, $isTest);
     $this->setUrl('/payment/pay');
+    $this->_instructions = [];
   }
 
   /**
@@ -227,6 +235,37 @@ class ApiPayment extends ApiBase {
     return $this->_postOfficeService;
   }
 
+  /**
+   * Add a new instruction to the set of instructions
+   *
+   * @param  string $instruction
+   * @return ApiPayment
+   */
+  public function addInstruction($instruction) {
+    $this->_instructions[] = $instruction;
+    return $this;
+  }
+
+  /**
+   * Add a array of new instructions to the set of instructions
+   *
+   * @param  string $instructions
+   * @return ApiPayment
+   */
+  public function addInstructions(Array $instructions) {
+    $this->_instructions = array_merge($this->_instructions, $instructions);
+    return $this;
+  }
+
+  /**
+   * Get instructions of banking billet
+   *
+   * @return array
+   */
+  public function getInstructions() {
+    return $this->_instructions;
+  }
+
 
   /**
    * Map parameters into data object
@@ -263,7 +302,7 @@ class ApiPayment extends ApiBase {
         $this->_data['payment']['banking_billet']['expire_at'] = null;
       }
 
-      if($this->_postOfficeService){
+      if($this->_postOfficeService) {
         $postOfficeService = $this->_postOfficeService->toArray();
 
         if(!empty($postOfficeService)) {
@@ -271,6 +310,9 @@ class ApiPayment extends ApiBase {
         }
       }
 
+      if($this->_instructions) {
+        $this->_data['payment']['banking_billet']['instructions'] = $this->_instructions;
+      }
     }
 
     return $this;

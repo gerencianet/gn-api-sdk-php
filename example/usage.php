@@ -123,6 +123,8 @@ try {
                        ->method('banking_billet')
                        ->expireAt('2015-12-31')
                        ->postOfficeService($postOfficeService)
+                       ->addInstruction('Instruction 1')
+                       ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
                        ->run()
                        ->response();
   print_r($respPayment);
@@ -254,6 +256,31 @@ try {
                             ->run()
                             ->response();
   print_r($respUpdateBillet);
+
+
+  echo '</br>Create a carnet:</br>';
+  $respCarnet = $apiGN->createCarnet()
+                      ->addItem($item2)
+                      ->metadata($metadata)
+                      ->customer($customer)
+                      ->expireAt('2019-05-12')
+                      ->repeats(6)
+                      ->splitItems(true)
+                      ->postOfficeService($postOfficeService)
+                      ->addInstruction('Instruction 1')
+                      ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
+                      ->run()
+                      ->response();
+  print_r($respCarnet);
+  $carnetId = $respCarnet['data']['carnet_id'];
+
+
+  echo '</br>Detail the carnet:</br>';
+  $respDetailCarnet = $apiGN->detailCarnet()
+                            ->carnetId($carnetId)
+                            ->run()
+                            ->response();
+  print_r($respDetailCarnet);
 
 } catch(GerencianetException $e) {
   Gerencianet::error($e);

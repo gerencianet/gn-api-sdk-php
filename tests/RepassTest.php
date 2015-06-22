@@ -5,7 +5,7 @@ require_once __DIR__.'/Base.php';
 class RepassTest extends Base {
 
   public function testRepass() {
-    $repass = self::createRepass();
+    $repass = self::repass();
 
     $this->assertNotEmpty($repass);
     $this->assertEquals($repass->getPayeeCode(), 'payee_code_to_repass');

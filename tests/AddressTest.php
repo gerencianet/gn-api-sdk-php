@@ -4,7 +4,7 @@ require_once __DIR__.'/Base.php';
 
 class AddressTest extends Base {
   public function testAddress() {
-    $address = self::createAddress();
+    $address = self::address();
 
     $this->assertNotEmpty($address);
     $this->assertEquals($address->getStreet(), 'Street 3');

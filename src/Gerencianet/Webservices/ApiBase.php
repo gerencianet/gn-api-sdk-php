@@ -76,7 +76,7 @@ abstract class ApiBase {
   /**
    * User's client id
    *
-   * @var boolean
+   * @var string
    */
   protected $_clientId;
 

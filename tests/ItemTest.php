@@ -5,7 +5,7 @@ require_once __DIR__.'/Base.php';
 class ItemTest extends Base {
 
   public function testItem() {
-    $item = self::createItem();
+    $item = self::item();
 
     $this->assertNotEmpty($item);
     $this->assertEquals($item->getName(), 'Item');

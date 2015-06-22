@@ -77,10 +77,10 @@ class Address {
    * @param  string $street
    * @return Address
    */
-   public function street($street) {
+  public function street($street) {
     $this->_street = $street;
     return $this;
-   }
+  }
 
   /**
    * Gets the value of street

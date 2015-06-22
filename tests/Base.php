@@ -2,6 +2,7 @@
 
 use Gerencianet\Gerencianet;
 use Gerencianet\Models\Address;
+use Gerencianet\Models\Carnet;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
 use Gerencianet\Models\Metadata;
@@ -21,23 +22,31 @@ class Base extends PHPUnit_Framework_TestCase {
     return new Gerencianet($apiKey, $apiSecret);
   }
 
-  public function createRepass() {
+  public function repass() {
     $repass = new Repass();
 
     return $repass->payeeCode('payee_code_to_repass')
                   ->percentage(700);
   }
 
-  public function createItem() {
+  public function item() {
     $item = new Item();
 
     return $item->name('Item')
                 ->value(5000)
                 ->amount(2)
-                ->addRepass(self::createRepass());
+                ->addRepass(self::repass());
   }
 
-  public function createShipping() {
+  public function itemWithoutRepass() {
+    $item = new Item();
+
+    return $item->name('Item')
+                ->value(5000)
+                ->amount(2);
+  }
+
+  public function shipping() {
     $shipping = new Shipping();
 
     return $shipping->payeeCode('payee_code_to_repass')
@@ -45,7 +54,7 @@ class Base extends PHPUnit_Framework_TestCase {
                     ->value(1575);
   }
 
-  public function createMetadata() {
+  public function metadata() {
     $metadata = new Metadata();
 
     return $metadata->customId('MyID')
@@ -72,31 +81,25 @@ class Base extends PHPUnit_Framework_TestCase {
     $apiGN = self::createApiGN();
 
     return $apiGN->createCharge()
-                 ->addItem(self::createItem())
-                 ->addItems([self::createItem(), self::createItem()])
-                 ->addShipping(self::createShipping())
-                 ->addShippings([self::createShipping(), self::createShipping()])
-                 ->metadata(self::createMetadata());
+                 ->addItem(self::item())
+                 ->addItems([self::item(), self::item()])
+                 ->addShipping(self::shipping())
+                 ->addShippings([self::shipping(), self::shipping()])
+                 ->metadata(self::metadata());
   }
 
   public function createChargeToSubscription() {
-    $item = new Item();
-
-    $item->name('Item')
-         ->value(5000)
-         ->amount(2);
-
     $planId = 13000;
 
     $apiGN = self::createApiGN();
 
     return $apiGN->createCharge()
-                 ->addItem($item)
-                 ->metadata(self::createMetadata())
+                 ->addItem(self::itemWithoutRepass())
+                 ->metadata(self::metadata())
                  ->planId($planId);
   }
 
-  public function createAddress() {
+  public function address() {
     $address = new Address();
 
     return $address->street('Street 3')
@@ -107,7 +110,7 @@ class Base extends PHPUnit_Framework_TestCase {
                    ->state('MG');
   }
 
-  public function createCustomer() {
+  public function customer() {
     $customer = new Customer();
 
     return $customer->name('Gorbadoc Oldbuck')
@@ -115,13 +118,29 @@ class Base extends PHPUnit_Framework_TestCase {
                     ->document('04267484171')
                     ->birth('1977-01-15')
                     ->phoneNumber('5044916523')
-                    ->address(self::createAddress());
+                    ->address(self::address());
   }
 
-  public function createPostOfficeService() {
+  public function postOfficeService() {
     $postOfficeService = new PostOfficeService();
 
     return $postOfficeService->sendTo('customer');
+  }
+
+  public function createCarnet() {
+    $apiGN = self::createApiGN();
+
+    return $apiGN->createCarnet()
+                 ->addItem(self::itemWithoutRepass())
+                 ->addItems([self::itemWithoutRepass(), self::itemWithoutRepass()])
+                 ->metadata(self::metadata())
+                 ->customer(self::customer())
+                 ->expireAt('2019-12-31')
+                 ->repeats(3)
+                 ->splitItems(false)
+                 ->postOfficeService(self::postOfficeService())
+                 ->addInstruction('Instruction 1')
+                 ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4']);
   }
 
   public function getMockResponse($filename) {

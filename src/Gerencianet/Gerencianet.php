@@ -4,9 +4,11 @@ namespace Gerencianet;
 use Gerencianet\Models\GerencianetException;
 use Gerencianet\Webservices\ApiBase;
 use Gerencianet\Webservices\ApiCancelSubscription;
+use Gerencianet\Webservices\ApiCarnet;
 use Gerencianet\Webservices\ApiCharge;
 use Gerencianet\Webservices\ApiCustomer;
 use Gerencianet\Webservices\ApiDeletePlan;
+use Gerencianet\Webservices\ApiDetailCarnet;
 use Gerencianet\Webservices\ApiDetailCharge;
 use Gerencianet\Webservices\ApiDetailSubscription;
 use Gerencianet\Webservices\ApiNotification;
@@ -190,7 +192,27 @@ class Gerencianet {
     return $api;
   }
 
-   /**
+  /**
+   * Create the carnet
+   *
+   * @return ApiCarnet
+   */
+  public function createCarnet() {
+    $api = new ApiCarnet($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Detail the carnet
+   *
+   * @return ApiCarnet
+   */
+  public function detailCarnet() {
+    $api = new ApiDetailCarnet($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
    * Error response handler.
    * This function prints the message of an exception or an string
    *

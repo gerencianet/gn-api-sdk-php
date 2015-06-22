@@ -11,13 +11,13 @@ class ApiPaymentTest extends Base {
 
     $chargeId = 11000;
 
-    $postOfficeService = self::createPostOfficeService();
-
     $payment = $apiGN->createPayment()
                      ->chargeId($chargeId)
                      ->method('banking_billet')
                      ->expireAt('2020-03-19')
-                     ->postOfficeService($postOfficeService);
+                     ->postOfficeService(self::postOfficeService())
+                     ->addInstruction('Instruction 1')
+                     ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4']);
 
     $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('bankingBillet', 200)]);
 
@@ -41,7 +41,6 @@ class ApiPaymentTest extends Base {
 
   public function testPaymentCreditCard() {
     $apiGN = self::createApiGN();
-    $address = self::createAddress();
 
     $chargeId = 10000;
     $paymentToken = 'payment_token';
@@ -51,7 +50,7 @@ class ApiPaymentTest extends Base {
                      ->method('credit_card')
                      ->installments(3)
                      ->paymentToken($paymentToken)
-                     ->billingAddress($address);
+                     ->billingAddress(self::address());
 
     $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('creditCard', 200)]);
 

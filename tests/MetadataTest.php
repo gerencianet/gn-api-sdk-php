@@ -5,7 +5,7 @@ require_once __DIR__.'/Base.php';
 class MetadataTest extends Base {
 
   public function testMetadata() {
-    $metadata = self::createMetadata();
+    $metadata = self::metadata();
 
     $this->assertNotEmpty($metadata);
     $this->assertEquals($metadata->getCustomId(), 'MyID');

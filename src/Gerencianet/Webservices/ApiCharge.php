@@ -54,7 +54,7 @@ class ApiCharge extends ApiBase {
    */
   private $_customer;
 
-   /**
+  /**
    * Plan's attributes
    *
    * @var Plan
@@ -73,7 +73,6 @@ class ApiCharge extends ApiBase {
     $this->setUrl('/charge');
     $this->_cart = [];
     $this->_shippings = [];
-    $this->_metadata = new Metadata();
   }
 
   /**
@@ -185,7 +184,7 @@ class ApiCharge extends ApiBase {
   /**
    * Set plan of subscription
    *
-   * @param  Plan $plan
+   * @param  Plan $planId
    * @return ApiCharge
    */
   public function planId($planId) {
