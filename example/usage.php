@@ -118,7 +118,7 @@ try {
 
 
   echo '</br>Paying with banking billet:</br>';
-  $respPayment = $apiGN->createPayment()
+  $respPayment = $apiGN->definePayment()
                        ->chargeId($chargeIdBillet)
                        ->method('banking_billet')
                        ->expireAt('2015-12-31')
@@ -152,7 +152,7 @@ try {
 
 
   echo '</br>Paying with credit card:</br>';
-  $respPayment2 = $apiGN->createPayment()
+  $respPayment2 = $apiGN->definePayment()
                         ->chargeId($chargeIdCard)
                         ->method('credit_card')
                         ->installments(3)
@@ -189,7 +189,7 @@ try {
 
 
   echo '</br>Paying subscription:</br>';
-  $respPaymentSubscription = $apiGN->createPayment()
+  $respPaymentSubscription = $apiGN->definePayment()
                                    ->chargeId($chargeIdSubscription)
                                    ->method('credit_card')
                                    ->paymentToken($paymentToken2)

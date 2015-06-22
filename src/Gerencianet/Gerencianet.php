@@ -119,7 +119,7 @@ class Gerencianet {
    *
    * @return ApiChargePay
    */
-  public function createPayment() {
+  public function definePayment() {
     $api = new ApiChargePay($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }

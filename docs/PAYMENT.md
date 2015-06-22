@@ -7,7 +7,7 @@ There are two ways of giving sequence to a charge. You can generate a **banking 
 Setting banking billet as a charge's payment method is simple. You just have to provide the charge id and an expiration date (optional):
 
 ```php
-$response = $apiGN->createPayment()
+$response = $apiGN->definePayment()
                   ->chargeId($chargeId)
                   ->method('banking_billet')
                   ->expireAt('2015-12-31') // This date is optional
@@ -21,7 +21,7 @@ If you want to set instructions (at most 4 instructions) for a banking billet, y
 
 * Adding one instruction at a time:
 ```php
-$response = $apiGN->createPayment()
+$response = $apiGN->definePayment()
                   ...
                   ->addInstruction('Instruction 1');
                   ->run()
@@ -30,7 +30,7 @@ $response = $apiGN->createPayment()
 
 * Adding many instructions:
 ```php
-$response = $apiGN->createPayment()
+$response = $apiGN->definePayment()
                   ...
                   ->addInstructions(['Instruction 1', 'Instruction 2', 'Instruction 3']);
                   ->run()
@@ -59,7 +59,7 @@ If you want to receive or send to the customer the banking billet, you need to i
 $postOfficeService = new PostOfficeService();
 $postOfficeService->sendTo('customer');
 
-$response = $apiGN->createPayment()
+$response = $apiGN->definePayment()
                   ->chargeId($chargeId)
                   ->method('banking_billet')
                   ->postOfficeService($postOfficeService) // This parameter is optional
@@ -74,7 +74,7 @@ If you need a faster payment confirmation, we recommend the credit card payment 
 
 ```php
 $paymentToken = 'payment_token';
-$response = $apiGN->createPayment()
+$response = $apiGN->definePayment()
                   ->chargeId($chargeId)
                   ->method('credit_card')
                   ->installments(3)

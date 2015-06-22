@@ -11,7 +11,7 @@ class ApiPaymentTest extends Base {
 
     $chargeId = 11000;
 
-    $payment = $apiGN->createPayment()
+    $payment = $apiGN->definePayment()
                      ->chargeId($chargeId)
                      ->method('banking_billet')
                      ->expireAt('2020-03-19')
@@ -45,7 +45,7 @@ class ApiPaymentTest extends Base {
     $chargeId = 10000;
     $paymentToken = 'payment_token';
 
-    $payment = $apiGN->createPayment()
+    $payment = $apiGN->definePayment()
                      ->chargeId($chargeId)
                      ->method('credit_card')
                      ->installments(3)
