@@ -9,7 +9,7 @@ class ApiNotificationTest extends Base {
   public function testDetailNotifications() {
     $apiGN = self::createApiGN();
 
-    $notification = $apiGN->detailNotifications()
+    $notification = $apiGN->detailNotification()
                           ->notificationToken('notificationToken');
 
     $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('notification', 200)]);

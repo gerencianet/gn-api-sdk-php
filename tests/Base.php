@@ -89,7 +89,7 @@ class Base extends PHPUnit_Framework_TestCase {
 
     $apiGN = self::createApiGN();
 
-    return $apiGN->createCharge()
+    return $apiGN->createSubscription()
                  ->addItem($item)
                  ->metadata(self::createMetadata())
                  ->planId($planId);
