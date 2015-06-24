@@ -116,7 +116,7 @@ class Base extends PHPUnit_Framework_TestCase {
                     ->email('oldbuck@gerencianet.com.br')
                     ->document('04267484171')
                     ->birth('1977-01-15')
-                    ->phoneNumber('5044916523')
+                    ->phoneNumber('5144916523')
                     ->address(self::address());
   }
 
@@ -139,7 +139,8 @@ class Base extends PHPUnit_Framework_TestCase {
                  ->splitItems(false)
                  ->postOfficeService(self::postOfficeService())
                  ->addInstruction('Instruction 1')
-                 ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4']);
+                 ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
+                 ->carnetRate(357);
   }
 
   public function getMockResponse($filename) {

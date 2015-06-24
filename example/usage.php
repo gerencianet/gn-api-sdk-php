@@ -48,7 +48,7 @@ try {
            ->email('oldbuck@gerencianet.com.br')
            ->document('04267484171')
            ->birth('1977-01-15')
-           ->phoneNumber('5044916523')
+           ->phoneNumber('5144916523')
            ->address($address);
 
   $metadata = new Metadata();
@@ -117,6 +117,16 @@ try {
   print_r($respCustomer);
 
 
+  echo '</br>Update charge metadata:</br>';
+  $respUpdateMetadata = $apiGN->updateChargeMetadata()
+                              ->chargeId($chargeIdBillet)
+                              ->notificationUrl('http://your.domain/your_new_notification_url')
+                              ->customId('new_id')
+                              ->run()
+                              ->response();
+  print_r($respUpdateMetadata);
+
+
   echo '</br>Paying with banking billet:</br>';
   $respPayment = $apiGN->definePayment()
                        ->chargeId($chargeIdBillet)
@@ -125,9 +135,19 @@ try {
                        ->postOfficeService($postOfficeService)
                        ->addInstruction('Instruction 1')
                        ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
+                       ->billetRate(146)
                        ->run()
                        ->response();
   print_r($respPayment);
+
+
+  echo '</br>Update billet expire_at:</br>';
+  $respUpdateBillet = $apiGN->updateBillet()
+                            ->chargeId($chargeIdBillet)
+                            ->expireAt('2016-12-31')
+                            ->run()
+                            ->response();
+  print_r($respUpdateBillet);
 
 
   echo '</br>Detailing a charge:</br>';
@@ -174,7 +194,22 @@ try {
   $planId = $responsePlan['data']['plan_id'];
 
 
-  echo '</br>Subscription:</br>';
+  echo '</br>Delete a plan:</br>';
+  $responsePlan1 = $apiGN->createPlan()
+                         ->name('Plan to delete')
+                         ->repeats(3)
+                         ->interval(10)
+                         ->run()
+                         ->response();
+  $planId1 = $responsePlan1['data']['plan_id'];
+  $responseDeletePlan = $apiGN->deletePlan()
+                        ->planId($planId1)
+                        ->run()
+                        ->response();
+  print_r($responseDeletePlan);
+
+
+  echo '</br>Create a subscription:</br>';
   $respSubscription = $apiGN->createSubscription()
                             ->addItem($item2)
                             ->addShipping($shipping3)
@@ -188,7 +223,7 @@ try {
   $paymentToken2 = 'payment_token';
 
 
-  echo '</br>Paying subscription:</br>';
+  echo '</br>Paying the subscription:</br>';
   $respPaymentSubscription = $apiGN->definePayment()
                                    ->chargeId($chargeIdSubscription)
                                    ->method('credit_card')
@@ -197,25 +232,6 @@ try {
                                    ->run()
                                    ->response();
   print_r($respPaymentSubscription);
-
-
-  echo '</br>Update charge metadata:</br>';
-  $respUpdateMetadata = $apiGN->updateChargeMetadata()
-                              ->chargeId($chargeIdBillet)
-                              ->notificationUrl('http://your.domain/your_new_notification_url')
-                              ->customId('new_id')
-                              ->run()
-                              ->response();
-  print_r($respUpdateMetadata);
-
-
-  echo '</br>Notification:</br>';
-  $notificationToken = 'notification_token';
-  $respNotification = $apiGN->detailNotification()
-                            ->notificationToken($notificationToken)
-                            ->run()
-                            ->response();
-  print_r($respNotification);
 
 
   echo '</br>Detailing subscription:</br>';
@@ -235,41 +251,18 @@ try {
   print_r($respCancelSubscription);
 
 
-  echo '</br>Delete a plan:</br>';
-  $responsePlan1 = $apiGN->createPlan()
-                         ->name('Plan to delete')
-                         ->repeats(3)
-                         ->interval(10)
-                         ->run()
-                         ->response();
-  $planId1 = $responsePlan1['data']['plan_id'];
-  $responseDeletePlan = $apiGN->deletePlan()
-                        ->planId($planId1)
-                        ->run()
-                        ->response();
-  print_r($responseDeletePlan);
-
-
-  echo '</br>Update billet expire_at:</br>';
-  $respUpdateBillet = $apiGN->updateBillet()
-                            ->chargeId($chargeIdBillet)
-                            ->expireAt('2016-12-31')
-                            ->run()
-                            ->response();
-  print_r($respUpdateBillet);
-
-
   echo '</br>Create a carnet:</br>';
   $respCarnet = $apiGN->createCarnet()
                       ->addItem($item2)
                       ->metadata($metadata)
                       ->customer($customer)
                       ->expireAt('2019-05-12')
-                      ->repeats(6)
+                      ->repeats(2)
                       ->splitItems(true)
                       ->postOfficeService($postOfficeService)
                       ->addInstruction('Instruction 1')
                       ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
+                      ->carnetRate(960)
                       ->run()
                       ->response();
   print_r($respCarnet);
@@ -282,6 +275,15 @@ try {
                             ->run()
                             ->response();
   print_r($respDetailCarnet);
+
+
+  echo '</br>Notification:</br>';
+  $notificationToken = 'notification_token';
+  $respNotification = $apiGN->detailNotification()
+                            ->notificationToken($notificationToken)
+                            ->run()
+                            ->response();
+  print_r($respNotification);
 
 } catch(GerencianetException $e) {
   Gerencianet::error($e);

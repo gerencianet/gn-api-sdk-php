@@ -37,6 +37,15 @@ $response = $apiGN->definePayment()
                   ->response();
 ```
 
+You also can send the emission rate to banking billet, as a integer. The value must be among 1 and 1000.
+```php
+$response = $apiGN->definePayment()
+                  ...
+                  ->billetRate(654) // Optional
+                  ->run()
+                  ->response();
+```
+
 You'll receive the payment info in the callback, such as the barcode and the banking billet link:
 
 ```js

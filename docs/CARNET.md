@@ -148,6 +148,18 @@ $response = $apiGN->createCarnet()
                   ->response();
 ```
 
+### Setting emission rate to a carnet
+`optional`
+
+The value must be an integer among 1 and 1000.
+```php
+$response = $apiGN->createCarnet()
+                  ...
+                  ->carnetRate(982) // Optional
+                  ->run()
+                  ->response();
+```
+
 As response, you'll receive the carnet info in the callback with the set of charges generated:
 
 ```js

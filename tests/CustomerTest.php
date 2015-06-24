@@ -12,7 +12,7 @@ class CustomerTest extends Base {
     $this->assertEquals($customer->getEmail(), 'oldbuck@gerencianet.com.br');
     $this->assertEquals($customer->getDocument(), '04267484171');
     $this->assertEquals($customer->getBirth(), '1977-01-15');
-    $this->assertEquals($customer->getPhoneNumber(), '5044916523');
+    $this->assertEquals($customer->getPhoneNumber(), '5144916523');
     $this->assertNotEmpty($customer->getAddress());
 
     $addressCustomer = $customer->getAddress();

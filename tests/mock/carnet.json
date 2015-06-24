@@ -2,7 +2,15 @@
   "code": 200,
   "data": {
     "carnet_id": 3000,
+    "status": "active",
+    "repeats": 3,
     "cover": "https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CC-99999-99999-LOSI5/99999-99999-LOSI5",
+    "value": 30000,
+    "carnet_rate": 357,
+    "post_office_service": {
+      "send_to": "customer"
+    },
+    "split_items": false,
     "charges": [ {
       "charge_id": 1476,
       "parcel": "1",

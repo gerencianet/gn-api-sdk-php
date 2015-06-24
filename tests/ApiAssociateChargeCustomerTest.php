@@ -22,7 +22,7 @@ class ApiAssociateChargeCustomerTest extends Base {
     $this->assertEquals($customerToCharge->getCustomer()->getEmail(), 'oldbuck@gerencianet.com.br');
     $this->assertEquals($customerToCharge->getCustomer()->getDocument(), '04267484171');
     $this->assertEquals($customerToCharge->getCustomer()->getBirth(), '1977-01-15');
-    $this->assertEquals($customerToCharge->getCustomer()->getPhoneNumber(), '5044916523');
+    $this->assertEquals($customerToCharge->getCustomer()->getPhoneNumber(), '5144916523');
   }
 
   public function testExecuteAssociateChargeToCustomer() {
