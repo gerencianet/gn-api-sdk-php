@@ -89,15 +89,15 @@ $ phpunit -c tests/config.xml tests
 ## Additional Documentation ##
 
 - [Creating charges](/docs/CHARGE.md)
-- [Associating a customer to a charge](/docs/CUSTOMER.md)
-- [Setting the Payment Method](/docs/PAYMENT.md)
-- [Notifications](/docs/NOTIFICATION.md)
-- [Subscriptions](/docs/SUBSCRIPTION.md)
-- [Detailing charges and subscriptions](/docs/DETAIL.md)
-- [Marketplace](/docs/MARKETPLACE.md)
-- [Getting Payment Data](/docs/PAYMENT_DATA.md)
-- [Updating banking billet](/docs/UPDATE_BILLET.md)
+- [Creating subscriptions](/docs/SUBSCRIPTION.md)
 - [Creating carnets](/docs/CARNET.md)
+- [Associating customer to a transaction](/docs/CUSTOMER.md)
+- [Setting a payment method](/docs/PAYMENT.md)
+- [Getting notifications](/docs/NOTIFICATION.md)
+- [Detailing transactions](/docs/DETAIL.md)
+- [Creating a marketplace](/docs/MARKETPLACE.md)
+- [Getting the payment data](/docs/PAYMENT_DATA.md)
+- [Updating a banking billet transaction](/docs/UPDATE_BILLET.md)
 
 ## License ##
 [MIT](LICENSE)

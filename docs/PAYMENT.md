@@ -1,4 +1,4 @@
-## Setting the Payment Method ##
+## Setting the payment method ##
 
 There are two ways of giving sequence to a charge. You can generate a **banking billet** so it is payable until its due date, or can use the customer's **credit card** to submit the payment.
 

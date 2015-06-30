@@ -6,17 +6,13 @@ The `repeats` parameter defines how many times the transaction will be repeated.
 
 The `interval` parameter defines the interval, in months, that a charge has to be generated. The minimum value is 1, and the maximum is 24. So, define "1" if you want monthly creations for example.
 
-Creating a plan:
+### Creating and setting a plan to a subscription:
 ```php
 $plan = $apiGN->createPlan()
       	  ->name("My first plan")
       	  ->repeats(2)
       	  ->interval(1);
-```
 
-
-Creating a subscription:
-```php
 $response = $apiGN->createSubscription()
                   ...
                   ->planId($plan["plan"]["id"])
@@ -24,14 +20,34 @@ $response = $apiGN->createSubscription()
                   ->response();
 ```
 
-Deleting a plan (works just for plans that hasn't a subscription associated):
+### Setting customer to a subscription
+`required`, but you can [set after creation](/docs/CUSTOMER.md)
+ ```php
+ 
+ $customer = new Customer();
+ $customer->name('Gorbadoc Oldbuck')
+          ->email('oldbuck@gerencianet.com.br')
+          ->document('04267484171')
+          ->birth('1977-01-15')
+          ->phoneNumber('5044916523')
+ 
+ $response = $apiGN->createSubscription()
+                   ...
+                   ->customer($customer)
+                   ->run()
+                   ->response();
+ ```
+
+### Deleting a plan (works just for plans that hasn't a subscription associated):
 ```php
 $apiGN->deletePlan()
 	->planId($plan_id)	
       ->run();
 ```
 
-Canceling a subscription:
+### Canceling a subscription:
+
+This will cancel any future transaction creations.
 ```php
 $response = $apiGN->cancelSubscription()
                   ->subscriptionId($subscriptionId)

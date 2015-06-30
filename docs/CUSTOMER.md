@@ -1,6 +1,6 @@
-## Associating a customer to a charge ##
+### Associating a customer to a charge
 
-If you created charges without customers because you didn't know them or was planning to get their info afterwards, no need to panic. You can associate these customers to their respective charges like the following:
+If you create a charge or a subscription without customers because you didn't know them or was planning to get their info afterwards, no need to panic. You can associate these customers like the following:
 
 ```php
 $chargeId = ''; // The value returned by createCharge function
@@ -10,6 +10,17 @@ $response = $apiGN->associateCustomer()
                   ->run()
                   ->response();
 ```
+
+### Associating a customer to a subscription
+
+```php
+$subscriptionId = ''; // The value returned by createSubscription function
+$response = $apiGN->associateCustomer()
+                  ->subscriptionId($subscriptionId)
+                  ->customer($customer)
+                  ->run()
+
+       
 If everything went well, the return is just a response with code 200:
 
 ```js

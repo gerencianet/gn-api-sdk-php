@@ -2,7 +2,15 @@
 
 Carnet is the payment form that you generate a set of charges with the payment method defined.
 
-To generate the carnet ids required th send of items, customer and the number of repeats (or parcels). But you can send the metadata, the expiration date of first charge, if the carnet must be send by post office service, if the total value of items must be split among every charges and at most 4 instructions.
+To generate a carnet, you have to set the items, a customer and the number of repeats (or parcels).
+
+If you want, you can send additional informations, defining:
+
+- The metadata information (like in the banking billet), with notification_url and/or custom_id
+- The expiration date to the first charge;
+- If the carnet must be send by post office service (choosing, inclusive, if you or your client must receive it);
+- If the total value must be split among every charges or if each charge must have the value;
+- The instructions to the carnet (At most 4 lines).
 
 ### Setting items to a carnet:
 `required`
@@ -86,10 +94,10 @@ $response = $apiGN->createCarnet()
                   ->response();
 ```
 
-### Setting expiration date to first charge in the carnet:
+### Setting the expiration date to the first charge:
 `optional`
 
-The value defaut is today + 8 days.
+The defaut value is today + 8 days.
 
 ```php
 $response = $apiGN->createCarnet()
@@ -103,7 +111,7 @@ $response = $apiGN->createCarnet()
 `optional`
 ```php
 $postOfficeService = new PostOfficeService();
-$postOfficeService->sendTo('customer');
+$postOfficeService->sendTo('customer'); //or seller
 
 $response = $apiGN->createCarnet()
                   ...
@@ -112,7 +120,7 @@ $response = $apiGN->createCarnet()
                   ->response();
 ```
 
-### Setting split items to a carnet
+### Setting the split value information
 `optional`
 
 The value defaut is false.
@@ -125,7 +133,7 @@ $response = $apiGN->createCarnet()
                   ->response();
 ```
 
-### Setting instructions to a carnet
+### Setting instructions
 `optional`
 
 You have two options to add instructions into a carnet:
@@ -144,18 +152,6 @@ $response = $apiGN->createCarnet()
 $response = $apiGN->createCarnet()
                   ...
                   ->addInstructions(['Instruction 1', 'Instruction 2'])
-                  ->run()
-                  ->response();
-```
-
-### Setting emission rate to a carnet
-`optional`
-
-The value must be an integer among 1 and 1000.
-```php
-$response = $apiGN->createCarnet()
-                  ...
-                  ->carnetRate(982) // Optional
                   ->run()
                   ->response();
 ```
