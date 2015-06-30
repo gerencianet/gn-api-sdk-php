@@ -7,7 +7,7 @@ use Gerencianet\Webservices\ApiAssociateChargeCustomer;
 use Gerencianet\Webservices\ApiCancelSubscription;
 use Gerencianet\Webservices\ApiCarnet;
 use Gerencianet\Webservices\ApiCharge;
-use Gerencianet\Webservices\ApiChargePay;
+use Gerencianet\Webservices\ApiPay;
 use Gerencianet\Webservices\ApiDeletePlan;
 use Gerencianet\Webservices\ApiDetailCarnet;
 use Gerencianet\Webservices\ApiDetailCharge;
@@ -117,10 +117,10 @@ class Gerencianet {
   /**
    * Generate a payment to charge using checkout
    *
-   * @return ApiChargePay
+   * @return ApiPay
    */
   public function definePayment() {
-    $api = new ApiChargePay($this->_clientId, $this->_clientSecret, $this->_isTest);
+    $api = new ApiPay($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
