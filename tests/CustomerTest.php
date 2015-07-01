@@ -10,10 +10,11 @@ class CustomerTest extends Base {
     $this->assertNotEmpty($customer);
     $this->assertEquals($customer->getName(), 'Gorbadoc Oldbuck');
     $this->assertEquals($customer->getEmail(), 'oldbuck@gerencianet.com.br');
-    $this->assertEquals($customer->getDocument(), '04267484171');
+    $this->assertEquals($customer->getCpf(), '04267484171');
     $this->assertEquals($customer->getBirth(), '1977-01-15');
     $this->assertEquals($customer->getPhoneNumber(), '5144916523');
     $this->assertNotEmpty($customer->getAddress());
+    $this->assertNotEmpty($customer->getJuridicalPerson());
 
     $addressCustomer = $customer->getAddress();
     $this->assertEquals($addressCustomer->getStreet(), 'Street 3');
@@ -22,5 +23,9 @@ class CustomerTest extends Base {
     $this->assertEquals($addressCustomer->getZipcode(), '35400000');
     $this->assertEquals($addressCustomer->getCity(), 'Ouro Preto');
     $this->assertEquals($addressCustomer->getState(), 'MG');
+
+    $juridicalPerson = $customer->getJuridicalPerson();
+    $this->assertEquals($juridicalPerson->getCorporateName(), 'Fictional Company');
+    $this->assertEquals($juridicalPerson->getCnpj(), '52841284000142');
   }
 }

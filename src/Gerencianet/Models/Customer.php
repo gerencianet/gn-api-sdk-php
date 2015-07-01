@@ -30,10 +30,11 @@ class Customer {
   private $_name;
 
   /**
-   * Brazilian document
+   * Brazilian document for natural person
+   *
    * @var string
    */
-  private $_document;
+  private $_cpf;
 
   /**
    * Customer's email
@@ -64,6 +65,13 @@ class Customer {
   private $_address;
 
   /**
+   * Juridical person data
+   *
+   * @var JuridicalPerson
+   */
+  private $_juridicalPerson;
+
+  /**
    * Set value of name
    *
    * @param  string $name
@@ -84,23 +92,23 @@ class Customer {
   }
 
   /**
-   * Set value of brazilian document
+   * Set value of brazilian document for natural person
    *
-   * @param  string $document
+   * @param  string $cpf
    * @return Customer
    */
-  public function document($document) {
-    $this->_document = str_replace([' ', '.', '-'], '', $document);
+  public function cpf($cpf) {
+    $this->_cpf = str_replace([' ', '.', '-'], '', $cpf);
     return $this;
   }
 
   /**
-   * Gets the value of brazilian document
+   * Gets the value of brazilian document for natural person
    *
    * @return string
    */
-  public function getDocument() {
-    return $this->_document;
+  public function getCpf() {
+    return $this->_cpf;
   }
 
   /**
@@ -185,6 +193,26 @@ class Customer {
   }
 
   /**
+   * Set value of juridical person
+   *
+   * @param  JuridicalPerson $juridicalPerson
+   * @return Customer
+   */
+  public function juridicalPerson(JuridicalPerson $juridicalPerson) {
+    $this->_juridicalPerson = $juridicalPerson;
+    return $this;
+  }
+
+  /**
+   * Get the value of juridical person
+   *
+   * @return JuridicalPerson
+   */
+  public function getJuridicalPerson() {
+    return $this->_juridicalPerson;
+  }
+
+  /**
    * Get mapped customer to be used in Gerencianet's api
    *
    * @return array
@@ -196,8 +224,8 @@ class Customer {
       $arr['name'] = $this->_name;
     }
 
-    if($this->_document) {
-      $arr['document'] = $this->_document;
+    if($this->_cpf) {
+      $arr['cpf'] = $this->_cpf;
     }
 
     if($this->_email) {
@@ -214,6 +242,10 @@ class Customer {
 
     if($this->_address) {
       $arr['address'] = $this->_address->toArray();
+    }
+
+    if($this->_juridicalPerson) {
+      $arr['juridical_person'] = $this->_juridicalPerson->toArray();
     }
 
     return $arr;

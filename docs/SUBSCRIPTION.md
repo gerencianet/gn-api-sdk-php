@@ -22,26 +22,36 @@ $response = $apiGN->createSubscription()
 
 ### Setting customer to a subscription
 `required`, but you can [set after creation](/docs/CUSTOMER.md)
- ```php
- 
- $customer = new Customer();
- $customer->name('Gorbadoc Oldbuck')
-          ->email('oldbuck@gerencianet.com.br')
-          ->document('04267484171')
-          ->birth('1977-01-15')
-          ->phoneNumber('5044916523')
- 
- $response = $apiGN->createSubscription()
-                   ...
-                   ->customer($customer)
-                   ->run()
-                   ->response();
- ```
+```php
+$customer = new Customer();
+$customer->name('Gorbadoc Oldbuck')
+         ->email('oldbuck@gerencianet.com.br')
+         ->cpf('04267484171')
+         ->birth('1977-01-15')
+         ->phoneNumber('5044916523')
+
+$response = $apiGN->createSubscription()
+                  ...
+                  ->customer($customer)
+                  ->run()
+                  ->response();
+```
+
+If the customer is juridical person, it's necessary to send corporate name e CNPJ (Brazilian document for juridical person). For this, you will do this:
+```php
+$juridicalPerson = new JuridicalPerson();
+$juridicalPerson->corporateName('Fictional Company')
+                ->cnpj('52841284000142');
+
+$customer = new Customer();
+$customer->...
+         ->juridicalPerson($juridicalPerson); // optional.
+```
 
 ### Deleting a plan (works just for plans that hasn't a subscription associated):
 ```php
 $apiGN->deletePlan()
-	->planId($plan_id)	
+	    ->planId($plan_id)
       ->run();
 ```
 

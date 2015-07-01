@@ -67,7 +67,7 @@
     "customer": {
       "name": "Gorbadoc Oldbuck",
       "email": "oldbuck@gerencianet.com.br",
-      "document": "04267484171",
+      "cpf": "04267484171",
       "birth": "1977-01-15",
       "phone_number": "5044916523",
       "address": {
@@ -78,6 +78,10 @@
         "city": "Ouro Preto",
         "state": "MG",
         "zipcode": "35400000"
+      },
+      "juridical_person": {
+        "corporate_name": "Fictional Company",
+        "cnpj": "52841284000142"
       }
     }
   }

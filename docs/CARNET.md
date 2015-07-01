@@ -58,7 +58,7 @@ $address->street('Street 3')
 $customer = new Customer();
 $customer->name('Gorbadoc Oldbuck')
          ->email('oldbuck@gerencianet.com.br')
-         ->document('04267484171')
+         ->cpf('04267484171')
          ->birth('1977-01-15')
          ->phoneNumber('5044916523')
          ->address($address); // optional.

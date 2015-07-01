@@ -4,6 +4,8 @@ If you create a charge or a subscription without customers because you didn't kn
 
 ```php
 $chargeId = ''; // The value returned by createCharge function
+$customer = ''; // The instance of Customer class
+
 $response = $apiGN->associateCustomer()
                   ->chargeId($chargeId)
                   ->customer($customer)
@@ -15,12 +17,15 @@ $response = $apiGN->associateCustomer()
 
 ```php
 $subscriptionId = ''; // The value returned by createSubscription function
+$customer = ''; // The instance of Customer class
+
 $response = $apiGN->associateCustomer()
                   ->subscriptionId($subscriptionId)
                   ->customer($customer)
                   ->run()
+                  ->response();
+```
 
-       
 If everything went well, the return is just a response with code 200:
 
 ```js

@@ -5,6 +5,7 @@ use Gerencianet\Models\Address;
 use Gerencianet\Models\Carnet;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
+use Gerencianet\Models\JuridicalPerson;
 use Gerencianet\Models\Metadata;
 use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
@@ -109,15 +110,23 @@ class Base extends PHPUnit_Framework_TestCase {
                    ->state('MG');
   }
 
+  public function juridicalPerson() {
+    $juridicalPerson = new JuridicalPerson();
+
+    return $juridicalPerson->corporateName('Fictional Company')
+                           ->cnpj('52841284000142');
+  }
+
   public function customer() {
     $customer = new Customer();
 
     return $customer->name('Gorbadoc Oldbuck')
                     ->email('oldbuck@gerencianet.com.br')
-                    ->document('04267484171')
+                    ->cpf('04267484171')
                     ->birth('1977-01-15')
                     ->phoneNumber('5144916523')
-                    ->address(self::address());
+                    ->address(self::address())
+                    ->juridicalPerson(self::juridicalPerson());
   }
 
   public function postOfficeService() {

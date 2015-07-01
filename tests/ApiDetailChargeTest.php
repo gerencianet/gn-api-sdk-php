@@ -68,7 +68,7 @@ class ApiDetailChargeTest extends Base {
     $this->assertNotEmpty($resp['data']['customer']);
     $this->assertEquals($resp['data']['customer']['name'], 'Gorbadoc Oldbuck');
     $this->assertEquals($resp['data']['customer']['email'], 'oldbuck@gerencianet.com.br');
-    $this->assertEquals($resp['data']['customer']['document'], '04267484171');
+    $this->assertEquals($resp['data']['customer']['cpf'], '04267484171');
     $this->assertEquals($resp['data']['customer']['birth'], '1977-01-15');
     $this->assertEquals($resp['data']['customer']['phone_number'], '5044916523');
     $this->assertNotEmpty($resp['data']['customer']['address']);
@@ -79,5 +79,8 @@ class ApiDetailChargeTest extends Base {
     $this->assertEquals($resp['data']['customer']['address']['city'], 'Ouro Preto');
     $this->assertEquals($resp['data']['customer']['address']['state'], 'MG');
     $this->assertEquals($resp['data']['customer']['address']['zipcode'], '35400000');
+    $this->assertNotEmpty($resp['data']['customer']['juridical_person']);
+    $this->assertEquals($resp['data']['customer']['juridical_person']['corporate_name'], 'Fictional Company');
+    $this->assertEquals($resp['data']['customer']['juridical_person']['cnpj'], '52841284000142');
   }
 }

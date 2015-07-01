@@ -36,29 +36,40 @@ $response = $apiGN->createCharge()
 
 ### Setting customer to a charge:
 `required`, but you can [set after creation](/docs/CUSTOMER.md)
- ```php
- $address = new Address();
- $address->street('Street 3')
-         ->number('10')
-         ->neighborhood('Bauxita')
-         ->zipcode('35400000')
-         ->city('Ouro Preto')
-         ->state('MG');
- 
- $customer = new Customer();
- $customer->name('Gorbadoc Oldbuck')
-          ->email('oldbuck@gerencianet.com.br')
-          ->document('04267484171')
-          ->birth('1977-01-15')
-          ->phoneNumber('5044916523')
-          ->address($address); // optional.
- 
- $response = $apiGN->createCharge()
-                   ...
-                   ->customer($customer)
-                   ->run()
-                   ->response();
- ```
+```php
+$address = new Address();
+$address->street('Street 3')
+        ->number('10')
+        ->neighborhood('Bauxita')
+        ->zipcode('35400000')
+        ->city('Ouro Preto')
+        ->state('MG');
+
+$customer = new Customer();
+$customer->name('Gorbadoc Oldbuck')
+         ->email('oldbuck@gerencianet.com.br')
+         ->cpf('04267484171')
+         ->birth('1977-01-15')
+         ->phoneNumber('5044916523')
+         ->address($address); // optional.
+
+$response = $apiGN->createCharge()
+                  ...
+                  ->customer($customer)
+                  ->run()
+                  ->response();
+```
+
+If the customer is juridical person, it's necessary to send corporate name e CNPJ (Brazilian document for juridical person). For this, you will do this:
+```php
+$juridicalPerson = new JuridicalPerson();
+$juridicalPerson->corporateName('Fictional Company')
+                ->cnpj('52841284000142');
+
+$customer = new Customer();
+$customer->...
+         ->juridicalPerson($juridicalPerson); // optional.
+```
 
 ### Setting shippings to a charge: 
 `optional`

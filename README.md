@@ -31,6 +31,7 @@ use Gerencianet\Gerencianet;
 use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
+use Gerencianet\Models\JuridicalPerson;
 use Gerencianet\Models\Metadata;
 use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;

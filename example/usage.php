@@ -6,6 +6,7 @@ use Gerencianet\Gerencianet;
 use Gerencianet\Models\Address;
 use Gerencianet\Models\Customer;
 use Gerencianet\Models\Item;
+use Gerencianet\Models\JuridicalPerson;
 use Gerencianet\Models\Metadata;
 use Gerencianet\Models\PostOfficeService;
 use Gerencianet\Models\Repass;
@@ -43,13 +44,18 @@ try {
           ->city('Ouro Preto')
           ->state('MG');
 
+  $juridicalPerson = new JuridicalPerson();
+  $juridicalPerson->corporateName('Fictional Company')
+                  ->cnpj('52.841.284/0001-42');
+
   $customer = new Customer();
   $customer->name('Gorbadoc Oldbuck')
            ->email('oldbuck@gerencianet.com.br')
-           ->document('04267484171')
+           ->cpf('04267484171')
            ->birth('1977-01-15')
            ->phoneNumber('5144916523')
-           ->address($address);
+           ->address($address)
+           ->juridicalPerson($juridicalPerson);
 
   $metadata = new Metadata();
   $metadata->customId('MyID')
