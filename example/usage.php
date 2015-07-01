@@ -141,7 +141,6 @@ try {
                        ->postOfficeService($postOfficeService)
                        ->addInstruction('Instruction 1')
                        ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
-                       ->billetRate(146)
                        ->run()
                        ->response();
   print_r($respPayment);
@@ -268,7 +267,6 @@ try {
                       ->postOfficeService($postOfficeService)
                       ->addInstruction('Instruction 1')
                       ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
-                      ->carnetRate(960)
                       ->run()
                       ->response();
   print_r($respCarnet);

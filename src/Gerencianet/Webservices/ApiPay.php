@@ -82,13 +82,6 @@ class ApiPay extends ApiBase {
   private $_instructions;
 
   /**
-   * Emission rate of banking billet
-   *
-   * @var integer
-   */
-  private $_billetRate;
-
-  /**
    * Construct method
    *
    * @param string $clientId
@@ -274,26 +267,6 @@ class ApiPay extends ApiBase {
   }
 
   /**
-   * Set the emission rate of banking billet
-   *
-   * @param  integer $billetRate
-   * @return ApiPay
-   */
-  public function billetRate($billetRate) {
-    $this->_billetRate = $billetRate;
-    return $this;
-  }
-
-  /**
-   * Get the emission rate of banking billet
-   *
-   * @return integer
-   */
-  public function getBilletRate() {
-    return $this->_billetRate;
-  }
-
-  /**
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
@@ -338,10 +311,6 @@ class ApiPay extends ApiBase {
 
       if($this->_instructions) {
         $this->_data['payment']['banking_billet']['instructions'] = $this->_instructions;
-      }
-
-      if($this->_billetRate) {
-        $this->_data['payment']['banking_billet']['billet_rate'] = $this->_billetRate;
       }
     }
 

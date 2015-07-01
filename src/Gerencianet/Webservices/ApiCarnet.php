@@ -83,13 +83,6 @@ class ApiCarnet extends ApiBase {
   private $_instructions;
 
   /**
-   * Emission rate of carnet
-   *
-   * @var integer
-   */
-  private $_carnetRate;
-
-  /**
    * Construct method
    *
    * @param string $clientId
@@ -289,26 +282,6 @@ class ApiCarnet extends ApiBase {
   }
 
   /**
-   * Set the emission rate of carnet
-   *
-   * @param  integer $carnetRate
-   * @return ApiCarnet
-   */
-  public function carnetRate($carnetRate) {
-    $this->_carnetRate = $carnetRate;
-    return $this;
-  }
-
-  /**
-   * Get the emission rate of carnet
-   *
-   * @return integer
-   */
-  public function getCarnetRate() {
-    return $this->_carnetRate;
-  }
-
-  /**
    * Map parameters into data object
    *
    * @see ApiBase::mapData()
@@ -349,10 +322,6 @@ class ApiCarnet extends ApiBase {
 
     if($this->_instructions) {
       $this->_data['instructions'] = $this->_instructions;
-    }
-
-    if($this->_carnetRate) {
-      $this->_data['carnet_rate'] = $this->_carnetRate;
     }
 
     return $this;

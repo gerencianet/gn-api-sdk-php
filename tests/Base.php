@@ -148,8 +148,7 @@ class Base extends PHPUnit_Framework_TestCase {
                  ->splitItems(false)
                  ->postOfficeService(self::postOfficeService())
                  ->addInstruction('Instruction 1')
-                 ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
-                 ->carnetRate(357);
+                 ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4']);
   }
 
   public function getMockResponse($filename) {
