@@ -13,8 +13,7 @@ use Gerencianet\Models\Repass;
 use Gerencianet\Models\Shipping;
 use Gerencianet\Models\GerencianetException;
 
-echo 'SDK GN API';
-echo '<pre>';
+echo '<h1>SDK GERENCIANET - PHP</h1>';
 
 $apiKey = 'your_client_id';
 $apiSecret = 'your_client_secret';
@@ -23,7 +22,7 @@ try {
   $apiGN = new Gerencianet($apiKey, $apiSecret, true);
 
   $repass = new Repass();
-  $repass->payeeCode('payee_code_to_repass')
+  $repass->payeeCode('3eefd8a97491089b520367d19f1a86ca')
          ->percentage(700);
 
   $item1 = new Item();
@@ -66,12 +65,12 @@ try {
             ->notificationUrl('http://your.domain/your_notification_url');
 
   $shipping1 = new Shipping();
-  $shipping1->payeeCode('payee_code_to_repass')
+  $shipping1->payeeCode('3eefd8a97491089b520367d19f1a86ca')
             ->name('Shipping')
             ->value(1575);
 
   $shipping2 = new Shipping();
-  $shipping2->payeeCode('payee_code_to_repass')
+  $shipping2->payeeCode('3eefd8a97491089b520367d19f1a86ca')
             ->name('Shipping 2')
             ->value(2000);
 
@@ -82,27 +81,14 @@ try {
   $postOfficeService = new PostOfficeService();
   $postOfficeService->sendTo('customer');
 
+  /*---------------------------------------------------------------------------------------------------*/
 
-  echo '</br>Installments for Mastercard:</br>';
-  $respPaymentDataCard = $apiGN->getPaymentData()
-                               ->type('mastercard')
-                               ->value(10000)
-                               ->run()
-                               ->response();
-  print_r($respPaymentDataCard);
+  echo '<h2>Charges</h2>';
 
+  echo '<h3>Creating charges:</h3>';
 
-  echo '</br>Total banking billet:</br>';
-  $respPaymentDataBillet = $apiGN->getPaymentData()
-                                 ->type('banking_billet')
-                                 ->value(10000)
-                                 ->run()
-                                 ->response();
-  print_r($respPaymentDataBillet);
-
-
-  echo '</br>Charge (banking billet):</br>';
-  $respCharge = $apiGN->createCharge()
+  echo '<strong>Charge 1:</strong>';
+  $respCharge1 = $apiGN->createCharge()
                       ->addItem($item1)
                       ->addItem($item2)
                       ->addShipping($shipping1)
@@ -110,60 +96,12 @@ try {
                       ->metadata($metadata)
                       ->run()
                       ->response();
-  print_r($respCharge);
-  $chargeIdBillet = $respCharge['data']['charge_id'];
+  $chargeIdBillet = $respCharge1['data']['charge_id'];
+  echo '<pre>';
+  print_r($respCharge1);
+  echo '</pre>';
 
-
-  echo '</br>Associating customer to a charge:</br>';
-  $respCustomer = $apiGN->associateCustomer()
-                        ->chargeId($chargeIdBillet)
-                        ->customer($customer)
-                        ->run()
-                        ->response();
-  print_r($respCustomer);
-
-
-  echo '</br>Update charge metadata:</br>';
-  $respUpdateMetadata = $apiGN->updateChargeMetadata()
-                              ->chargeId($chargeIdBillet)
-                              ->notificationUrl('http://your.domain/your_new_notification_url')
-                              ->customId('new_id')
-                              ->run()
-                              ->response();
-  print_r($respUpdateMetadata);
-
-
-  echo '</br>Paying with banking billet:</br>';
-  $respPayment = $apiGN->definePayment()
-                       ->chargeId($chargeIdBillet)
-                       ->method('banking_billet')
-                       ->expireAt('2015-12-31')
-                       ->postOfficeService($postOfficeService)
-                       ->addInstruction('Instruction 1')
-                       ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
-                       ->run()
-                       ->response();
-  print_r($respPayment);
-
-
-  echo '</br>Update billet expire_at:</br>';
-  $respUpdateBillet = $apiGN->updateBillet()
-                            ->chargeId($chargeIdBillet)
-                            ->expireAt('2016-12-31')
-                            ->run()
-                            ->response();
-  print_r($respUpdateBillet);
-
-
-  echo '</br>Detailing a charge:</br>';
-  $respDetailCharge = $apiGN->detailCharge()
-                            ->chargeId($chargeIdBillet)
-                            ->run()
-                            ->response();
-  print_r($respDetailCharge);
-
-
-  echo '</br>Charge (credit card):</br>';
+  echo '<strong>Charge 2:</strong>';
   $respCharge2 = $apiGN->createCharge()
                        ->addItems([$item1, $item2])
                        ->addShippings([$shipping1, $shipping2])
@@ -171,13 +109,42 @@ try {
                        ->customer($customer)
                        ->run()
                        ->response();
+  $chargeIdCard   = $respCharge2['data']['charge_id'];
+  echo '<pre>';
   print_r($respCharge2);
-  $chargeIdCard = $respCharge2['data']['charge_id'];
-  $paymentToken = 'payment_token';
+  echo '</pre>';
 
+  /*--------------------------*/
 
-  echo '</br>Paying with credit card:</br>';
-  $respPayment2 = $apiGN->definePayment()
+  echo '<h3>Associating customer to a charge:</h3>';
+  $respCustomer = $apiGN->associateChargeCustomer()
+                        ->chargeId($chargeIdBillet)
+                        ->customer($customer)
+                        ->run()
+                        ->response();
+  echo '<pre>';
+  print_r($respCustomer);
+  echo '</pre>';
+
+  /*--------------------------*/
+
+  echo '<h3>Paying "Charge 1" with Banking Billet:</h3>';
+  $respPayment1 = $apiGN->payCharge()
+                       ->chargeId($chargeIdBillet)
+                       ->method('banking_billet')
+                       ->expireAt('2015-12-31')
+                       //->postOfficeService($postOfficeService)
+                       ->addInstruction('Instruction 1')
+                       ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
+                       ->run()
+                       ->response();
+  echo '<pre>';             
+  print_r($respPayment1);
+  echo '</pre>';
+
+  echo '<h3>Paying "Charge 2" with Credit Card:</h3>';
+  $paymentToken   = 'payment_token';
+  $respPayment2 = $apiGN->payCharge()
                         ->chargeId($chargeIdCard)
                         ->method('credit_card')
                         ->installments(3)
@@ -185,78 +152,48 @@ try {
                         ->billingAddress($address)
                         ->run()
                         ->response();
+  echo '<pre>';
   print_r($respPayment2);
+  echo '</pre>';
 
+  /*--------------------------*/
 
-  echo '</br>Create a plan:</br>';
-  $responsePlan = $apiGN->createPlan()
-                        ->name('Plan 1')
-                        ->repeats(2)
-                        ->interval(1)
-                        ->run()
-                        ->response();
-  print_r($responsePlan);
-  $planId = $responsePlan['data']['plan_id'];
-
-
-  echo '</br>Delete a plan:</br>';
-  $responsePlan1 = $apiGN->createPlan()
-                         ->name('Plan to delete')
-                         ->repeats(3)
-                         ->interval(10)
-                         ->run()
-                         ->response();
-  $planId1 = $responsePlan1['data']['plan_id'];
-  $responseDeletePlan = $apiGN->deletePlan()
-                        ->planId($planId1)
-                        ->run()
-                        ->response();
-  print_r($responseDeletePlan);
-
-
-  echo '</br>Create a subscription:</br>';
-  $respSubscription = $apiGN->createSubscription()
-                            ->addItem($item2)
-                            ->addShipping($shipping3)
-                            ->planId($planId)
-                            ->customer($customer)
+  echo '<h3>Detailing a charge:</h3>';
+  $respDetailCharge = $apiGN->detailCharge()
+                            ->chargeId($chargeIdBillet)
                             ->run()
                             ->response();
-  print_r($respSubscription);
-  $chargeIdSubscription = $respSubscription['data']['charge_id'];
-  $subscriptionId = $respSubscription['data']['subscription_id'];
-  $paymentToken2 = 'payment_token';
+  echo '<pre>';
+  print_r($respDetailCharge);
+  echo '</pre>';
+
+  echo '<h3>Updating charge metadata:</h3>';
+  $respUpdateMetadata = $apiGN->updateChargeMetadata()
+                              ->chargeId($chargeIdBillet)
+                              ->notificationUrl('http://your.domain/your_new_notification_url')
+                              ->customId('new_id')
+                              ->run()
+                              ->response();
+  echo '<pre>';
+  print_r($respUpdateMetadata);
+  echo '</pre>';
 
 
-  echo '</br>Paying the subscription:</br>';
-  $respPaymentSubscription = $apiGN->definePayment()
-                                   ->chargeId($chargeIdSubscription)
-                                   ->method('credit_card')
-                                   ->paymentToken($paymentToken2)
-                                   ->billingAddress($address)
-                                   ->run()
-                                   ->response();
-  print_r($respPaymentSubscription);
+  echo '<h3>Updating billet expiration date:</h3>';
+  $respUpdateBillet = $apiGN->updateBillet()
+                            ->chargeId($chargeIdBillet)
+                            ->expireAt('2016-12-31')
+                            ->run()
+                            ->response();
+  echo '<pre>';
+  print_r($respUpdateBillet);
+  echo '</pre>';
 
+  /*---------------------------------------------------------------------------------------------------*/
 
-  echo '</br>Detailing subscription:</br>';
-  $respDetailSubscription = $apiGN->detailSubscription()
-                                  ->subscriptionId($subscriptionId)
-                                  ->run()
-                                  ->response();
-  print_r($respDetailSubscription);
+  echo '<h2>Carnets</h2>';
 
-
-  echo '</br>Canceling subscription:</br>';
-  $respCancelSubscription = $apiGN->cancelSubscription()
-                                  ->subscriptionId($subscriptionId)
-                                  ->isCustomer(true)
-                                  ->run()
-                                  ->response();
-  print_r($respCancelSubscription);
-
-
-  echo '</br>Create a carnet:</br>';
+  echo '<h3>Creating a carnet:</h3>';
   $respCarnet = $apiGN->createCarnet()
                       ->addItem($item2)
                       ->metadata($metadata)
@@ -264,30 +201,147 @@ try {
                       ->expireAt('2019-05-12')
                       ->repeats(2)
                       ->splitItems(true)
-                      ->postOfficeService($postOfficeService)
-                      ->addInstruction('Instruction 1')
-                      ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
+                      //->postOfficeService($postOfficeService)
+                      ->addInstructions(['Instruction 1', 'Instruction 2', 'Instruction 3'])
                       ->run()
                       ->response();
-  print_r($respCarnet);
   $carnetId = $respCarnet['data']['carnet_id'];
+  echo '<pre>';
+  print_r($respCarnet);
+  echo '</pre>';
 
-
-  echo '</br>Detail the carnet:</br>';
+  echo '<h3>Detailing the carnet:</h3>';
   $respDetailCarnet = $apiGN->detailCarnet()
                             ->carnetId($carnetId)
                             ->run()
                             ->response();
+  echo '<pre>';
   print_r($respDetailCarnet);
+  echo '</pre>';
+
+  echo '<h3>Updating a carnet parcel:</h3>';
+  $respUpdateParcel = $apiGN->updateParcel()
+                            ->chargeId($chargeId)
+                            ->run()
+                            ->response();
+  echo '<pre>';
+  print_r($respUpdateParcel);
+  echo '</pre>';
+
+  /*---------------------------------------------------------------------------------------------------*/
+
+  echo '<h2>Subscriptions</h2>';
+
+   echo '<h3>Creating a plan:</h3>';
+  $responsePlan = $apiGN->createPlan()
+                        ->name('Plan 1')
+                        ->repeats(2)
+                        ->interval(1)
+                        ->run()
+                        ->response();
+  $planId = $responsePlan['data']['plan_id'];
+  echo '<pre>';
+  print_r($responsePlan);
+  echo '</pre>';
+
+  echo '<h3>Deleting a plan:</h3>';
+  $responsePlan1 = $apiGN->createPlan()
+                         ->name('Plan to delete')
+                         ->repeats(3)
+                         ->interval(10)
+                         ->run()
+                         ->response();
+  $planId1 = $responsePlan1['data']['plan_id'];
+  echo '<pre>';
+  print_r($responsePlan1);
+  echo '</pre>';
+
+  $responseDeletePlan = $apiGN->deletePlan()
+                        ->planId($planId1)
+                        ->run()
+                        ->response();
+  echo '<pre>';
+  print_r($responseDeletePlan);
+  echo '</pre>';                      
+
+  echo '<h3>Creating a subscription:</h3>';
+  $respSubscription = $apiGN->createSubscription()
+                            ->addItem($item2)
+                            ->addShipping($shipping3)
+                            ->planId($planId)
+                            ->customer($customer)
+                            ->run()
+                            ->response();
+  echo '<pre>';
+  print_r($respSubscription);
+  echo '</pre>'; 
+  $chargeIdSubscription = $respSubscription['data']['charge_id'];
+  $subscriptionId = $respSubscription['data']['subscription_id'];
+  $paymentToken2 = 'payment_token';
 
 
-  echo '</br>Notification:</br>';
+  echo '<h3>Paying the subscription:</h3>';
+  $respPaymentSubscription = $apiGN->payCharge()
+                                   ->chargeId($chargeIdSubscription)
+                                   ->method('credit_card')
+                                   ->paymentToken($paymentToken2)
+                                   ->billingAddress($address)
+                                   ->run()
+                                   ->response();
+  echo '<pre>';
+  print_r($respPaymentSubscription);
+  echo '</pre>'; 
+
+
+  echo '<h3>Detailing subscription:</h3>';
+  $respDetailSubscription = $apiGN->detailSubscription()
+                                  ->subscriptionId($subscriptionId)
+                                  ->run()
+                                  ->response();
+  echo '<pre>';
+  print_r($respDetailSubscription);
+  echo '</pre>';
+
+
+  echo '<h3>Canceling subscription:</h3>';
+  $respCancelSubscription = $apiGN->cancelSubscription()
+                                  ->subscriptionId($subscriptionId)
+                                  ->isCustomer(true)
+                                  ->run()
+                                  ->response();
+  echo '<pre>';
+  print_r($respCancelSubscription);
+  echo '</pre>';
+
+  /*---------------------------------------------------------------------------------------------------*/
+
+  echo '<h2>Notifications</h2>';
+
+  echo '<h3>Getting a notification:</h3>';
   $notificationToken = 'notification_token';
   $respNotification = $apiGN->detailNotification()
                             ->notificationToken($notificationToken)
                             ->run()
                             ->response();
+  echo '<pre>';
   print_r($respNotification);
+  echo '</pre>';
+
+  /*---------------------------------------------------------------------------------------------------*/
+
+  echo '<h2>Payments</h2>';
+
+  echo '<h3>Getting payment data - Using brand Mastercard:</h3>';
+  $respPaymentDataCard = $apiGN->getPaymentData()
+                               ->type('mastercard')
+                               ->value(10000)
+                               ->run()
+                               ->response();
+  echo '<pre>';
+  print_r($respPaymentDataCard);
+  echo '</pre>';
+
+  /*---------------------------------------------------------------------------------------------------*/
 
 } catch(GerencianetException $e) {
   Gerencianet::error($e);

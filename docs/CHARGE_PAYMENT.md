@@ -1,4 +1,4 @@
-## Setting the payment method ##
+## Setting the payment method
 
 There are two ways of giving sequence to a charge. You can generate a **banking billet** so it is payable until its due date, or can use the customer's **credit card** to submit the payment.
 
@@ -7,7 +7,7 @@ There are two ways of giving sequence to a charge. You can generate a **banking 
 Setting banking billet as a charge's payment method is simple. You just have to provide the charge id and an expiration date (optional):
 
 ```php
-$response = $apiGN->definePayment()
+$response = $apiGN->payCharge()
                   ->chargeId($chargeId)
                   ->method('banking_billet')
                   ->expireAt('2015-12-31') // This date is optional
@@ -21,7 +21,7 @@ If you want to set instructions (at most 4 instructions) for a banking billet, y
 
 * Adding one instruction at a time:
 ```php
-$response = $apiGN->definePayment()
+$response = $apiGN->payCharge()
                   ...
                   ->addInstruction('Instruction 1');
                   ->run()
@@ -30,7 +30,7 @@ $response = $apiGN->definePayment()
 
 * Adding many instructions:
 ```php
-$response = $apiGN->definePayment()
+$response = $apiGN->payCharge()
                   ...
                   ->addInstructions(['Instruction 1', 'Instruction 2', 'Instruction 3']);
                   ->run()
@@ -59,7 +59,7 @@ If you want to receive or send to the customer the banking billet, you need to i
 $postOfficeService = new PostOfficeService();
 $postOfficeService->sendTo('customer');
 
-$response = $apiGN->definePayment()
+$response = $apiGN->payCharge()
                   ->chargeId($chargeId)
                   ->method('banking_billet')
                   ->postOfficeService($postOfficeService) // This parameter is optional
@@ -74,7 +74,7 @@ If you need a faster payment confirmation, we recommend the credit card payment 
 
 ```php
 $paymentToken = 'payment_token';
-$response = $apiGN->definePayment()
+$response = $apiGN->payCharge()
                   ->chargeId($chargeId)
                   ->method('credit_card')
                   ->installments(3)
@@ -98,6 +98,8 @@ If everything went well, the response will come with the total value, installmen
   }
 }
 ```
+
+To know every installment value including interests for each brand, you can see [Getting the Payment Data](/docs/PAYMENT_DATA.md).
 
 ##### Payment tokens
 

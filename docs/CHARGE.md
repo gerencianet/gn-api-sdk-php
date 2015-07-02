@@ -1,4 +1,4 @@
-## Creating charges ##
+## Creating charges
 
 Charges belong to customers. Customers have many charges. Following this logic, you will have to associate a customer to a charge at some point. But the items, they have to be setted necessarily in the moment that you are creating the charge.
 
@@ -60,7 +60,7 @@ $response = $apiGN->createCharge()
                   ->response();
 ```
 
-If the customer is juridical person, it's necessary to send corporate name e CNPJ (Brazilian document for juridical person). For this, you will do this:
+If the customer is a juridical person, it's necessary to send the corporate name and CNPJ (brazilian document for juridical person):
 ```php
 $juridicalPerson = new JuridicalPerson();
 $juridicalPerson->corporateName('Fictional Company')

@@ -1,10 +1,10 @@
-## Creating carnets ##
+## Creating carnets
 
-Carnet is the payment form that you generate a set of charges with the payment method defined.
+Carnet is a payment method that generates a set of charges with the same payment information and customer in all of them.
 
-To generate a carnet, you have to set the items, a customer and the number of repeats (or parcels).
+To generate a carnet, you have mandatorily to set the items, a customer and the number of repeats (or parcels).
 
-If you want, you can send additional informations, defining:
+If you want, you can also send some additional informations:
 
 - The metadata information (like in the banking billet), with notification_url and/or custom_id
 - The expiration date to the first charge;
@@ -70,7 +70,7 @@ $response = $apiGN->createCarnet()
                   ->response();
 ```
 
-### Setting repeats to carnet's charge:
+### Setting repeats to a carnet:
 `required`
 ```php
 $response = $apiGN->createCarnet()

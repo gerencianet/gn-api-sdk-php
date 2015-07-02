@@ -7,7 +7,8 @@ use Gerencianet\Webservices\ApiAssociateChargeCustomer;
 use Gerencianet\Webservices\ApiCancelSubscription;
 use Gerencianet\Webservices\ApiCarnet;
 use Gerencianet\Webservices\ApiCharge;
-use Gerencianet\Webservices\ApiPay;
+use Gerencianet\Webservices\ApiPayCharge;
+use Gerencianet\Webservices\ApiPaySubscription;
 use Gerencianet\Webservices\ApiDeletePlan;
 use Gerencianet\Webservices\ApiDetailCarnet;
 use Gerencianet\Webservices\ApiDetailCharge;
@@ -84,6 +85,16 @@ class Gerencianet {
   }
 
   /**
+   * Detail the charge
+   *
+   * @return ApiDetailCharge
+   */
+  public function detailCharge() {
+    $api = new ApiDetailCharge($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
    * Update charge's metadata
    *
    * @return ApiUpdateChargeMetadata
@@ -98,39 +109,68 @@ class Gerencianet {
    *
    * @return ApiAssociateChargeCustomer
    */
-  public function associateCustomer() {
+  public function associateChargeCustomer() {
     $api = new ApiAssociateChargeCustomer($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
-    /**
-   * Generate a subscription
+  /**
+   * Updated a billet
    *
-   * @return ApiSubscription
+   * @return ApiUpdateBillet
    */
-  public function createSubscription() {
-    $api = new ApiSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
+  public function updateBillet() {
+    $api = new ApiUpdateBillet($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
-
 
   /**
    * Generate a payment to charge using checkout
    *
-   * @return ApiPay
+   * @return ApiPayCharge
    */
-  public function definePayment() {
-    $api = new ApiPay($this->_clientId, $this->_clientSecret, $this->_isTest);
+  public function payCharge() {
+    $api = new ApiPayCharge($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
   /**
-   * Get available installments for credit card brand or value total to banking billet
+   * Create the carnet
    *
-   * @return ApiPaymentData
+   * @return ApiCarnet
    */
-  public function getPaymentData() {
-    $api = new ApiPaymentData($this->_clientId, $this->_clientSecret, $this->_isTest);
+  public function createCarnet() {
+    $api = new ApiCarnet($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Detail the carnet
+   *
+   * @return ApiCarnet
+   */
+  public function detailCarnet() {
+    $api = new ApiDetailCarnet($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Update carnet's metadata
+   *
+   * @return ApiUpdateCarnetMetadata
+   */
+  public function updateCarnetMetadata() {
+    $api = new ApiUpdateCarnetMetadata($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Updated a carnet parcel
+   *
+   * @return ApiUpdateParcel
+   */
+  public function updateParcel() {
+    $api = new ApiUpdateParcel($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
@@ -141,36 +181,6 @@ class Gerencianet {
    */
   public function detailNotification() {
     $api = new ApiDetailNotification($this->_clientId, $this->_clientSecret, $this->_isTest);
-    return $api;
-  }
-
-  /**
-   * Cancel the subscription
-   *
-   * @return ApiCancelSubscription
-   */
-  public function cancelSubscription() {
-    $api = new ApiCancelSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
-    return $api;
-  }
-
-  /**
-   * Detail the subscription
-   *
-   * @return ApiDetailSubscription
-   */
-  public function detailSubscription() {
-    $api = new ApiDetailSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
-    return $api;
-  }
-
-  /**
-   * Detail the charge
-   *
-   * @return ApiDetailCharge
-   */
-  public function detailCharge() {
-    $api = new ApiDetailCharge($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
@@ -195,32 +205,62 @@ class Gerencianet {
   }
 
   /**
-   * Updated a billet
+   * Generate a subscription
    *
-   * @return ApiUpdateBillet
+   * @return ApiSubscription
    */
-  public function updateBillet() {
-    $api = new ApiUpdateBillet($this->_clientId, $this->_clientSecret, $this->_isTest);
+  public function createSubscription() {
+    $api = new ApiSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
   /**
-   * Create the carnet
+   * Detail the subscription
    *
-   * @return ApiCarnet
+   * @return ApiDetailSubscription
    */
-  public function createCarnet() {
-    $api = new ApiCarnet($this->_clientId, $this->_clientSecret, $this->_isTest);
+  public function detailSubscription() {
+    $api = new ApiDetailSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 
   /**
-   * Detail the carnet
+   * Update subscription's metadata
    *
-   * @return ApiCarnet
+   * @return ApiUpdateSubscriptionMetadata
    */
-  public function detailCarnet() {
-    $api = new ApiDetailCarnet($this->_clientId, $this->_clientSecret, $this->_isTest);
+  public function updateSubscriptionMetadata() {
+    $api = new ApiUpdateSubscriptionMetadata($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Cancel the subscription
+   *
+   * @return ApiCancelSubscription
+   */
+  public function cancelSubscription() {
+    $api = new ApiCancelSubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Generate a payment to subscription using checkout
+   *
+   * @return ApiPaySubscription
+   */
+  public function paySubscription() {
+    $api = new ApiPaySubscription($this->_clientId, $this->_clientSecret, $this->_isTest);
+    return $api;
+  }
+
+  /**
+   * Get available installments for credit card brand or value total to banking billet
+   *
+   * @return ApiPaymentData
+   */
+  public function getPaymentData() {
+    $api = new ApiPaymentData($this->_clientId, $this->_clientSecret, $this->_isTest);
     return $api;
   }
 

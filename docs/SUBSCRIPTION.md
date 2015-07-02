@@ -1,4 +1,4 @@
-## Subscriptions ##
+## Subscriptions
 
 To create a subscription, you have to create a plan that defines how the subscription will work.
 

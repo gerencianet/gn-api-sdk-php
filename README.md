@@ -1,4 +1,5 @@
-# SDK GERENCIANET FOR PHP #
+# SDK GERENCIANET FOR PHP
+
 Sdk for Gerencianet Pagamentos' API.
 For more informations about parameters and values, please refer to [Gerencianet](http://gerencianet.com.br) documentation.
 
@@ -8,7 +9,7 @@ For more informations about parameters and values, please refer to [Gerencianet]
 [![Build Status](https://travis-ci.org/gerencianet/gn-api-sdk-php.svg)](https://travis-ci.org/gerencianet/gn-api-sdk-php)
 
 
-## Installation ##
+## Installation
 Require this package with [composer](https://getcomposer.org/):
 ```
 $ composer require gerencianet/gerencianet-sdk-php
@@ -22,7 +23,7 @@ Or include it in your composer.json file:
 ...
 ```
 
-## Getting started ##
+## Getting started
 Require the module and namespaces:
 ```php
 require __DIR__ . '/../sdk/vendor/autoload.php';
@@ -61,8 +62,7 @@ try {
 }
 ```
 
-
-### For development environment ###
+### For development environment
 Instantiate the module passing your apiKey, your apiSecret and the third parameter is used to change the environment to sandbox:
 ```php
 $apiKey = 'your_client_id';
@@ -71,7 +71,7 @@ $apiSecret = 'your_client_secret';
 $apiGN = new Gerencianet($apiKey, $apiSecret, true);
 ```
 
-### For production environment ###
+### For production environment
 To change the environment to production, just set the third parameter to false:
 ```php
 $apiKey = 'your_client_id';
@@ -80,25 +80,48 @@ $apiSecret = 'your_client_secret';
 $apiGN = new Gerencianet($apiKey, $apiSecret, false);
 ```
 
-## Running tests ##
+## Running tests
 
 To run tests install [PHPUnit](https://phpunit.de/getting-started.html) and run the following command:
 ```php
 $ phpunit -c tests/config.xml tests
 ```
 
-## Additional Documentation ##
+## Additional Documentation
 
+#### Charges
 - [Creating charges](/docs/CHARGE.md)
-- [Creating subscriptions](/docs/SUBSCRIPTION.md)
+- [Associating a customer](/docs/CHARGE_CUSTOMER.md)
+- [Setting the payment method](/docs/CHARGE_PAYMENT.md)
+- [Detailing charges](/docs/CHARGE_DETAIL.md)
+- [Updating informations](/docs/CHARGE_UPDATE.md)
+
+#### Carnets
+
 - [Creating carnets](/docs/CARNET.md)
-- [Associating customer to a transaction](/docs/CUSTOMER.md)
-- [Setting a payment method](/docs/PAYMENT.md)
-- [Getting notifications](/docs/NOTIFICATION.md)
-- [Detailing transactions](/docs/DETAIL.md)
+- [Detailing charges](/docs/CARNET_DETAIL.md)
+- [Updating informations](/docs/CARNET_UPDATE.md)
+
+#### Subscriptions
+
+- [Creating subscriptions](/docs/SUBSCRIPTION.md)
+- [Associating a customer](/docs/SUBSCRIPTION_CUSTOMER.md)
+- [Setting the payment method](/docs/SUBSCRIPTION_PAYMENT.md)
+- [Detailing subscriptions](/docs/SUBSCRIPTION_DETAIL.md)
+- [Updating informations](/docs/SUBSCRIPTION_UPDATE.md)
+
+#### Marketplace
+
 - [Creating a marketplace](/docs/MARKETPLACE.md)
+
+#### Notifications
+
+- [Getting notifications](/docs/NOTIFICATION.md)
+
+#### Payments
+
 - [Getting the payment data](/docs/PAYMENT_DATA.md)
-- [Updating a banking billet transaction](/docs/UPDATE_BILLET.md)
+
 
 ## License ##
 [MIT](LICENSE)
