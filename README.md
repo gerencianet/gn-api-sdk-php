@@ -99,7 +99,7 @@ $ phpunit -c tests/config.xml tests
 #### Carnets
 
 - [Creating carnets](/docs/CARNET.md)
-- [Detailing charges](/docs/CARNET_DETAIL.md)
+- [Detailing carnets](/docs/CARNET_DETAIL.md)
 - [Updating informations](/docs/CARNET_UPDATE.md)
 
 #### Subscriptions
