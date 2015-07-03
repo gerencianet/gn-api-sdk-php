@@ -18,7 +18,10 @@ use Gerencianet\Webservices\ApiPaymentData;
 use Gerencianet\Webservices\ApiPlan;
 use Gerencianet\Webservices\ApiSubscription;
 use Gerencianet\Webservices\ApiUpdateBillet;
+use Gerencianet\Webservices\ApiUpdateParcel;
 use Gerencianet\Webservices\ApiUpdateChargeMetadata;
+use Gerencianet\Webservices\ApiUpdateCarnetMetadata;
+use Gerencianet\Webservices\ApiUpdateSubscriptionMetadata;
 
 /**
  * Library to use Gerencianet's Api

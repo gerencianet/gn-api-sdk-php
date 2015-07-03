@@ -107,7 +107,7 @@ class ApiPaySubscription extends ApiBase {
   }
 
   /**
-   * Set the method used to pay this charge. It can be 'credit_card' or 'banking_billet'
+   * Set the method used to pay this subscription. It can be 'credit_card' or 'banking_billet'
    *
    * @param  string $method
    * @return ApiPaySubscription
@@ -118,7 +118,7 @@ class ApiPaySubscription extends ApiBase {
   }
 
   /**
-   * Get the method used to pay this charge
+   * Get the method used to pay this subscription
    *
    * @return string
    */
@@ -150,11 +150,11 @@ class ApiPaySubscription extends ApiBase {
   /**
    * Set charge id
    *
-   * @param  integer $chargeId
+   * @param  integer $subscriptionId
    * @return ApiPaySubscription
    */
-  public function chargeId($chargeId) {
-    $this->_subscriptionId = (int)$chargeId;
+  public function subscriptionId($subscriptionId) {
+    $this->_subscriptionId = (int)$subscriptionId;
     return $this;
   }
 
@@ -176,6 +176,15 @@ class ApiPaySubscription extends ApiBase {
   public function paymentToken($paymentToken) {
     $this->_paymentToken = $paymentToken;
     return $this;
+  }
+
+  /**
+   * Get subscription id
+   *
+   * @return integer
+   */
+  public function getSubscriptionId() {
+    return $this->_subscriptionId;
   }
 
   /**
@@ -245,7 +254,8 @@ class ApiPaySubscription extends ApiBase {
    * @return ApiPaySubscription
    */
   public function mapData() {
-    $this->_data['charge_id'] = $this->_subscriptionId;
+
+    $this->_data['subscription_id'] = $this->_subscriptionId;
 
     $this->_data['payment'] = [];
 

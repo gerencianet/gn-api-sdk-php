@@ -1,4 +1,4 @@
-a<?php
+<?php
 
 namespace Gerencianet\Webservices;
 
@@ -15,9 +15,9 @@ namespace Gerencianet\Webservices;
  */
 
 /**
- * Gerencianet's update billet class
+ * Gerencianet's update parcel class
  *
- * Implements how to use Gerencianet's update billet
+ * Implements how to use Gerencianet's update parcel
  *
  * @package Gerencianet
  */

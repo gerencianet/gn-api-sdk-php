@@ -4,7 +4,7 @@ use GuzzleHttp\Subscriber\Mock;
 
 require_once __DIR__.'/Base.php';
 
-class ApiPayTest extends Base {
+class ApiPayChargeTest extends Base {
 
   public function testPaymentBankingBillet() {
     $apiGN = self::createApiGN();
@@ -19,7 +19,7 @@ class ApiPayTest extends Base {
                      ->addInstruction('Instruction 1')
                      ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4']);
 
-    $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('bankingBillet', 200)]);
+    $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('chargeBankingBillet', 200)]);
 
     $clientGZ = $payment->getGuzzleClient();
     $clientGZ->getEmitter()->attach($mock);
@@ -52,7 +52,7 @@ class ApiPayTest extends Base {
                      ->paymentToken($paymentToken)
                      ->billingAddress(self::address());
 
-    $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('creditCard', 200)]);
+    $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('chargeCreditCard', 200)]);
 
     $clientGZ = $payment->getGuzzleClient();
     $clientGZ->getEmitter()->attach($mock);
