@@ -1,10 +1,10 @@
-## Updating charges
+## Updating carnets
 
 ### Changing the metadata
 
 You can update the `custom_id` or the `notification_url` of a carnet at any time you want. 
 
-Is important to know that it updates all the charges of the carnet. If you want to update only one parcel, see (Updating charges)[/docs/CHARGE_UPDATE.md].
+Is important to know that it updates all the charges of the carnet. If you want to update only one parcel, see [Updating charges](/docs/CHARGE_UPDATE.md).
 
 ```php
 $charge = $apiGN->updateCarnetMetadata()
