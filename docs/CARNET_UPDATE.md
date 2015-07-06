@@ -25,12 +25,14 @@ If everything goes well, the return will be:
 
 ### Updating the expiration date of a parcel
 
-To update or set an expiration date to a parcel, the parcel must have a `waiting` status. You just have to provide the charge id and a new expiration date:
+To update or set an expiration date to a parcel, the parcel must have a `waiting` status. You just have to provide the carnet id, the parcel and a new expiration date:
 
 ```php
-$chargeId = ''; // The value returned by createCarnet function
+$carnetId = ''; // The value returned by createCarnet function
+$parcel = ''; // Parcel that will be updated
 $response = $apiGN->updateParcel()
-                  ->chargeId($chargeId)
+                  ->carnetId($carnetId)
+                  ->parcel($parcel)
                   ->expireAt('2018-12-31')
                   ->run()
                   ->response();

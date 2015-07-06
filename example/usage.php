@@ -22,7 +22,7 @@ try {
   $apiGN = new Gerencianet($apiKey, $apiSecret, true);
 
   $repass = new Repass();
-  $repass->payeeCode('3eefd8a97491089b520367d19f1a86ca')
+  $repass->payeeCode('payee_code_to_repass')
          ->percentage(700);
 
   $item1 = new Item();
@@ -65,12 +65,12 @@ try {
             ->notificationUrl('http://your.domain/your_notification_url');
 
   $shipping1 = new Shipping();
-  $shipping1->payeeCode('3eefd8a97491089b520367d19f1a86ca')
+  $shipping1->payeeCode('payee_code_to_repass')
             ->name('Shipping')
             ->value(1575);
 
   $shipping2 = new Shipping();
-  $shipping2->payeeCode('3eefd8a97491089b520367d19f1a86ca')
+  $shipping2->payeeCode('payee_code_to_repass')
             ->name('Shipping 2')
             ->value(2000);
 
@@ -133,12 +133,12 @@ try {
                        ->chargeId($chargeIdBillet)
                        ->method('banking_billet')
                        ->expireAt('2015-12-31')
-                       //->postOfficeService($postOfficeService)
+                       ->postOfficeService($postOfficeService)
                        ->addInstruction('Instruction 1')
                        ->addInstructions(['Instruction 2', 'Instruction 3', 'Instruction 4'])
                        ->run()
                        ->response();
-  echo '<pre>';             
+  echo '<pre>';
   print_r($respPayment1);
   echo '</pre>';
 
@@ -201,7 +201,7 @@ try {
                       ->expireAt('2019-05-12')
                       ->repeats(2)
                       ->splitItems(true)
-                      //->postOfficeService($postOfficeService)
+                      ->postOfficeService($postOfficeService)
                       ->addInstructions(['Instruction 1', 'Instruction 2', 'Instruction 3'])
                       ->run()
                       ->response();
@@ -221,7 +221,9 @@ try {
 
   echo '<h3>Updating a carnet parcel:</h3>';
   $respUpdateParcel = $apiGN->updateParcel()
-                            ->chargeId($chargeId)
+                            ->carnetId($carnetId)
+                            ->parcel(2)
+                            ->expireAt('2020-10-24')
                             ->run()
                             ->response();
   echo '<pre>';
@@ -262,7 +264,7 @@ try {
                         ->response();
   echo '<pre>';
   print_r($responseDeletePlan);
-  echo '</pre>';                      
+  echo '</pre>';
 
   echo '<h3>Creating a subscription:</h3>';
   $respSubscription = $apiGN->createSubscription()
@@ -274,7 +276,7 @@ try {
                             ->response();
   echo '<pre>';
   print_r($respSubscription);
-  echo '</pre>'; 
+  echo '</pre>';
   $chargeIdSubscription = $respSubscription['data']['charge_id'];
   $subscriptionId = $respSubscription['data']['subscription_id'];
   $paymentToken2 = 'payment_token';
@@ -290,7 +292,7 @@ try {
                                    ->response();
   echo '<pre>';
   print_r($respPaymentSubscription);
-  echo '</pre>'; 
+  echo '</pre>';
 
 
   echo '<h3>Detailing subscription:</h3>';

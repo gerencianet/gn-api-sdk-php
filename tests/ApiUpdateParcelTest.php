@@ -9,24 +9,27 @@ class ApiUpdateParcelTest extends Base {
   public function testUpdateParcel() {
     $apiGN = self::createApiGN();
 
-    $chargeId = 11000;
+    $carnetId = 3000;
 
     $updateParcel = $apiGN->updateParcel()
-                          ->chargeId($chargeId)
+                          ->carnetId($carnetId)
+                          ->parcel(2)
                           ->expireAt('2025-12-25');
 
     $this->assertNotEmpty($updateParcel);
-    $this->assertEquals($updateParcel->getChargeId(), 11000);
+    $this->assertEquals($updateParcel->getCarnetId(), 3000);
+    $this->assertEquals($updateParcel->getParcel(), 2);
     $this->assertEquals($updateParcel->getExpireAt(), '2025-12-25');
   }
 
   public function testExecutedUpdateParcel() {
     $apiGN = self::createApiGN();
 
-    $chargeId = 11000;
+    $carnetId = 3000;
 
     $updateParcel = $apiGN->updateParcel()
-                          ->chargeId($chargeId)
+                          ->carnetId($carnetId)
+                          ->parcel(2)
                           ->expireAt('2025-12-25');
 
     $mock = new Mock([$this->getMockResponse('auth', 200), $this->getMockResponse('updateParcel', 200)]);

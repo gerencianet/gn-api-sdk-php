@@ -24,11 +24,18 @@ namespace Gerencianet\Webservices;
 class ApiUpdateParcel extends ApiBase {
 
   /**
-   * Charge id that will be updated
+   * Carnet id that has the parcel to be updated
    *
    * @var integer
   */
-  private $_chargeId;
+  private $_carnetId;
+
+  /**
+   * Parcel that will be updated
+   *
+   * @var integer
+  */
+  private $_parcel;
 
   /**
    * New expiration date for 'carnet parcel'. The required format is 'YYYY-mm-dd'
@@ -50,23 +57,43 @@ class ApiUpdateParcel extends ApiBase {
   }
 
   /**
-   * Set charge id of charge
+   * Set carnet id
    *
-   * @param  integer $chargeId
+   * @param  integer $carnetId
    * @return ApiUpdateParcel
    */
-  public function chargeId($chargeId) {
-    $this->_chargeId = (int)$chargeId;
+  public function carnetId($carnetId) {
+    $this->_carnetId = (int)$carnetId;
     return $this;
   }
 
   /**
-   * Get charge id of charge
+   * Get carnet id
    *
    * @return integer
    */
-  public function getChargeId() {
-    return $this->_chargeId;
+  public function getCarnetId() {
+    return $this->_carnetId;
+  }
+
+  /**
+   * Set parcel
+   *
+   * @param  integer $parcel
+   * @return ApiUpdateParcel
+   */
+  public function parcel($parcel) {
+    $this->_parcel = (int)$parcel;
+    return $this;
+  }
+
+  /**
+   * Get parcel
+   *
+   * @return integer
+   */
+  public function getParcel() {
+    return $this->_parcel;
   }
 
   /**
@@ -97,7 +124,9 @@ class ApiUpdateParcel extends ApiBase {
    * @return ApiUpdateParcel
    */
   public function mapData() {
-    $this->_data['charge_id'] = $this->_chargeId;
+    $this->_data['carnet_id'] = $this->_carnetId;
+
+    $this->_data['parcel'] = $this->_parcel;
 
     $this->_data['expire_at'] = $this->_expireAt;
 
