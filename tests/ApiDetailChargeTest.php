@@ -70,7 +70,7 @@ class ApiDetailChargeTest extends Base {
     $this->assertEquals($resp['data']['customer']['email'], 'oldbuck@gerencianet.com.br');
     $this->assertEquals($resp['data']['customer']['cpf'], '04267484171');
     $this->assertEquals($resp['data']['customer']['birth'], '1977-01-15');
-    $this->assertEquals($resp['data']['customer']['phone_number'], '5044916523');
+    $this->assertEquals($resp['data']['customer']['phone_number'], '5144916523');
     $this->assertNotEmpty($resp['data']['customer']['address']);
     $this->assertEquals($resp['data']['customer']['address']['street'], 'Street 3');
     $this->assertEquals($resp['data']['customer']['address']['number'], '10');

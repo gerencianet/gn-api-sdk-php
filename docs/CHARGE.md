@@ -50,7 +50,7 @@ $customer->name('Gorbadoc Oldbuck')
          ->email('oldbuck@gerencianet.com.br')
          ->cpf('04267484171')
          ->birth('1977-01-15')
-         ->phoneNumber('5044916523')
+         ->phoneNumber('5144916523')
          ->address($address); // optional.
 
 $response = $apiGN->createCharge()
