@@ -52,14 +52,14 @@ class ApiCarnetTest extends Base {
     $this->assertEquals($resp['data']['charges'][0]['charge_id'], 1476);
     $this->assertEquals($resp['data']['charges'][0]['parcel'], '1');
     $this->assertEquals($resp['data']['charges'][0]['status'], 'waiting');
-    $this->assertEquals($resp['data']['charges'][0]['value'], 10000);
+    $this->assertEquals($resp['data']['charges'][0]['value'], 30000);
     $this->assertEquals($resp['data']['charges'][0]['expire_at'], '2019-12-31');
     $this->assertEquals($resp['data']['charges'][0]['url'], 'https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CL-99999-99999-LOSI5/99999-99999-LOSI5');
     $this->assertEquals($resp['data']['charges'][0]['barcode'], '99999.99999 99999.999999 99999.999999 9 99999999999999');
     $this->assertEquals($resp['data']['charges'][2]['charge_id'], 1478);
     $this->assertEquals($resp['data']['charges'][2]['parcel'], '3');
     $this->assertEquals($resp['data']['charges'][2]['status'], 'waiting');
-    $this->assertEquals($resp['data']['charges'][2]['value'], 10000);
+    $this->assertEquals($resp['data']['charges'][2]['value'], 30000);
     $this->assertEquals($resp['data']['charges'][2]['expire_at'], '2020-02-28');
     $this->assertEquals($resp['data']['charges'][2]['url'], 'https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CL-99999-99999-LOSI5/99999-99999-SERMEH7');
     $this->assertEquals($resp['data']['charges'][2]['barcode'], '99999.99999 99999.999999 99999.999999 9 99999999999999');
