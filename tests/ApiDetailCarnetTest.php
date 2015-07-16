@@ -42,7 +42,7 @@ class ApiDetailCarnetTest extends Base {
     $this->assertEquals($resp['data']['status'], 'active');
     $this->assertEquals($resp['data']['repeats'], 3);
     $this->assertEquals($resp['data']['cover'], 'https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CC-99999-99999-LOSI5/99999-99999-LOSI5');
-    $this->assertEquals($resp['data']['value'], 30000);
+    $this->assertEquals($resp['data']['value'], 90000);
     $this->assertNotEmpty($resp['data']['post_office_service']);
     $this->assertEquals($resp['data']['post_office_service']['send_to'], 'customer');
     $this->assertEquals($resp['data']['split_items'], false);
