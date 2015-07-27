@@ -89,10 +89,10 @@ $ phpunit -c test/config.xml
 #### Subscriptions
 
 - [Creating subscriptions](/docs/SUBSCRIPTION.md)
-- [Associating a customer](/docs/SUBSCRIPTION_CUSTOMER.md)
 - [Setting the payment method](/docs/SUBSCRIPTION_PAYMENT.md)
 - [Detailing subscriptions](/docs/SUBSCRIPTION_DETAIL.md)
 - [Updating informations](/docs/SUBSCRIPTION_UPDATE.md)
+- [Listing plans](/docs/PLAN_LIST.md)
 
 #### Marketplace
 
