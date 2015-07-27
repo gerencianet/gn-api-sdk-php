@@ -1,4 +1,4 @@
-## Getting payment data ##
+## Payment data - listing installments
 
 If you ever need to get the total value for a charge, including rates and interests, as well as each installment value, even before the payment itself, you can.
 
@@ -6,136 +6,158 @@ Why would I need this?
 
 Sometimes you need to check the total for making a discount, or simple to show a combobox with the installments for your users.
 
-Here is the code:
+Stop bragging about. Here is the code:
+
 ```php
-$response = $apiGN->getPaymentData()
-                  ->type('mastercard')
-                  ->value(10000)
-                  ->run()
-                  ->response();
+require __DIR__.'/../../vendor/autoload.php';
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
+
+$options = ['client_id' => 'client_id',
+            'client_secret' => 'client_secret',
+            'sandbox' => true];
+
+$params = ['total' => '2000', 'brand' => 'visa'];
+
+try {
+    $api = new Gerencianet($options);
+    $installments = $api->getInstallments($params, []);
+
+    print_r($installments);
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
+
 ```
 
 And the response:
 
-```js
-{
-  "code": 200,
-  "data": {
-    "rate": 150,
-    "name": "mastercard",
-    "installments": [
-      {
-        "installment": 1,
-        "has_interest": false,
-        "value": 10150,
-        "currency": "101,50",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 2,
-        "has_interest": true,
-        "value": 5279,
-        "currency": "52,79",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 3,
-        "has_interest": true,
-        "value": 3589,
-        "currency": "35,89",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 4,
-        "has_interest": true,
-        "value": 2746,
-        "currency": "27,46",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 5,
-        "has_interest": true,
-        "value": 2240,
-        "currency": "22,40",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 6,
-        "has_interest": true,
-        "value": 1904,
-        "currency": "19,04",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 7,
-        "has_interest": true,
-        "value": 1664,
-        "currency": "16,64",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 8,
-        "has_interest": true,
-        "value": 1485,
-        "currency": "14,85",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 9,
-        "has_interest": true,
-        "value": 1347,
-        "currency": "13,47",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 10,
-        "has_interest": true,
-        "value": 1236,
-        "currency": "12,36",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 11,
-        "has_interest": true,
-        "value": 1146,
-        "currency": "11,46",
-        "interest_percentage": 199
-      },
-      {
-        "installment": 12,
-        "has_interest": true,
-        "value": 1072,
-        "currency": "10,72",
-        "interest_percentage": 199
-      }
-    ]
-  }
-}
-```
-
-Observe that the response comes with an installments array length of at most 12 positions, depending on brand. Each position matches one possible option of installment number, containing its value in currency and integer forms. Use it any way you need.
-
-If you're curious about what would happen if you did this:
-
 ```php
-$response = $apiGN->getPaymentData()
-                  ->type('banking_billet')
-                  ->value(10000)
-                  ->run()
-                  ->response();
+Array
+(
+    [code] => 200
+    [data] => Array
+        (
+            [rate] => 0
+            [name] => visa
+            [installments] => Array
+                (
+                    [0] => Array
+                        (
+                            [installment] => 1
+                            [has_interest] =>
+                            [value] => 20000
+                            [currency] => 200,00
+                            [interest_percentage] => 199
+                        )
+
+                    [1] => Array
+                        (
+                            [installment] => 2
+                            [has_interest] => 1
+                            [value] => 10402
+                            [currency] => 104,02
+                            [interest_percentage] => 199
+                        )
+
+                    [2] => Array
+                        (
+                            [installment] => 3
+                            [has_interest] => 1
+                            [value] => 7073
+                            [currency] => 70,73
+                            [interest_percentage] => 199
+                        )
+
+                    [3] => Array
+                        (
+                            [installment] => 4
+                            [has_interest] => 1
+                            [value] => 5410
+                            [currency] => 54,10
+                            [interest_percentage] => 199
+                        )
+
+                    [4] => Array
+                        (
+                            [installment] => 5
+                            [has_interest] => 1
+                            [value] => 4414
+                            [currency] => 44,14
+                            [interest_percentage] => 199
+                        )
+
+                    [5] => Array
+                        (
+                            [installment] => 6
+                            [has_interest] => 1
+                            [value] => 3752
+                            [currency] => 37,52
+                            [interest_percentage] => 199
+                        )
+
+                    [6] => Array
+                        (
+                            [installment] => 7
+                            [has_interest] => 1
+                            [value] => 3280
+                            [currency] => 32,80
+                            [interest_percentage] => 199
+                        )
+
+                    [7] => Array
+                        (
+                            [installment] => 8
+                            [has_interest] => 1
+                            [value] => 2927
+                            [currency] => 29,27
+                            [interest_percentage] => 199
+                        )
+
+                    [8] => Array
+                        (
+                            [installment] => 9
+                            [has_interest] => 1
+                            [value] => 2653
+                            [currency] => 26,53
+                            [interest_percentage] => 199
+                        )
+
+                    [9] => Array
+                        (
+                            [installment] => 10
+                            [has_interest] => 1
+                            [value] => 2436
+                            [currency] => 24,36
+                            [interest_percentage] => 199
+                        )
+
+                    [10] => Array
+                        (
+                            [installment] => 11
+                            [has_interest] => 1
+                            [value] => 2258
+                            [currency] => 22,58
+                            [interest_percentage] => 199
+                        )
+
+                    [11] => Array
+                        (
+                            [installment] => 12
+                            [has_interest] => 1
+                            [value] => 2111
+                            [currency] => 21,11
+                            [interest_percentage] => 199
+                        )
+
+                )
+
+        )
+
+)
+
 ```
-
-Here it goes:
-
-```js
-{
-  "code": 200,
-  "data": {
-    "total": 10150,
-    "rate": 150,
-    "currency": "101,50"
-  }
-}
-```
-
-When you use this payment method, the response comes with just the total value and the payment's method rate. The total value comes also parsed into currency, just in case.

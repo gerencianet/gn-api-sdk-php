@@ -22,9 +22,9 @@ try {
 }
 ```
 
-Any changes that happen in the charges will trigger an event that notifies the `notification_url` provided at creation time (see [creating charges](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/charges.md)).
+Any changes that happen in the charges will trigger an event that notifies the `notification_url` provided at creation time (see [creating charges](/docs/CHARGE.md)).
 
-It's also possible to set or change the `notification_url` for existing charges, see [updating informations](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/charge-update.md).
+It's also possible to set or change the `notification_url` for existing charges, see [updating informations](/docs/CHARGE_UPDATE.md).
 
 Given that a charge has a valid `notification_url`, when the notification time comes you'll receive a post with a `token`. This token must be used to get the notification payload data.
 
@@ -51,16 +51,52 @@ try {
 Response:
 
 ```php
+
 Array
 (
     [code] => 200
     [data] => Array
         (
-            [charge_id] => 1039
+            [charge_id] => 1024
             [total] => 5000
-            [status] => new
+            [status] => canceled
             [custom_id] =>
-            [created_at] => 2015-07-27 11:48:44
+            [created_at] => 2015-07-27 09:43:05
+            [notification_url] =>
+            [items] => Array
+                (
+                    [0] => Array
+                        (
+                            [name] => Item 1
+                            [value] => 1000
+                            [amount] => 1
+                        )
+
+                    [1] => Array
+                        (
+                            [name] => Item 2
+                            [value] => 2000
+                            [amount] => 2
+                        )
+
+                )
+
+            [history] => Array
+                (
+                    [0] => Array
+                        (
+                            [status] => new
+                            [created_at] => 2015-07-27 09:43:05
+                        )
+
+                    [1] => Array
+                        (
+                            [status] => canceled
+                            [created_at] => 2015-07-27 10:22:43
+                        )
+
+                )
+
         )
 
 )

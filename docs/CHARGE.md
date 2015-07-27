@@ -57,7 +57,7 @@ $metadata = ['custom_id' => 'Product 0001', 'notification_url' => 'http://my_dom
 $body = ['items' => $items, 'metadata' => $metadata];
 ```
 
-The `notification_url` property will be used for sending notifications once things happen with charges statuses, as when it's payment was approved, for example. More about notifications [here](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/notifications.md). The `custom_id` property can be used to set your own reference to the charge.
+The `notification_url` property will be used for sending notifications once things happen with charges statuses, as when it's payment was approved, for example. More about notifications [here](/docs/NOTIFICATION.md). The `custom_id` property can be used to set your own reference to the charge.
 
 
 ### Finally, create the charge:

@@ -4,7 +4,7 @@
 
 You can update the `custom_id` or the `notification_url` of a carnet at any time you want.
 
-Is important to know that it updates all the charges of the carnet. If you want to update only one, see [Updating charges](/docs/charge-update.md).
+Is important to know that it updates all the charges of the carnet. If you want to update only one, see [Updating charges](/docs/CHARGE_UPDATE.md).
 
 Instantiate the module:
 

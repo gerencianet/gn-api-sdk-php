@@ -61,7 +61,7 @@ $body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'metadata' 
 
 ```
 
-The `notification_url` property will be used for notifications once things happen with charges status, as when it's payment was approved, for example. More about notifications [here](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/notifications.md). The `custom_id` property can be used to set your own reference to the carnet.
+The `notification_url` property will be used for notifications once things happen with charges status, as when it's payment was approved, for example. More about notifications [here](/docs/NOTIFICATION.md). The `custom_id` property can be used to set your own reference to the carnet.
 
 ### Setting the expiration date to the first charge:
 `optional`
