@@ -41,7 +41,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
                               ->disableOriginalConstructor()
                               ->getMock();
         $request->method('send')
-                ->willReturn(json_decode($this->success));
+                ->willReturn(json_decode($this->success, true));
 
         $auth->request = $request;
         $auth->authorize();

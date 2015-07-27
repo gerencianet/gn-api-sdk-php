@@ -46,7 +46,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request->client = $client;
         $webResponse = $request->send('POST', '/authorize', ['json' => ['grant_type' => 'client_credentials']]);
 
-        $this->assertEquals($webResponse->access_token, 'token');
+        $this->assertEquals($webResponse['access_token'], 'token');
     }
 
     /**
