@@ -1,194 +1,220 @@
-## Creating carnets
+## Creating carnet billets
 
 Carnet is a payment method that generates a set of charges with the same payment information and customer in all of them.
 
-To generate a carnet, you have mandatorily to set the items, a customer and the number of repeats (or parcels).
+To generate a carnet, you have as required: the items, a customer and the number of repeats (or parcels).
 
 If you want, you can also send some additional informations:
 
-- The metadata information (like in the banking billet), with notification_url and/or custom_id
+The metadata information (like in the banking billet), with notification_url and/or custom_id
 - The expiration date to the first charge;
 - If the carnet must be send by post office service (choosing, inclusive, if you or your client must receive it);
 - If the total value must be split among every charges or if each charge must have the value;
 - The instructions to the carnet (At most 4 lines).
 
-### Setting items to a carnet:
+Instantiate the module:
+
+```php
+require __DIR__.'/../../vendor/autoload.php';
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
+
+$options = ['client_id' => 'client_id',
+            'client_secret' => 'client_secret',
+            'sandbox' => true];
+try {
+    $api = new Gerencianet($options);
+
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
+```
+
+### Setting the required properties to a carnet:
 `required`
+
 ```php
-$item = new Item();
-$item->name('Item')
-     ->value(5000) // The value must be a integer (ex.: R$ 50,00 = 5000)
-     ->amount(2);
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
 
-$response = $apiGN->createCarnet()
-                  ->addItem($item)
-                  ->run()
-                  ->response();
-```
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
 
-You have two options to add items into a carnet:
-
-* Adding one item at a time:
-```php
-$response = $apiGN->createCarnet()
-                  ->addItem($item)
-                  ->run()
-                  ->response();
-```
-
-* Adding many items:
-```php
-$response = $apiGN->createCarnet()
-                  ->addItems([$item1, $item2])
-                  ->run()
-                  ->response();
-```
-
-### Setting customer to a carnet:
-`required`
-```php
-$address = new Address();
-$address->street('Street 3')
-        ->number('10')
-        ->neighborhood('Bauxita')
-        ->zipcode('35400000')
-        ->city('Ouro Preto')
-        ->state('MG');
-
-$customer = new Customer();
-$customer->name('Gorbadoc Oldbuck')
-         ->email('oldbuck@gerencianet.com.br')
-         ->cpf('04267484171')
-         ->birth('1977-01-15')
-         ->phoneNumber('5144916523')
-         ->address($address); // optional.
-
-$response = $apiGN->createCarnet()
-                  ...
-                  ->customer($customer)
-                  ->run()
-                  ->response();
-```
-
-### Setting repeats to a carnet:
-`required`
-```php
-$response = $apiGN->createCarnet()
-                  ...
-                  ->repeats(3)
-                  ->run()
-                  ->response();
+$body = ['items' => $items, 'customer' => $customer, 'repeats' => 5];
 ```
 
 ### Setting metadata to a carnet:
 `optional`
-```php
-$metadata = new Metadata();
-$metadata->customId('MyID')
-         ->notificationUrl('http://your_domain/your_notification_url');
 
-$response = $apiGN->createCarnet()
-                  ...
-                  ->metadata($metadata)
-                  ->run()
-                  ->response();
+```php
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$metadata = ['custom_id' => 'Product 0001', 'notification_url' => 'http://domain.com/notification'];
+
+$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'metadata' => $metadata];
+
 ```
+
+The `notification_url` property will be used for notifications once things happen with charges status, as when it's payment was approved, for example. More about notifications [here](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/notifications.md). The `custom_id` property can be used to set your own reference to the carnet.
 
 ### Setting the expiration date to the first charge:
 `optional`
 
-The defaut value is today + 8 days.
+If you don't set the expiration date for the first charge, the defaut value will be today + 8 days.
 
 ```php
-$response = $apiGN->createCarnet()
-                  ...
-                  ->expireAt('2019-12-31')
-                  ->run()
-                  ->response();
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'expire_at' => '2016-01-01'];
 ```
 
-### Setting post office service to a carnet:
+### Setting post office service information:
 `optional`
-```php
-$postOfficeService = new PostOfficeService();
-$postOfficeService->sendTo('customer'); //or seller
 
-$response = $apiGN->createCarnet()
-                  ...
-                  ->postOfficeService($postOfficeService)
-                  ->run()
-                  ->response();
+If you want the carnet to arrive at your house or at your client's house, you can count on Gerencianet's post office service. Just send an extra attribute:
+
+```php
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'post_office_service' => 'customer'];
 ```
 
-### Setting the split value information
+If `send_to` is set to *customer*, the carnet arrives at you customer's. If it is set to *seller*, just wait for it to arrive at your place!
+
+
+### Setting the split items information
 `optional`
 
-The value defaut is false.
+By default, each parcel has the total value of the carnet as its value. If you want to divide the total value of the carnet by all the parcels, set the `split_items` property to *true*.
 
 ```php
-$response = $apiGN->createCarnet()
-                  ...
-                  ->splitItems(true)
-                  ->run()
-                  ->response();
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'splite_items' => true];
 ```
 
 ### Setting instructions
 `optional`
 
-You have two options to add instructions into a carnet:
+If you want the carnet billet to have extra instructions, it's possible to send a maximum of 4 different instructions with a maximum of 90 caracters, just as follows:
 
-* Adding one instruction at a time:
 ```php
-$response = $apiGN->createCarnet()
-                  ...
-                  ->addInstruction('Instruction 1')
-                  ->run()
-                  ->response();
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$instructions = ['Pay only with money', 'Do not pay with gold'];
+
+$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'instructions' => $instructions];
 ```
 
-* Adding many instructions:
+### Finally, create the carnet:
+
 ```php
-$response = $apiGN->createCarnet()
-                  ...
-                  ->addInstructions(['Instruction 1', 'Instruction 2'])
-                  ->run()
-                  ->response();
-```
+try {
+    $api = new Gerencianet($options);
+    $carnet = $api->createCarnet([], $body);
 
-As response, you'll receive the carnet info in the callback with the set of charges generated:
-
-```js
-{
-  "code": 200,
-  "data": {
-    "carnet_id": 3000,
-    "cover": "https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CC-99999-99999-LOSI5/99999-99999-LOSI5",
-    "charges": [ {
-      "charge_id": 1476,
-      "parcel": "1",
-      "status": "waiting",
-      "value": 10000,
-      "expire_at": "2019-12-31",
-      "url": "https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CL-99999-99999-LOSI5/99999-99999-LOSI5",
-      "barcode": "99999.99999 99999.999999 99999.999999 9 99999999999999"
-    }, {
-      "charge_id": 1477,
-      "parcel": "2",
-      "status": "waiting",
-      "value": 10000,
-      "expire_at": "2020-01-31",
-      "url": "https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CL-99999-99999-LOSI5/99999-99999-FOHI3",
-      "barcode": "99999.99999 99999.999999 99999.999999 9 99999999999999"
-    }, {
-      "charge_id": 1478,
-      "parcel": "3",
-      "status": "waiting",
-      "value": 10000,
-      "expire_at": "2020-02-28",
-      "url": "https://boleto.gerencianet.com.br/emissao/99999_9999_CABO1/A5CL-99999-99999-LOSI5/99999-99999-SERMEH7",
-      "barcode": "99999.99999 99999.999999 99999.999999 9 99999999999999"
-    } ]
-  }
+    print_r($carnet);
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
 }
+
 ```
+
+Check out the response:
+
+```php
+
+Array
+(
+    [code] => 200
+    [data] => Array
+        (
+            [carnet_id] => 4
+            [charges] => Array
+                (
+                    [0] => Array
+                        (
+                            [charge_id] => 1042
+                            [parcel] => 1
+                            [status] => waiting
+                            [value] => 5000
+                            [expire_at] => 2020-12-02
+                            [url] => https://visualizacao.gerencianet.com.br/emissao/28333_2579_NEMLUA0/A4CL-28333-65354-ENAMAL9/28333-65354-ENAMAL9
+                            [barcode] => 00190.00009 01523.894002 00065.354185 6 84570000005000
+                        )
+
+                    [1] => Array
+                        (
+                            [charge_id] => 1043
+                            [parcel] => 2
+                            [status] => waiting
+                            [value] => 5000
+                            [expire_at] => 2021-01-02
+                            [url] => https://visualizacao.gerencianet.com.br/emissao/28333_2579_NEMLUA0/A4CL-28333-65354-ENAMAL9/28333-65355-LELUA5
+                            [barcode] => 00190.00009 01523.894002 00065.354185 5 84880000005000
+                        )
+
+                    [2] => Array
+                        (
+                            [charge_id] => 1044
+                            [parcel] => 3
+                            [status] => waiting
+                            [value] => 5000
+                            [expire_at] => 2021-02-02
+                            [url] => https://visualizacao.gerencianet.com.br/emissao/28333_2579_NEMLUA0/A4CL-28333-65354-ENAMAL9/28333-65356-TANEM6
+                            [barcode] => 00190.00009 01523.894002 00065.354185 2 85190000005000
+                        )
+
+                    [3] => Array
+                        (
+                            [charge_id] => 1045
+                            [parcel] => 4
+                            [status] => waiting
+                            [value] => 5000
+                            [expire_at] => 2021-03-02
+                            [url] => https://visualizacao.gerencianet.com.br/emissao/28333_2579_NEMLUA0/A4CL-28333-65354-ENAMAL9/28333-65357-TADRO8
+                            [barcode] => 00190.00009 01523.894002 00065.354185 5 85470000005000
+                        )
+
+                    [4] => Array
+                        (
+                            [charge_id] => 1046
+                            [parcel] => 5
+                            [status] => waiting
+                            [value] => 5000
+                            [expire_at] => 2021-04-02
+                            [url] => https://visualizacao.gerencianet.com.br/emissao/28333_2579_NEMLUA0/A4CL-28333-65354-ENAMAL9/28333-65358-LUADA8
+                            [barcode] => 00190.00009 01523.894002 00065.354185 4 85780000005000
+                        )
+
+                )
+
+        )
+
+)
+
+```
+
+Notice that, as the `repeats` were set to 5, the output contains 5 charges with `waiting` status. The value of each charge is the sum of the items values, because the `split_items` property was set to *false*. Also notice that `expire_at` increases monthly.

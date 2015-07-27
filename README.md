@@ -18,7 +18,7 @@ Or include it in your composer.json file:
 ```
 ...
 "require": {
-	"gerencianet/gerencianet-sdk-php": "1.*"
+  "gerencianet/gerencianet-sdk-php": "1.*"
 },
 ...
 ```
@@ -29,70 +29,54 @@ Require the module and namespaces:
 require __DIR__ . '/../sdk/vendor/autoload.php';
 
 use Gerencianet\Gerencianet;
-use Gerencianet\Models\Address;
-use Gerencianet\Models\Customer;
-use Gerencianet\Models\Item;
-use Gerencianet\Models\JuridicalPerson;
-use Gerencianet\Models\Metadata;
-use Gerencianet\Models\PostOfficeService;
-use Gerencianet\Models\Repass;
-use Gerencianet\Models\Shipping;
-use Gerencianet\Models\GerencianetException;
 ```
-
-If your system already has any class above, you can use PHP' namespaces
-for conflict resolution as below:
-```php
-require __DIR__ . '/../sdk/vendor/autoload.php';
-
-...
-use Gerencianet\Models\Address as GerencianetAddress;
-...
-```
-
-All code must be within a try-catch.
-Gerencianet::error method can be used to print a JSON back to your frontend.
+Although the web services responses are in json format, the sdk will convert any server response to array. The code must be within a try-catch and exceptions can be handled as follow:
 ```php
 try {
   /* code */
 } catch(GerencianetException $e) {
-  Gerencianet::error($e);
+  /* Gerencianet's api errors will come here */
 } catch(Exception $ex) {
-  Gerencianet::error($ex);
+  /* Other errors will come here */
 }
 ```
 
 ### For development environment
-Instantiate the module passing your apiKey, your apiSecret and the third parameter is used to change the environment to sandbox:
+Instantiate the module passing using your client_id, client_secret and sandbox equals true:
 ```php
-$apiKey = 'your_client_id';
-$apiSecret = 'your_client_secret';
+$options = [
+  'client_id': 'client_id',
+  'client_secret': 'client_secret',
+  'sandbox': true
+];
 
-$apiGN = new Gerencianet($apiKey, $apiSecret, true);
+$api = new Gerencianet($options);
 ```
 
 ### For production environment
-To change the environment to production, just set the third parameter to false:
+To change the environment to production, just set the third sandbox to false:
 ```php
-$apiKey = 'your_client_id';
-$apiSecret = 'your_client_secret';
+$options = [
+  'client_id': 'client_id',
+  'client_secret': 'client_secret',
+  'sandbox': false
+];
 
-$apiGN = new Gerencianet($apiKey, $apiSecret, false);
+$api = new Gerencianet($options);
 ```
 
 ## Running tests
 
 To run tests install [PHPUnit](https://phpunit.de/getting-started.html) and run the following command:
 ```php
-$ phpunit -c tests/config.xml tests
+$ phpunit -c test/config.xml
 ```
 
 ## Additional Documentation
 
 #### Charges
 - [Creating charges](/docs/CHARGE.md)
-- [Associating a customer](/docs/CHARGE_CUSTOMER.md)
-- [Setting the payment method](/docs/CHARGE_PAYMENT.md)
+- [Paying a charge](/docs/CHARGE_PAYMENT.md)
 - [Detailing charges](/docs/CHARGE_DETAIL.md)
 - [Updating informations](/docs/CHARGE_UPDATE.md)
 

@@ -1,51 +1,67 @@
-## Notifications ##
+## Notifications
 
-Use this if you want to be informed when your charges get a different status.
+Instantiate the module:
 
-Any changes that happen in the charges will trigger an event that notifies the notification_url provided at creation time (see creating charges).
-
-It's also possible to set or change the notification_url for existing charges:
 ```php
-$response = $apiGN->updateChargeMetadata()
-                  ->notificationUrl('http://your_domain/your_new_notification_url')
-                  ->chargeId($chargeId)
-                  ->run()
-                  ->response();
-```
+require __DIR__.'/../../vendor/autoload.php';
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
 
-Response:
-```js
-{
-  "code": 200
+$options = ['client_id' => 'client_id',
+            'client_secret' => 'client_secret',
+            'sandbox' => true];
+try {
+    $api = new Gerencianet($options);
+
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
 }
 ```
 
-Assuming that a charge has a valid `notification_url`, it will receive a post containing a token when the notification time comes. This token must be used to get the information about what was altered on the charge:
+Any changes that happen in the charges will trigger an event that notifies the `notification_url` provided at creation time (see [creating charges](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/charges.md)).
+
+It's also possible to set or change the `notification_url` for existing charges, see [updating informations](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/charge-update.md).
+
+Given that a charge has a valid `notification_url`, when the notification time comes you'll receive a post with a `token`. This token must be used to get the notification payload data.
+
+The example below assumes that you're using receiving posts at php's $_POST variable.
+
 ```php
-$notificationToken = $_POST['notification'];
-$response = $apiGN->detailNotifications()
-                  ->notificationToken($notificationToken)
-                  ->run()
-                  ->response();
+$params = ['token' => $_POST['notification']];
+
+try {
+    $api = new Gerencianet($options);
+    $notification = $api->getNotification($params, []);
+
+    print_r($notification);
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
+
 ```
+
 Response:
 
-```js
-{
-  "code": 200,
-  "data": {
-    "charge_id": 10000,
-    "total": 34725,
-    "status": "waiting",
-    "custom_id": "MyID",
-    "created_at": "2015-03-26",
-    "history": [ {
-      "status": "new",
-      "timestamp": "2015-03-26 08:46:00"
-    }, {
-      "status": "waiting",
-      "timestamp": "2015-03-26 09:22:15"
-    } ]
-  }
-}
+```php
+Array
+(
+    [code] => 200
+    [data] => Array
+        (
+            [charge_id] => 1039
+            [total] => 5000
+            [status] => new
+            [custom_id] =>
+            [created_at] => 2015-07-27 11:48:44
+        )
+
+)
 ```

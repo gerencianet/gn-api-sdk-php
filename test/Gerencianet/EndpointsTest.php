@@ -9,7 +9,7 @@ class EndpointsTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $this->options = ['sandbox' => true];
+        $this->options = ['sandbox' => true, 'client_id' => 'client_id', 'client_secret' => 'client_secret'];
         $this->requester = $this->getMockBuilder('ApiRequest')
                                 ->setMethods(array('send'))
                                 ->disableOriginalConstructor()
@@ -46,6 +46,7 @@ class EndpointsTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      * @expectedException Exception
+     * @expectedExceptionMessage nonexistent endpoint
      */
     public function shouldThrowExceptionForWrongMethod()
     {

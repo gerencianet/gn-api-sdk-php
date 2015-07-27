@@ -10,12 +10,13 @@ class Endpoints
     private $endpoints;
     private $methods;
 
-    public function __construct($options, $requester=null)
+    public function __construct($options, $requester = null)
     {
         $this->requester = $requester;
 
-        if(!$this->requester)
-          $this->requester = new ApiRequest($options);
+        if (!$this->requester) {
+            $this->requester = new ApiRequest($options);
+        }
 
         $this->endpoints = Config::get('ENDPOINTS');
         $this->map();
@@ -24,7 +25,7 @@ class Endpoints
     public function __call($method, $args)
     {
         if (isset($this->methods[$method])) {
-            $this->methods[$method]($args[0], $args[1]);
+            return $this->methods[$method]($args[0], $args[1]);
         } else {
             throw new Exception('nonexistent endpoint');
         }
@@ -71,6 +72,7 @@ class Endpoints
 
         $reduce = function ($previous, $current) use ($keys, $params, $length) {
             $next = ($current == $length - 1) ? '' : '&';
+
             return $previous.$keys[$current].'='.$params[$keys[$current]].$next;
         };
 

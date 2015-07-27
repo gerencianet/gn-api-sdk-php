@@ -62,7 +62,7 @@
     },
     "deletePlan": {
       "route": "/plan/:id",
-      "method": "del"
+      "method": "delete"
     },
     "createSubscription": {
       "route": "/plan/:id/subscription",
@@ -85,8 +85,8 @@
       "method": "put"
     },
     "getInstallments": {
-      "route": "/installments",
-      "method": "post"
+      "route": "/installments/:brand/:total",
+      "method": "get"
     }
   }
 }

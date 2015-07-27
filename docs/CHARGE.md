@@ -1,120 +1,97 @@
 ## Creating charges
 
-Charges belong to customers. Customers have many charges. Following this logic, you will have to associate a customer to a charge at some point. But the items, they have to be setted necessarily in the moment that you are creating the charge.
+Charges have one or more items. That's it.
 
-### Setting items to a charge:
-`required`
+Instantiate the module:
+
 ```php
-$item = new Item();
-$item->name('Item')
-     ->value(5000) // The value must be a integer (ex.: R$ 50,00 = 5000)
-     ->amount(2);
+require __DIR__.'/../../vendor/autoload.php';
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
 
-$response = $apiGN->createCharge()
-                  ->addItem($item)
-                  ->run()
-                  ->response();
+$options = ['client_id' => 'client_id',
+            'client_secret' => 'client_secret',
+            'sandbox' => true];
+try {
+    $api = new Gerencianet($options);
+
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
 ```
 
-You have two options to add items into a charge:
-
-* Adding one item at a time:
+### Adding items:
 ```php
-$response = $apiGN->createCharge()
-                  ->addItem($item)
-                  ->run()
-                  ->response();
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000] ];
+
+$body = ['items' => $items];
 ```
 
-* Adding many items:
+### Adding shipping costs to a charge **(optional)**:
+
+In order to be the most agnostic as possible about how the user handles shippings, the API just receives an array with the values. You can add as many as you want. Sometimes you'll want a shipping cost to be received by another person/account. In this case, you must provide the `payee_code`. The *Additional Shipping* in the example below will be passed on to the referenced account after the payment.
+
 ```php
-$response = $apiGN->createCharge()
-                  ->addItems([$item1, $item2])
-                  ->run()
-                  ->response();
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000] ];
+
+$shippings = [['name' => 'My Shipping', 'value' => 2000],
+              ['name' => 'Shipping to someone else', 'value' => 1000, 'payee_code' => 'GEZTAMJYHA3DAMBQGAYDAMRYGMZTGMBRGI']];
+
+$body = ['items' => $items, 'shippings' => $shippings];
 ```
 
-### Setting customer to a charge:
-`required`, but you can [set after creation](/docs/CUSTOMER.md)
+### Charge `metadata` attribute:
+
 ```php
-$address = new Address();
-$address->street('Street 3')
-        ->number('10')
-        ->neighborhood('Bauxita')
-        ->zipcode('35400000')
-        ->city('Ouro Preto')
-        ->state('MG');
+$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
+          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000] ];
 
-$customer = new Customer();
-$customer->name('Gorbadoc Oldbuck')
-         ->email('oldbuck@gerencianet.com.br')
-         ->cpf('04267484171')
-         ->birth('1977-01-15')
-         ->phoneNumber('5144916523')
-         ->address($address); // optional.
+$metadata = ['custom_id' => 'Product 0001', 'notification_url' => 'http://my_domain.com/notification'];
 
-$response = $apiGN->createCharge()
-                  ...
-                  ->customer($customer)
-                  ->run()
-                  ->response();
+$body = ['items' => $items, 'metadata' => $metadata];
 ```
 
-If the customer is a juridical person, it's necessary to send the corporate name and CNPJ (brazilian document for juridical person):
-```php
-$juridicalPerson = new JuridicalPerson();
-$juridicalPerson->corporateName('Fictional Company')
-                ->cnpj('52841284000142');
+The `notification_url` property will be used for sending notifications once things happen with charges statuses, as when it's payment was approved, for example. More about notifications [here](https://github.com/gerencianet/gn-api-sdk-node/tree/master/docs/notifications.md). The `custom_id` property can be used to set your own reference to the charge.
 
-$customer = new Customer();
-$customer->...
-         ->juridicalPerson($juridicalPerson); // optional.
+
+### Finally, create the charge:
+
+```php
+try {
+    $api = new Gerencianet($options);
+    $charge = $api->createCharge([], $body);
+
+    print_r($charge);
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
+
 ```
 
-### Setting shippings to a charge: 
-`optional`
+Check out the response:
+
 ```php
-$shipping = new Shipping();
-$shipping->name('Shipping')
-         ->value(2500);
+Array
+(
+    [code] => 200
+    [data] => Array
+        (
+            [charge_id] => 1039
+            [total] => 5000
+            [status] => new
+            [custom_id] =>
+            [created_at] => 2015-07-27 11:48:44
+        )
 
-$response = $apiGN->createCharge()
-                  ...
-                  ->addShipping($shipping)
-                  ->run()
-                  ->response();
-```
-
-As the item, shipping also has two ways to be added:
-
-* Add one shipping at a time:
-```php
-$response = $apiGN->createCharge()
-                  ...
-                  ->addShipping($shipping)
-                  ->run()
-                  ->response();
-```
-
-* Add many shippings:
-```php
-$response = $apiGN->createCharge()
-                  ...
-                  ->addShippings([$shipping1, $shipping2])
-                  ->run()
-                  ->response();
-```
-
-### Setting metadata to a charge: 
-`optional`
-```php
-$metadata = new Metadata();
-$metadata->customId('MyID')
-         ->notificationUrl('http://your_domain/your_notification_url');
-
-$response = $apiGN->createCharge()
-                  ...
-                  ->metadata($metadata)
-                  ->run()
-                  ->response();
+)
 ```

@@ -41,9 +41,9 @@ class Auth
                           ->send($endpoints['authorize']['method'],   $endpoints['authorize']['route'],
                           $requestOptions);
 
-        $this->accessToken = $response->access_token;
-        $this->expires = time() + $response->expires_in;
-        $this->tokenType = $response->token_type;
+        $this->accessToken = $response['access_token'];
+        $this->expires = time() + $response['expires_in'];
+        $this->tokenType = $response['token_type'];
     }
 
     public function __get($property)

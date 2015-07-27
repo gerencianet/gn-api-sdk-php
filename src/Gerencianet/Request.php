@@ -36,7 +36,7 @@ class Request
         try {
             $response = $this->client->send($this->request, $requestOptions);
 
-            return json_decode($response->getBody());
+            return json_decode($response->getBody(), true);
         } catch (ClientException $e) {
             throw new AuthorizationException($e->getResponse()->getStatusCode(),
                        $e->getResponse()->getReasonPhrase(),

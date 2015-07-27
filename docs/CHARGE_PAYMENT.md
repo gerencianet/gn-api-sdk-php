@@ -1,105 +1,156 @@
-## Setting the payment method
+## Paying charges
 
-There are two ways of giving sequence to a charge. You can generate a **banking billet** so it is payable until its due date, or can use the customer's **credit card** to submit the payment.
+There are two ways of giving sequence to a charge. You can generate a banking billet so it is payable until its due date, or can use the customer's credit card to submit the payment.
 
-### 1. Banking Billets
-
-Setting banking billet as a charge's payment method is simple. You just have to provide the charge id and an expiration date (optional):
+Instantiate the module:
 
 ```php
-$response = $apiGN->payCharge()
-                  ->chargeId($chargeId)
-                  ->method('banking_billet')
-                  ->expireAt('2015-12-31') // This date is optional
-                  ->run()
-                  ->response();
-```
+require __DIR__.'/../../vendor/autoload.php';
+use Gerencianet\Exception\GerencianetException;
+use Gerencianet\Gerencianet;
 
-If you don't set the `expire_at` attribute, the date will be today + 3 days.
+$options = ['client_id' => 'client_id',
+            'client_secret' => 'client_secret',
+            'sandbox' => true];
+try {
+    $api = new Gerencianet($options);
 
-If you want to set instructions (at most 4 instructions) for a banking billet, you will have two options:
-
-* Adding one instruction at a time:
-```php
-$response = $apiGN->payCharge()
-                  ...
-                  ->addInstruction('Instruction 1');
-                  ->run()
-                  ->response();
-```
-
-* Adding many instructions:
-```php
-$response = $apiGN->payCharge()
-                  ...
-                  ->addInstructions(['Instruction 1', 'Instruction 2', 'Instruction 3']);
-                  ->run()
-                  ->response();
-```
-
-You'll receive the payment info in the callback, such as the barcode and the banking billet link:
-
-```js
-{
-  "code": 200,
-  "data": {
-    "charge_id": 11200,
-    "total": 34875,
-    "payment": "banking_billet",
-    "barcode": "99999.99999 99999.999999 99999.999999 9 99999999999999",
-    "link": "https://boleto.gerencianet.com.br/emissao/99999_9999_CORXI4/A4XB-99999-99999-BRABO1",
-    "expire_at": "2015-05-21"
-  }
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
 }
 ```
 
-If you want to receive or send to the customer the banking billet, you need to instantiate the class PostOfficeService and put this instance in the payment:
+### 1. Banking billets
+
+Setting banking billet as a charge's payment method is simple. You have to use `banking_billet` as the payment method and inform the `charge_id`.
 
 ```php
-$postOfficeService = new PostOfficeService();
-$postOfficeService->sendTo('customer');
+$params = ['id' => 1000];
 
-$response = $apiGN->payCharge()
-                  ->chargeId($chargeId)
-                  ->method('banking_billet')
-                  ->postOfficeService($postOfficeService) // This parameter is optional
-                  ...
-                  ->run()
-                  ->response();
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$body = ['payment' => ['banking_billet' => ['expire_at' => '2018-12-12',
+                                            'customer' => $customer, ]]];
+
+try {
+    $api = new Gerencianet($options);
+    $charge = $api->payCharge($params, $body);
+
+    print_r($charge);
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
+}
+
 ```
 
-### 2. Credit Card
+If you don't set the `expire_at` attribute, the date will be the current day + 3.
 
-If you need a faster payment confirmation, we recommend the credit card payment method. As we know, the credit card information is confidential, so, you need to prepare your system to send this information in a securely way. See how to send it and receive the payment token in our official documentation. Here we show how to do the backend part:
+You'll receive the payment info, such as the barcode and the billet link:
 
 ```php
+Array
+(
+    [code] => 200
+    [data] => Array
+        (
+            [charge_id] => 1000
+            [total] => 5000
+            [payment] => banking_billet
+            [barcode] => 00190.00009 01523.894002 00065.309189 4 99280123005000
+            [link] => https://visualizacao.gerencianet.com.br/emissao/99999_2578_ENASER3/A4XB-99999-65309-NEMDO2
+            [expire_at] => 2018-12-12
+        )
+
+)
+```
+
+If you want the banking billet to have extra instructions, it's possible to send a maximum of 4 different instructions with a maximum of 90 caracters, just as follows:
+
+```php
+$params = ['id' => 1000];
+
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+
+$instructions = ['Pay only with money', 'Do not pay with gold'];
+
+$body = ['payment' => ['banking_billet' => ['expire_at' => '2018-12-12',
+                                            'customer' => $customer,
+                                            'instructions' => $instructions]]];
+
+```
+
+### 2. Credit card
+
+The most common payment method is to use a credit card in order to make things happen faster. Paying a charge with a credit card in Gerencianet is as simples as generating a banking billet, as seen above.
+
+The difference here is that we need to provide some extra information, as a `billing_address` and a `payment_token`. The former is used to make an anti-fraud analyze before accepting/appoving the payment, the latter identifies a credit card at Gerencianet, so that you don't need to bother about keeping track of credit card numbers. The `installments` attribute is self-explanatory.
+
+We'll talk about getting payment tokens later. For now, let's take a look at the snipet that does the work we're aiming for:
+
+```php
+$params = ['id' => 1000];
+
 $paymentToken = 'payment_token';
-$response = $apiGN->payCharge()
-                  ->chargeId($chargeId)
-                  ->method('credit_card')
-                  ->installments(3)
-                  ->paymentToken($paymentToken)
-                  ->billingAddress($address)
-                  ->run()
-                  ->response();
-```
 
-If everything went well, the response will come with the total value, installments number e the value of each installment:
+$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523', 'email' => 'oldbuck@gerencianet.com.br',
+'birth' => '1977-01-15', ];
 
-```js
-{
-  "code": 200,
-  "data": {
-     "charge_id": 11000,
-     "total": 36999,
-     "payment": "credit_card",
-     "installments": 3,
-     "installment_value": 12333
-  }
+$billingAddress = [
+  'street' => 'Street 3',
+  'number' => 10,
+  'neighborhood' => 'Bauxita',
+  'zipcode' => '35400000',
+  'city' => 'Ouro Preto',
+  'state' => 'MG',
+];
+
+$body = ['payment' => ['credit_card' => ['installments' => 1,
+                                'billing_address' => $billingAddress,
+                                'payment_token' => $paymentToken,
+                                'customer' => $customer ]]];
+
+try {
+    $api = new Gerencianet($options);
+    $charge = $api->payCharge($params, $body);
+
+    print_r($charge);
+} catch (GerencianetException $e) {
+    print_r($e->code);
+    print_r($e->error);
+    print_r($e->errorDescription);
+} catch (Exception $e) {
+    print_r($e->getMessage());
 }
+
 ```
 
-To know every installment value including interests for each brand, you can see [Getting the Payment Data](/docs/PAYMENT_DATA.md).
+If everything went well, the response will come with the total value, installments number and the value of each installment:
+
+```php
+
+Array
+(
+    [code] => 200
+    [data] => Array
+        (
+            [charge_id] => 1000
+            [total] => 5000
+            [payment] => credit_card
+            [installments] => 1
+            [installment_value] => 5000
+        )
+
+)
+
+```
 
 ##### Payment tokens
 
@@ -107,4 +158,8 @@ A `payment_token` represents a credit card number at Gerencianet.
 
 For testing purposes, you can go to your application playground in your Gerencianet's account. At the payment endpoint you'll see a button that generates one token for you. This payment token will point to a random test credit card number.
 
-To know how to get a real payment token, you can see a [JS script](https://api.gerencianet.com.br/checkout/card) in our [official documentation](https://api.gerencianet.com.br/), or, if you need to use in a mobile appplication, we also have a [Android Guide](https://github.com/franciscotfmc/gn-api-sdk-android) and a [iOS Guide](https://github.com/thomazfeitoza/gn-api-sdk-ios).
+When in production, it will depend if your project is a web app or a mobile app.
+
+For web apps you should follow this [guide](https://api.gerencianet.com.br/checkout/card). It basically consists of copying/pasting a script tag in your checkout page.
+
+For mobile apps you should use this [SDK for Android](https://github.com/gerencianet/gn-api-sdk-android) or this [SDK for iOS](https://github.com/gerencianet/gn-api-sdk-ios).
