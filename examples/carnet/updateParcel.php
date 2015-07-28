@@ -8,8 +8,8 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
-$params = ['id' => 0];
-$body = ['parcel' => 2, 'expire_at' => '2018-01-01'];
+$params = ['id' => 0, 'parcel' => 1];
+$body = ['expire_at' => '2018-01-01'];
 
 try {
     $api = new Gerencianet($options);

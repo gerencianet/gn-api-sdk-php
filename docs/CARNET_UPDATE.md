@@ -62,8 +62,8 @@ Array
 To update or set an expiration date to a parcel, the parcel must have a `waiting` or 'unpaid' status. You just have to provide the `carnet_id`, the number of the parcel (`parcel`) and a new expiration date (`expire_at`):
 
 ```php
-$params = ['id' => 1000];
-$body = ['parcel' => 2, 'expire_at' => '2018-01-01'];
+$params = ['id' => 1000, 'parcel' => 2];
+$body = ['expire_at' => '2018-01-01'];
 
 try {
     $api = new Gerencianet($options);

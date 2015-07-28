@@ -41,7 +41,7 @@
       "method": "get"
     },
     "updateParcel": {
-      "route": "/carnet/:id/parcel",
+      "route": "/carnet/:id/parcel/:parcel",
       "method": "put"
     },
     "updateCarnetMetadata": {
