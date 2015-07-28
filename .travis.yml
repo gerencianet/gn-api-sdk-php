@@ -3,6 +3,11 @@ php:
 - "5.5"
 notifications:
  email: false
-script: phpunit -c test/config.xml
+script: phpunit -c config.xml
 install:
 - composer install
+addons:
+  code_climate:
+    repo_token: 6386418143b1ebfb52fb318fe94f96f5b4636c9d9dc2e500f52e09797cbc9e94
+after_script:
+  - vendor/bin/test-reporter

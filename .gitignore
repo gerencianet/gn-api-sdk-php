@@ -3,4 +3,5 @@ composer.lock
 vendor/
 phpunit.phar
 phpunit.php
-test/coverage
+coverage/
+build/

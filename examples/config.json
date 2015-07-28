@@ -1,7 +1,6 @@
 {
-  "url": "http://localhost:4400",
-  "client_id": "Client_Id_716523d0845d42edfe6bbbd8c37df8e020b1a15f",
-  "client_secret": "Client_Secret_cee8e5eea6703a93122f1391098ce4ed225b30ef",
+  "client_id": "client_id",
+  "client_secret": "client_secret",
   "sandbox": true,
   "debug": false
 }

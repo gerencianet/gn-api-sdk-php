@@ -8,6 +8,7 @@ For more informations about parameters and values, please refer to [Gerencianet]
 
 [![Build Status](https://travis-ci.org/gerencianet/gn-api-sdk-php.svg)](https://travis-ci.org/gerencianet/gn-api-sdk-php)
 
+[![Code Climate](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/gpa.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php)
 
 ## Installation
 Require this package with [composer](https://getcomposer.org/):
