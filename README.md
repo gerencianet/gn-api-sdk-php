@@ -73,6 +73,19 @@ To run tests install [PHPUnit](https://phpunit.de/getting-started.html) and run 
 $ phpunit -c test/config.xml
 ```
 
+## Running examples
+Update examples/config.json file with client_id and client_secret of your application.
+
+You can run using any web server, like Apache or nginx, or simple start a php server as follow:
+
+```php
+php -S localhost:9000
+```
+
+Then open any example in your browser.
+
+:warning: Some examples require you to change some parameters to work, like examples/charge/detail.php where you must change the id parameter.
+
 ## Additional Documentation
 
 #### Charges
