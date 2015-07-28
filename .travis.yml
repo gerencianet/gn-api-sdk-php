@@ -3,11 +3,11 @@ php:
 - '5.5'
 notifications:
   email: false
-script: phpunit -c config.xml
 install:
 - composer install
-after_script:
-- vendor/bin/test-reporter
 env:
-  global:
-    secure: Zcot2xzVWkD//6+BozyHzmxWneFuq6Sx6MbjJySivtQMVcvcHfBWyzRU6zuGEPKhh4K/3IGnHN7nRi7V3kfbIzQnG4T1BTdOU8QvZevXsh4jiXZvMqebyetPRl4I4VGD6zt1/gSdubXpvgI/FRpf2xVbB3CcWYIQy+ALwWefxxdhXeOFFrMQQOEAefZEup6NpXPZAQ/ijwTWCmjxqfoUBpA6M2aoy1gCR7126Rd4tmZOHdUQmcXdowZU4arSgDYRV78HO+/azWfo3UlrJWxqQ31owVoN3W9/x+M9nf0W7xPKIXEdQjuHoyetkxB96uWhWryvpekjMmLF7TGoeqqunW/ky+2Ma8AEnxpvL1R1whiIt1WIuDwOu/A68B69NeMdDldojeqzA0nKNnIYyYDaPFqMm+lFNcTmh8bxphL9I6zLTOqFzT/txp+W5fhH+VKU8HT+bFhYnHhzhycr8V4w3uCDzg9z8jyVWBBxpybhLFQ9o/IXipCGFuQAhhXfAO8yma44E5uPBaP/ZzGru2K29mT0OJSHp+tqumS5cKfoWGuv/vbpk5hLR/k1xCHAkSTB98EdM8UDbLcflrdXryUHrsLOBRaTdmoR9EotnAIA7eTthIbFVEXVxGHJ8UXU4ucamV0o4F9lHo2DtW0IDSgPfeSD9pNRkVPX9QtDwWrsgTw=
+  secure: "VioTqvOA/qoJbA1yHS5RslsUNvFafK4IHI/ncYhWLBI97DO5tcC1juqnk9W/chf6c1GpfUab/S9RE1U3kTGADo9njGRRpf6c7AIyBBNCuRenR52u30W8PkaeIHSIegQU1on9zqApAoHPD1lt4GPU4DieE7Pm2UcNf4lFFZNRI72sLaNH3I0cjVRAC+MEv/HyitDPAxiwHFitlIXa/arlhyTKEP3bmnNAjhKiGoi64aRwbhJp8V83pxLxx0C+wmTyHxv5rO7CEongUJX1dHhnsTFDAYu1SFxMGdF33QVt5RK3DVmnjr+yTUv6R9PqVwg18tvQ0zaiGaeb4QF6ss3gdk/NHkj1LenmF41ndn9C/QgY5+/T6JYQL1I1BO9NFquFQjBVDSt8RDH+8ptzFoZFWwFhIGI8ir3uS3ciAfHzxMCT29Ksh1NPBsQ9bd4rjh49+DxXKluQoRUssQAgFJBvCNoH4O50xFthxnFhsNS1lB9aZNODswzucynqkEjjYVOX/6uqXm2sjPT9bXtwjzm7SOLeeFRxJjolcoBjpxiRQewt/32X2VTQy6HLKaIX0lUg08MAySqkvftssFLcgHqVbwBErCstGdn7KaFxTi07+o6N4ygsxWUcDvd1o8003MvLSJfEBM+IuAqMb9KLk4J5dhpR7PkWkdJXI0i10XdGz0w="
+after_script:
+- phpunit -c config.xml
+- vendor/bin/test-reporter --stdout > codeclimate.json
+- "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"

@@ -10,6 +10,8 @@ For more informations about parameters and values, please refer to [Gerencianet]
 
 [![Code Climate](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/gpa.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php)
 
+[![Test Coverage](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/coverage.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/coverage)
+
 ## Installation
 Require this package with [composer](https://getcomposer.org/):
 ```
