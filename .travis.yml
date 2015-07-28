@@ -1,13 +1,13 @@
 language: php
 php:
-- "5.5"
+- '5.5'
 notifications:
- email: false
+  email: false
 script: phpunit -c config.xml
 install:
 - composer install
-addons:
-  code_climate:
-    repo_token: 6386418143b1ebfb52fb318fe94f96f5b4636c9d9dc2e500f52e09797cbc9e94
 after_script:
-  - vendor/bin/test-reporter
+- vendor/bin/test-reporter
+env:
+  global:
+    secure: Zcot2xzVWkD//6+BozyHzmxWneFuq6Sx6MbjJySivtQMVcvcHfBWyzRU6zuGEPKhh4K/3IGnHN7nRi7V3kfbIzQnG4T1BTdOU8QvZevXsh4jiXZvMqebyetPRl4I4VGD6zt1/gSdubXpvgI/FRpf2xVbB3CcWYIQy+ALwWefxxdhXeOFFrMQQOEAefZEup6NpXPZAQ/ijwTWCmjxqfoUBpA6M2aoy1gCR7126Rd4tmZOHdUQmcXdowZU4arSgDYRV78HO+/azWfo3UlrJWxqQ31owVoN3W9/x+M9nf0W7xPKIXEdQjuHoyetkxB96uWhWryvpekjMmLF7TGoeqqunW/ky+2Ma8AEnxpvL1R1whiIt1WIuDwOu/A68B69NeMdDldojeqzA0nKNnIYyYDaPFqMm+lFNcTmh8bxphL9I6zLTOqFzT/txp+W5fhH+VKU8HT+bFhYnHhzhycr8V4w3uCDzg9z8jyVWBBxpybhLFQ9o/IXipCGFuQAhhXfAO8yma44E5uPBaP/ZzGru2K29mT0OJSHp+tqumS5cKfoWGuv/vbpk5hLR/k1xCHAkSTB98EdM8UDbLcflrdXryUHrsLOBRaTdmoR9EotnAIA7eTthIbFVEXVxGHJ8UXU4ucamV0o4F9lHo2DtW0IDSgPfeSD9pNRkVPX9QtDwWrsgTw=
