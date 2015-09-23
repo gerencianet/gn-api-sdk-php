@@ -125,7 +125,6 @@ Array
                             [charge_id] => 1002
                         )
 
-                    [value] => 1780
                 )
 
         )
@@ -135,7 +134,7 @@ Array
 
 Response will be an array with all changes of a token that happened within 6 months, and it contains the following parameters:
 
-* id: Each notification has its own sequence, starting from `1` and the `id` parameters is used to mark this sequence. This is useful if you need to keep track which change you have already processed.
+* id: Each notification has its own sequence, starting from `1` and the `id` parameter is used to mark this sequence. This is useful if you need to keep track which change you have already processed.
 
 * type: The type of this change. The available values are:
   * `charge` - a charge have changed.
@@ -159,8 +158,6 @@ Response will be an array with all changes of a token that happened within 6 mon
   * for `carnet_charge` type: identifiers will contain both `charge_id` and `carnet_id`.
 
 
-* value: this parameter will only be shown when the change have a value related.
+* value: this parameter will only be shown when the change is about paid charges.
 
- i.e.: paid charges, refunded charges, etc.
-
- For more information about notifications, please, refer to [Gerencianet](https://docs.gerencianet.com.br/#!/charges/notifications).
+ For more informations about notifications, please, refer to [Gerencianet](https://docs.gerencianet.com.br/#!/charges/notifications).
