@@ -9,7 +9,7 @@ class ApiRequestTest extends \PHPUnit_Framework_TestCase
     private $options = [
       'client_id' => 'client_id',
       'client_secret' => 'client_secret',
-      'url' => 'http://dannielgnapi.gerencianet.com.br:4400',
+      'url' => 'http://localhost:4404',
     ];
 
     private $authorization;
@@ -46,7 +46,7 @@ class ApiRequestTest extends \PHPUnit_Framework_TestCase
         $api = new ApiRequest($this->options);
         $api->request = $request;
         $api->auth = $auth;
-        $response = $api->send('POST', '/charge', []);
+        $response = $api->send('POST', '/v1/charge', []);
 
         $this->assertEquals($response->code, 200);
     }
@@ -77,7 +77,7 @@ class ApiRequestTest extends \PHPUnit_Framework_TestCase
         $api = new ApiRequest($this->options);
         $api->request = $request;
         $api->auth = $auth;
-        $response = $api->send('POST', '/charge', []);
+        $response = $api->send('POST', '/v1/charge', []);
 
         $this->assertEquals($response->code, 200);
     }
@@ -113,7 +113,7 @@ class ApiRequestTest extends \PHPUnit_Framework_TestCase
         $api = new ApiRequest($this->options);
         $api->request = $request;
         $api->auth = $auth;
-        $response = $api->send('POST', '/charge', []);
+        $response = $api->send('POST', '/v1/charge', []);
 
         $this->assertEquals($response->code, 200);
     }
