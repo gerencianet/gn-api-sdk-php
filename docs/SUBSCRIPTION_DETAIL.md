@@ -31,6 +31,8 @@ Array
             [value] => 5000
             [status] => active
             [payment_method] => credit_card
+            [next_execution] =>
+            [next_expire_at] =>
             [plan] => Array
                 (
                     [plan_id] => 1
