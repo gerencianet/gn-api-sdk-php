@@ -9,7 +9,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
     private $options = [
       'client_id' => 'client_id',
       'client_secret' => 'client_secret',
-      'url' => 'http://dannielgnapi.gerencianet.com.br:4400',
+      'url' => 'http://localhost:4404',
     ];
 
     private $success;

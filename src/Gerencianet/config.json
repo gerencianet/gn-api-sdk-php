@@ -1,91 +1,91 @@
 {
   "URL": {
-    "production": "https://api.gerencianet.com.br/v1",
-    "sandbox": "https://sandbox.gerencianet.com.br/v1"
+    "production": "https://api.gerencianet.com.br",
+    "sandbox": "https://sandbox.gerencianet.com.br"
   },
   "ENDPOINTS": {
     "authorize": {
-      "route": "/authorize",
+      "route": "/v1/authorize",
       "method": "post"
     },
     "createCharge": {
-      "route": "/charge",
+      "route": "/v1/charge",
       "method": "post"
     },
     "detailCharge": {
-      "route": "/charge/:id",
+      "route": "/v1/charge/:id",
       "method": "get"
     },
     "updateChargeMetadata": {
-      "route": "/charge/:id/metadata",
+      "route": "/v1/charge/:id/metadata",
       "method": "put"
     },
     "updateBillet": {
-      "route": "/charge/:id/billet",
+      "route": "/v1/charge/:id/billet",
       "method": "put"
     },
     "payCharge": {
-      "route": "/charge/:id/pay",
+      "route": "/v1/charge/:id/pay",
       "method": "post"
     },
     "cancelCharge": {
-      "route": "/charge/:id/cancel",
+      "route": "/v1/charge/:id/cancel",
       "method": "put"
     },
     "createCarnet": {
-      "route": "/carnet",
+      "route": "/v1/carnet",
       "method": "post"
     },
     "detailCarnet": {
-      "route": "/carnet/:id",
+      "route": "/v1/carnet/:id",
       "method": "get"
     },
     "updateParcel": {
-      "route": "/carnet/:id/parcel/:parcel",
+      "route": "/v1/carnet/:id/parcel/:parcel",
       "method": "put"
     },
     "updateCarnetMetadata": {
-      "route": "/carnet/:id/metadata",
+      "route": "/v1/carnet/:id/metadata",
       "method": "put"
     },
     "getNotification": {
-      "route": "/notification/:token",
+      "route": "/v1/notification/:token",
       "method": "get"
     },
     "getPlans": {
-      "route": "/plans",
+      "route": "/v1/plans",
       "method": "get"
     },
     "createPlan": {
-      "route": "/plan",
+      "route": "/v1/plan",
       "method": "post"
     },
     "deletePlan": {
-      "route": "/plan/:id",
+      "route": "/v1/plan/:id",
       "method": "delete"
     },
     "createSubscription": {
-      "route": "/plan/:id/subscription",
+      "route": "/v1/plan/:id/subscription",
       "method": "post"
     },
     "detailSubscription": {
-      "route": "/subscription/:id",
+      "route": "/v1/subscription/:id",
       "method": "get"
     },
     "paySubscription": {
-      "route": "/subscription/:id/pay",
+      "route": "/v1/subscription/:id/pay",
       "method": "post"
     },
     "cancelSubscription": {
-      "route": "/subscription/:id/cancel",
+      "route": "/v1/subscription/:id/cancel",
       "method": "put"
     },
     "updateSubscriptionMetadata": {
-      "route": "/subscription/:id/metadata",
+      "route": "/v1/subscription/:id/metadata",
       "method": "put"
     },
     "getInstallments": {
-      "route": "/installments/:brand/:total",
+      "route": "/v1/installments",
       "method": "get"
     }
   }

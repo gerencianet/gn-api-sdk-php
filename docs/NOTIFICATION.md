@@ -1,5 +1,4 @@
-## Notifications
-
+# Notifications
 Instantiate the module:
 
 ```php
@@ -45,54 +44,85 @@ try {
 } catch (Exception $e) {
     print_r($e->getMessage());
 }
-
 ```
 
 Response:
 
 ```php
-
 Array
 (
     [code] => 200
     [data] => Array
         (
-            [charge_id] => 1024
-            [total] => 5000
-            [status] => canceled
-            [custom_id] =>
-            [created_at] => 2015-07-27 09:43:05
-            [notification_url] =>
-            [items] => Array
+            [0] => Array
                 (
-                    [0] => Array
+                    [id] => 1
+                    [type] => charge
+                    [custom_id] =>
+                    [status] => Array
                         (
-                            [name] => Item 1
-                            [value] => 1000
-                            [amount] => 1
+                            [current] => new
+                            [previous] =>
                         )
 
-                    [1] => Array
+                    [identifiers] => Array
                         (
-                            [name] => Item 2
-                            [value] => 2000
-                            [amount] => 2
+                            [charge_id] => 1002
                         )
 
                 )
 
-            [history] => Array
+            [1] => Array
                 (
-                    [0] => Array
+                    [id] => 2
+                    [type] => charge
+                    [custom_id] =>
+                    [status] => Array
                         (
-                            [status] => new
-                            [created_at] => 2015-07-27 09:43:05
+                            [current] => waiting
+                            [previous] => new
                         )
 
-                    [1] => Array
+                    [identifiers] => Array
                         (
-                            [status] => canceled
-                            [created_at] => 2015-07-27 10:22:43
+                            [charge_id] => 1002
+                        )
+
+                )
+
+            [2] => Array
+                (
+                    [id] => 3
+                    [type] => charge
+                    [custom_id] =>
+                    [status] => Array
+                        (
+                            [current] => paid
+                            [previous] => waiting
+                        )
+
+                    [identifiers] => Array
+                        (
+                            [charge_id] => 1002
+                        )
+
+                    [value] => 2000
+                )
+
+            [3] => Array
+                (
+                    [id] => 4
+                    [type] => charge
+                    [custom_id] =>
+                    [status] => Array
+                        (
+                            [current] => refunded
+                            [previous] => paid
+                        )
+
+                    [identifiers] => Array
+                        (
+                            [charge_id] => 1002
                         )
 
                 )
@@ -101,3 +131,33 @@ Array
 
 )
 ```
+
+Response will be an array with all changes of a token that happened within 6 months, and it contains the following parameters:
+
+* id: Each notification has its own sequence, starting from `1` and the `id` parameter is used to mark this sequence. This is useful if you need to keep track which change you have already processed.
+
+* type: The type of this change. The available values are:
+  * `charge` - a charge have changed.
+  * `subscription` - a subscription have changed.
+  * `carnet` - a carnet have changed.
+  * `subscription_charge` - one subscription's parcel have changed.
+  * `carnet_charge` - one carnet's parcel have changed.
+
+
+* custom_id: Your custom_id.
+
+* status: Status of the transaction. It contains the `current` status and `previous` status (before the change) of this transaction.
+
+ p.s.: if there is no `previous` status (i.e.: for new charges), the `previous` value will be null.
+
+* identifiers: Identifiers related to this change. It may have one or more identifier depending on the type:
+  * for `charge` type: identifiers will contain only `charge_id`.
+  * for `subscription` type: identifiers will contain only `subscription_id`.
+  * for `carnet` type: identifiers will contain only `carnet_id`.
+  * for `subscription_charge` type: identifiers will contain both `charge_id` and `subscription_id`.
+  * for `carnet_charge` type: identifiers will contain both `charge_id` and `carnet_id`.
+
+
+* value: this parameter will only be shown when the change is about paid charges.
+
+ For more informations about notifications, please, refer to [Gerencianet](https://docs.gerencianet.com.br/#!/charges/notifications).

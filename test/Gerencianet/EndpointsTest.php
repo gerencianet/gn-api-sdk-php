@@ -25,7 +25,7 @@ class EndpointsTest extends \PHPUnit_Framework_TestCase
     public function shouldForwarWithQueryString()
     {
         $method = 'post';
-        $route = '/charge?id=90&token=2039480293840923&name=francisco&lastname=carvalho';
+        $route = '/v1/charge?id=90&token=2039480293840923&name=francisco&lastname=carvalho';
         $body = ['content' => 'data'];
 
         $this->requester->expects($this->once())
@@ -51,7 +51,7 @@ class EndpointsTest extends \PHPUnit_Framework_TestCase
     public function shouldThrowExceptionForWrongMethod()
     {
         $method = 'post';
-        $route = '/charge?id=90&token=2039480293840923&name=francisco&lastname=carvalho';
+        $route = '/v1/charge?id=90&token=2039480293840923&name=francisco&lastname=carvalho';
         $body = ['content' => 'data'];
 
         $this->requester->expects($this->never())
@@ -72,7 +72,7 @@ class EndpointsTest extends \PHPUnit_Framework_TestCase
     public function shouldForwarWithParams()
     {
         $method = 'get';
-        $route = '/charge/90';
+        $route = '/v1/charge/90';
 
         $this->requester->expects($this->once())
                         ->method('send')
@@ -92,7 +92,7 @@ class EndpointsTest extends \PHPUnit_Framework_TestCase
     public function shouldForwarWithParamsAndQueryString()
     {
         $method = 'get';
-        $route = '/charge/90?token=2039480293840923';
+        $route = '/v1/charge/90?token=2039480293840923';
 
         $this->requester->expects($this->once())
                         ->method('send')
