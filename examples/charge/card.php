@@ -16,8 +16,8 @@ $customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_numbe
 'birth' => '1977-01-15', ];
 
 $billingAddress = [
-  'street' => 'Street 3',
-  'number' => 10,
+  'street' => 'Av JK',
+  'number' => 909,
   'neighborhood' => 'Bauxita',
   'zipcode' => '35400000',
   'city' => 'Ouro Preto',
