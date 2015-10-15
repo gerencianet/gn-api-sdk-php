@@ -135,8 +135,8 @@ $customer = [
 ];
 
 $billingAddress = [
-    'street' => 'Street 3',
-    'number' => 10,
+    'street' => 'Av. JK',
+    'number' => 909,
     'neighborhood' => 'Bauxita',
     'zipcode' => '35400000',
     'city' => 'Ouro Preto',
