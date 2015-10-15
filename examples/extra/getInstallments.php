@@ -8,7 +8,10 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
-$params = ['total' => '20000', 'brand' => 'visa'];
+$params = [
+	'total' => '20000',
+	'brand' => 'visa'
+];
 
 try {
     $api = new Gerencianet($options);

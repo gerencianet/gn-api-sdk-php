@@ -19,9 +19,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -38,26 +41,66 @@ try {
 `required`
 
 ```php
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000
+    ]
+];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'repeats' => 5];
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 5
+];
 ```
 
 ### Setting metadata to a carnet:
 `optional`
 
 ```php
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000
+    ]
+];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$metadata = ['custom_id' => 'Product 0001', 'notification_url' => 'http://domain.com/notification'];
+$metadata = [
+    'custom_id' => 'Product 0001',
+    'notification_url' => 'http://domain.com/notification'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'metadata' => $metadata];
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 1,
+    'metadata' => $metadata
+];
 
 ```
 
@@ -69,12 +112,31 @@ The `notification_url` property will be used for notifications once things happe
 If you don't set the expiration date for the first charge, the defaut value will be today + 8 days.
 
 ```php
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000
+    ]
+];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'expire_at' => '2016-01-01'];
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 1,
+    'expire_at' => '2016-01-01'
+];
 ```
 
 ### Setting post office service information:
@@ -83,12 +145,31 @@ $body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'expire_at'
 If you want the carnet to arrive at your house or at your client's house, you can count on Gerencianet's post office service. Just send an extra attribute:
 
 ```php
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000
+    ]
+];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'post_office_service' => 'customer'];
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 1,
+    'post_office_service' => 'customer'
+];
 ```
 
 If `send_to` is set to *customer*, the carnet arrives at you customer's. If it is set to *seller*, just wait for it to arrive at your place!
@@ -100,12 +181,30 @@ If `send_to` is set to *customer*, the carnet arrives at you customer's. If it i
 By default, each parcel has the total value of the carnet as its value. If you want to divide the total value of the carnet by all the parcels, set the `split_items` property to *true*.
 
 ```php
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000]
+    ];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'splite_items' => true];
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 1,
+    'splite_items' => true
+];
 ```
 
 ### Setting instructions
@@ -114,14 +213,35 @@ $body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'splite_ite
 If you want the carnet billet to have extra instructions, it's possible to send a maximum of 4 different instructions with a maximum of 90 caracters, just as follows:
 
 ```php
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000]
+    ];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$instructions = ['Pay only with money', 'Do not pay with gold'];
+$instructions = [
+    'Pay only with money',
+    'Do not pay with gold'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'repeats' => 1, 'instructions' => $instructions];
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 1,
+    'instructions' => $instructions
+];
 ```
 
 ### Finally, create the carnet:

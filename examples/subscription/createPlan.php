@@ -8,7 +8,11 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
-$body = ['name' => 'My plan', 'interval' => 2, 'repeats' => null];
+$body = [
+	'name' => 'My plan',
+	'interval' => 2,
+	'repeats' => null
+];
 
 try {
     $api = new Gerencianet($options);

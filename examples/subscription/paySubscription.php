@@ -12,22 +12,32 @@ $params = ['id' => 0];
 
 $paymentToken = 'payment_token';
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523', 'email' => 'oldbuck@gerencianet.com.br',
-'birth' => '1977-01-15', ];
+$customer = [
+  'name' => 'Gorbadoc Oldbuck',
+  'cpf' => '04267484171' ,
+  'phone_number' => '5144916523',
+  'email' => 'oldbuck@gerencianet.com.br',
+  'birth' => '1977-01-15'
+];
 
 $billingAddress = [
-  'street' => 'Street 3',
-  'number' => 10,
+  'street' => 'Av. JK',
+  'number' => 909,
   'neighborhood' => 'Bauxita',
   'zipcode' => '35400000',
   'city' => 'Ouro Preto',
   'state' => 'MG',
 ];
 
-$body = ['payment' => ['credit_card' => [
-                                'billing_address' => $billingAddress,
-                                'payment_token' => $paymentToken,
-                                'customer' => $customer, ]]];
+$body = [
+  'payment' => [
+    'credit_card' => [
+      'billing_address' => $billingAddress,
+      'payment_token' => $paymentToken,
+      'customer' => $customer
+    ]
+  ]
+];
 
 try {
     $api = new Gerencianet($options);

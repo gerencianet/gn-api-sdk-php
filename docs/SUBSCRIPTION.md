@@ -19,9 +19,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -37,7 +40,11 @@ try {
 ### Creating and setting a plan to a subscription:
 
 ```php
-$body = ['name' => 'My plan', 'interval' => 2, 'repeats' => null];
+$body = [
+    'name' => 'My plan',
+    'interval' => 2,
+    'repeats' => null
+];
 
 try {
     $api = new Gerencianet($options);
@@ -58,9 +65,23 @@ try {
 
 ```php
 $params = ['id' => 1000];
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
-$body = ['items' => $items];
+
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000
+    ]
+];
+
+$body = [
+    'items' => $items
+];
 
 try {
     $api = new Gerencianet($options);

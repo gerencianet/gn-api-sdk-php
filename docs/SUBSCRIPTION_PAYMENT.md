@@ -9,9 +9,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -32,10 +35,20 @@ To submit the payment with banking billet, you just need define the customer and
 ```php
 $params = ['id' => 1000];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$body = ['payment' => ['banking_billet' => ['expire_at' => '2018-12-12',
-                                            'customer' => $customer]]];
+$body = [
+    'payment' => [
+        'banking_billet' => [
+            'expire_at' => '2018-12-12',
+            'customer' => $customer
+        ]
+    ]
+];
 
 try {
     $api = new Gerencianet($options);
@@ -95,21 +108,32 @@ $params = ['id' => 1000];
 
 $paymentToken = 'payment_token';
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523', 'email' => 'oldbuck@gerencianet.com.br', 'birth' => '1977-01-15'];
-
-$billingAddress = [
-  'street' => 'Street 3',
-  'number' => 10,
-  'neighborhood' => 'Bauxita',
-  'zipcode' => '35400000',
-  'city' => 'Ouro Preto',
-  'state' => 'MG',
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523',
+    'email' => 'oldbuck@gerencianet.com.br',
+    'birth' => '1977-01-15'
 ];
 
-$body = ['payment' => ['credit_card' => [
-                                'billing_address' => $billingAddress,
-                                'payment_token' => $paymentToken,
-                                'customer' => $customer, ]]];
+$billingAddress = [
+    'street' => 'Av. JK',
+    'number' => 909,
+    'neighborhood' => 'Bauxita',
+    'zipcode' => '35400000',
+    'city' => 'Ouro Preto',
+    'state' => 'MG',
+];
+
+$body = [
+    'payment' => [
+        'credit_card' => [
+            'billing_address' => $billingAddress,
+            'payment_token' => $paymentToken,
+            'customer' => $customer
+        ]
+    ]
+];
 
 try {
     $api = new Gerencianet($options);

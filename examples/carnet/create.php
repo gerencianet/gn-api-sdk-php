@@ -8,12 +8,32 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000],
-          ['name' => 'Item 2', 'amount' => 2, 'value' => 2000], ];
+$items = [
+  [
+    'name' => 'Item 1',
+    'amount' => 1,
+    'value' => 1000
+  ],
+  [
+    'name' => 'Item 2',
+    'amount' => 2,
+    'value' => 2000
+  ] 
+];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+	'name' => 'Gorbadoc Oldbuck',
+	'cpf' => '04267484171',
+	'phone_number' => '5144916523'
+];
 
-$body = ['items' => $items, 'customer' => $customer, 'expire_at' => '2020-12-02', 'repeats' => 5, 'split_items' => false];
+$body = [
+  'items' => $items,
+  'customer' => $customer,
+  'expire_at' => '2020-12-02',
+  'repeats' => 5,
+  'split_items' => false
+];
 
 try {
     $api = new Gerencianet($options);

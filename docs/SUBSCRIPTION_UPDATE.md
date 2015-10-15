@@ -16,7 +16,11 @@ $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
 $params = ['id' => 1000];
-$body = ['notification_url' => 'http://localhost', 'custom_id' => 'Custom Subscription 0001'];
+
+$body = [
+    'notification_url' => 'http://localhost',
+    'custom_id' => 'Custom Subscription 0001'
+];
 
 try {
     $api = new Gerencianet($options);

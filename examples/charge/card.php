@@ -12,8 +12,13 @@ $params = ['id' => 0];
 
 $paymentToken = 'payment_token';
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523', 'email' => 'oldbuck@gerencianet.com.br',
-'birth' => '1977-01-15', ];
+$customer = [
+  'name' => 'Gorbadoc Oldbuck',
+  'cpf' => '04267484171',
+  'phone_number' => '5144916523',
+  'email' => 'oldbuck@gerencianet.com.br',
+  'birth' => '1977-01-15'
+];
 
 $billingAddress = [
   'street' => 'Av JK',
@@ -24,10 +29,16 @@ $billingAddress = [
   'state' => 'MG',
 ];
 
-$body = ['payment' => ['credit_card' => ['installments' => 1,
-                                'billing_address' => $billingAddress,
-                                'payment_token' => $paymentToken,
-                                'customer' => $customer, ]]];
+$body = [
+  'payment' => [
+    'credit_card' => [
+      'installments' => 1,
+      'billing_address' => $billingAddress,
+      'payment_token' => $paymentToken,
+      'customer' => $customer
+    ]
+  ]
+];
 
 try {
     $api = new Gerencianet($options);

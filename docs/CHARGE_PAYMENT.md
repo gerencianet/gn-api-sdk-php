@@ -9,9 +9,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -31,10 +34,20 @@ Setting banking billet as a charge's payment method is simple. You have to use `
 ```php
 $params = ['id' => 1000];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$body = ['payment' => ['banking_billet' => ['expire_at' => '2018-12-12',
-                                            'customer' => $customer, ]]];
+$body = [
+    'payment' => [
+        'banking_billet' => [
+            'expire_at' => '2018-12-12',
+            'customer' => $customer
+        ]
+    ]
+];
 
 try {
     $api = new Gerencianet($options);
@@ -77,13 +90,26 @@ If you want the banking billet to have extra instructions, it's possible to send
 ```php
 $params = ['id' => 1000];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
 
-$instructions = ['Pay only with money', 'Do not pay with gold'];
+$instructions = [
+    'Pay only with money',
+    'Do not pay with gold'
+];
 
-$body = ['payment' => ['banking_billet' => ['expire_at' => '2018-12-12',
-                                            'customer' => $customer,
-                                            'instructions' => $instructions]]];
+$body = [
+    'payment' => [
+        'banking_billet' => [
+            'expire_at' => '2018-12-12',
+            'customer' => $customer,
+            'instructions' => $instructions
+        ]
+    ]
+];
 
 ```
 
@@ -100,22 +126,33 @@ $params = ['id' => 1000];
 
 $paymentToken = 'payment_token';
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523', 'email' => 'oldbuck@gerencianet.com.br',
-'birth' => '1977-01-15', ];
-
-$billingAddress = [
-  'street' => 'Street 3',
-  'number' => 10,
-  'neighborhood' => 'Bauxita',
-  'zipcode' => '35400000',
-  'city' => 'Ouro Preto',
-  'state' => 'MG',
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523',
+    'email' => 'oldbuck@gerencianet.com.br',
+    'birth' => '1977-01-15'
 ];
 
-$body = ['payment' => ['credit_card' => ['installments' => 1,
-                                'billing_address' => $billingAddress,
-                                'payment_token' => $paymentToken,
-                                'customer' => $customer ]]];
+$billingAddress = [
+    'street' => 'Street 3',
+    'number' => 10,
+    'neighborhood' => 'Bauxita',
+    'zipcode' => '35400000',
+    'city' => 'Ouro Preto',
+    'state' => 'MG',
+];
+
+$body = [
+    'payment' => [
+        'credit_card' => [
+            'installments' => 1,
+            'billing_address' => $billingAddress,
+            'payment_token' => $paymentToken,
+            'customer' => $customer
+        ]
+    ]
+];
 
 try {
     $api = new Gerencianet($options);

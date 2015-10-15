@@ -7,9 +7,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 

@@ -11,9 +11,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -29,16 +32,31 @@ try {
 Create the charge object including a marketplace object:
 
 ```php
-$marketplace = ['repasses' => [
-  [payee_code => "GEZTAMJYHA3DAMBQGAYDAMRYGMZTGM",
-  percentage => 2500],
-  [payee_code => "AKSLJI3DAMBQGSKLJDYDAMRTGOPWKS",
-  percentage => 2500]
-]];
+$marketplace = [
+    'repasses' => [
+        [
+            payee_code => "GEZTAMJYHA3DAMBQGAYDAMRYGMZTGM",
+            percentage => 2500
+        ],
+        [
+            payee_code => "AKSLJI3DAMBQGSKLJDYDAMRTGOPWKS",
+            percentage => 2500
+        ]
+    ]
+];
 
-$items = [['name' => 'Item 1', 'amount' => 1, 'value' => 1000, 'marketplace' => $marketplace] ];
-$body = ['items' => $items];
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000,
+        'marketplace' => $marketplace
+    ]
+];
 
+$body = [
+    'items' => $items
+];
 ```
 
 Create the charge:

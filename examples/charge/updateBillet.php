@@ -9,7 +9,10 @@ $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
 $params = ['id' => 0];
-$body = ['expire_at' => '2020-12-12'];
+
+$body = [
+	'expire_at' => '2020-12-12'
+];
 
 try {
     $api = new Gerencianet($options);

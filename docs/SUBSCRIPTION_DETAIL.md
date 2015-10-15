@@ -2,7 +2,7 @@
 
 Works just like the last example, but here you pass the subscription id:
 
-```js
+```php
 $params = ['id' => 0];
 
 try {

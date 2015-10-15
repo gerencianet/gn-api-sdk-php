@@ -7,9 +7,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -28,7 +31,11 @@ You can update the `custom_id` or the `notification_url` of a charge at any time
 
 ```php
 $params = ['id' => 1000];
-$body = ['custom_id' => 'Product 0001', 'notification_url' => 'http://domain.com/notification'];
+
+$body = [
+    'custom_id' => 'Product 0001',
+    'notification_url' => 'http://domain.com/notification'
+];
 
 try {
     $api = new Gerencianet($options);
@@ -62,7 +69,10 @@ If the charge contemplates these requirements, you just have to provide the char
 
 ```php
 $params = ['id' => 1000];
-$body = ['expire_at' => '2016-01-01'];
+
+$body = [
+    'expire_at' => '2016-01-01'
+];
 
 try {
     $api = new Gerencianet($options);

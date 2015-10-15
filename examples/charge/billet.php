@@ -10,10 +10,20 @@ $options = json_decode($file, true);
 
 $params = ['id' => 0];
 
-$customer = ['name' => 'Gorbadoc Oldbuck', 'cpf' => '04267484171' , 'phone_number' => '5144916523'];
+$customer = [
+	'name' => 'Gorbadoc Oldbuck',
+	'cpf' => '04267484171',
+	'phone_number' => '5144916523'
+];
 
-$body = ['payment' => ['banking_billet' => ['expire_at' => '2018-12-12',
-                                            'customer' => $customer, ]]];
+$body = [
+  'payment' => [
+    'banking_billet' => [
+      'expire_at' => '2018-12-12',
+      'customer' => $customer
+    ]
+  ]
+];
 
 try {
     $api = new Gerencianet($options);

@@ -5,7 +5,11 @@ By default, the search will bring back 20 registers and always start from offset
 The example below shows how to use it:
 
 ```php
-$params = ['name' => 'My plan', 'limit' => 20, 'offset' => 0];
+$params = [
+    'name' => 'My plan',
+    'limit' => 20,
+    'offset' => 0
+];
 
 try {
     $api = new Gerencianet($options);

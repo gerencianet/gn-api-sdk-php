@@ -13,9 +13,12 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = ['client_id' => 'client_id',
-            'client_secret' => 'client_secret',
-            'sandbox' => true];
+$options = [
+    'client_id' => 'client_id',
+    'client_secret' => 'client_secret',
+    'sandbox' => true
+];
+
 try {
     $api = new Gerencianet($options);
 
@@ -31,7 +34,11 @@ Then update metadata:
 
 ```php
 $params = ['id' => 1000];
-$body = ['custom_id' => 'Carnet 0001', 'notification_url' => 'http://domain.com/notification'];
+
+$body = [
+    'custom_id' => 'Carnet 0001',
+    'notification_url' => 'http://domain.com/notification'
+];
 
 try {
     $api = new Gerencianet($options);
@@ -63,7 +70,10 @@ To update or set an expiration date to a parcel, the parcel must have a `waiting
 
 ```php
 $params = ['id' => 1000, 'parcel' => 2];
-$body = ['expire_at' => '2018-01-01'];
+
+$body = [
+    'expire_at' => '2018-01-01'
+];
 
 try {
     $api = new Gerencianet($options);
