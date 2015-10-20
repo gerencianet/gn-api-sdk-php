@@ -3,7 +3,7 @@
 Sdk for Gerencianet Pagamentos' API.
 For more informations about parameters and values, please refer to [Gerencianet](http://gerencianet.com.br) documentation.
 
-**:warning: This module is under development and is based on the new API that Gerencianet is about to release. It won't work in production by now.**
+**:warning: Gerencianet API is under BETA version, meaning that it's not available for all users right now. If you're interested, you can always send an email to suportetecnico@gerencianet.com.br and we'll enable it for your account.**
 
 
 [![Build Status](https://travis-ci.org/gerencianet/gn-api-sdk-php.svg)](https://travis-ci.org/gerencianet/gn-api-sdk-php)
