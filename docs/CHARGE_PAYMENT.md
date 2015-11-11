@@ -200,3 +200,39 @@ When in production, it will depend if your project is a web app or a mobile app.
 For web apps you should follow this [guide](https://api.gerencianet.com.br/checkout/card). It basically consists of copying/pasting a script tag in your checkout page.
 
 For mobile apps you should use this [SDK for Android](https://github.com/gerencianet/gn-api-sdk-android) or this [SDK for iOS](https://github.com/gerencianet/gn-api-sdk-ios).
+
+### 3. Discount by payment method
+
+It is possible to set discounts based on payment. You just need to add an `discount` attribute within `banking_billet` or `credit_card` tags.
+
+The example below shows how to do this for credit card payments.
+
+```php
+
+$discount = [
+  'type' => 'currency',
+  'value'=> 1000
+];
+
+$body = [
+    'payment' => [
+        'credit_card' => [
+            'installments' => 1,
+            'billing_address' => $billingAddress,
+            'payment_token' => $paymentToken,
+            'customer' => $customer,
+            'discount' => $discount
+        ]
+    ]
+];
+
+```
+Discounts for banking billets works similar to credit cards. You just need to add the `discount` attribute.
+
+The discount may be applied as percentage or with a previous calculated value.
+
+The `type` property is used to specify how the discount will work. It may be set as *currency* or *percentage*.
+
+The first will discount the amount specified in `value` property as *cents*, so, in the example above the amount paid by the customer will be equal `(Charge's value) - R$ 10,00`.
+
+However, if the discount type is set to *percentage*, the amount will be `(Charge's value) - 10%`.
