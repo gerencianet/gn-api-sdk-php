@@ -93,6 +93,7 @@ Then open any example in your browser.
 - [Paying a charge](/docs/CHARGE_PAYMENT.md)
 - [Detailing charges](/docs/CHARGE_DETAIL.md)
 - [Updating informations](/docs/CHARGE_UPDATE.md)
+- [Resending billet](/docs/RESEND_BILLET.md)
 
 #### Carnets
 

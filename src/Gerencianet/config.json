@@ -87,6 +87,10 @@
     "getInstallments": {
       "route": "/v1/installments",
       "method": "get"
+    },
+    "resendBillet": {
+      "route": "/v1/charge/:id/billet/resend",
+      "method": "post"
     }
   }
 }
