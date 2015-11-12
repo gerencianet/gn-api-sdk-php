@@ -1,4 +1,4 @@
-### Updating the expiration date of a billet
+### Resending billet
 
 To resend the charge's billet, the charge must have a `waiting` status, and the payment method choosed must be `banking_billet`.
 
