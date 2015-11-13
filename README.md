@@ -46,9 +46,9 @@ try {
 Instantiate the module passing using your client_id, client_secret and sandbox equals true:
 ```php
 $options = [
-  'client_id': 'client_id',
-  'client_secret': 'client_secret',
-  'sandbox': true
+  'client_id' => 'client_id',
+  'client_secret' => 'client_secret',
+  'sandbox' => true
 ];
 
 $api = new Gerencianet($options);
@@ -58,9 +58,9 @@ $api = new Gerencianet($options);
 To change the environment to production, just set the third sandbox to false:
 ```php
 $options = [
-  'client_id': 'client_id',
-  'client_secret': 'client_secret',
-  'sandbox': false
+  'client_id' => 'client_id',
+  'client_secret' => 'client_secret',
+  'sandbox' => false
 ];
 
 $api = new Gerencianet($options);
