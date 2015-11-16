@@ -222,10 +222,10 @@ $body = [
 ```
 Discounts for banking billets works similar to credit cards. You just need to add the `discount` attribute.
 
-The discount may be applied as percentage or with a previous calculated value.
+The discount may be applied as percentage or with a previously calculated value.
 
 The `type` property is used to specify how the discount will work. It may be set as *currency* or *percentage*.
 
-The first will discount the amount specified in `value` property as *cents*, so, in the example above the amount paid by the customer will be equal `(Charge's value) - R$ 10,00`.
+The first will discount the amount specified in `value` property as *cents*. So, in the example above, the amount paid by the customer will be equal `(Charge's value) - R$ 10,00`.
 
 However, if the discount type is set to *percentage*, the amount will be `(Charge's value) - 10%`.
