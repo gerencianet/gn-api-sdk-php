@@ -63,7 +63,7 @@ Array
 
 ### Updating the expiration date of a billet
 
-To update or set a expiration date to a charge, the charge must have a `waiting` or `unpaid` status, and the payment method choosed must be `banking_billet`.
+To update or set a expiration date to a charge, the charge must have a `waiting` or `unpaid` status, and the payment method chosen must be `banking_billet`.
 
 If the charge contemplates these requirements, you just have to provide the charge id and a new expiration date:
 

@@ -1,6 +1,6 @@
 ### Resending billet
 
-To resend the charge's billet, the charge must have a `waiting` status, and the payment method choosed must be `banking_billet`.
+To resend the charge's billet, the charge must have a `waiting` status, and the payment method chosen must be `banking_billet`.
 
 If the charge contemplates these requirements, you just have to provide the charge id and a email to resend the billet:
 
