@@ -91,6 +91,10 @@
     "resendBillet": {
       "route": "/v1/charge/:id/billet/resend",
       "method": "post"
+    },
+    "chargeCreateHistory": {
+      "route": "/v1/charge/:id/history",
+      "method": "post"
     }
   }
 }
