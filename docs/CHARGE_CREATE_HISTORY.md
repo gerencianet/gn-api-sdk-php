@@ -1,6 +1,6 @@
 ## Adding information to charge's history
 
-It is possible to add information to any charge's history. These informations will be listed when [detailing a charge](/docs/CHARGE_DETAIL.md).
+It is possible to add information to the history of a charge. These informations will be listed when [detailing a charge](/docs/CHARGE_DETAIL.md).
 
 The process to add information to history is shown below:
 
@@ -18,7 +18,7 @@ $options = [
 
 $params = ['id' => 1000];
 
-$body = ['description' => 'Info to be added to charge\'s history'];
+$body = ['description' => 'Info to be added to charges history'];
 
 try {
     $api = new Gerencianet($options);
