@@ -94,7 +94,7 @@ Then open any example in your browser.
 - [Detailing charges](/docs/CHARGE_DETAIL.md)
 - [Updating informations](/docs/CHARGE_UPDATE.md)
 - [Resending billet](/docs/RESEND_BILLET.md)
-- [Adding information to charge's history](/docs/RESEND_BILLET.md)
+- [Adding information to charge's history](/docs/CHARGE_CREATE_HISTORY.md)
 
 #### Carnets
 
