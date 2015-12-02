@@ -82,13 +82,13 @@ Array
                 (
                     [0] => Array
                         (
-                            [status] => new
+                            [message] => Cobrança criada
                             [created_at] => 2015-07-27 09:43:05
                         )
 
                     [1] => Array
                         (
-                            [status] => canceled
+                            [message] => Cobrança cancelada
                             [created_at] => 2015-07-27 10:22:43
                         )
 
