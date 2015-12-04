@@ -20,11 +20,13 @@ class Request
     public function __construct(array $options = null)
     {
         $this->config = Config::options($options);
+        $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $this->client = new Client([
         'debug' => $this->config['debug'],
         'base_uri' => $this->config['baseUri'],
         'headers' => [
           'Content-Type' => 'application/json',
+          'api-sdk' => 'php-' . $composerData['version']
           ],
       ]);
     }
