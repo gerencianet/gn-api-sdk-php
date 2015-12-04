@@ -22,7 +22,7 @@ $body = ['description' => 'Info to be added to charges history'];
 
 try {
     $api = new Gerencianet($options);
-    $response = $api->chargeCreateHistory($params, $body);
+    $response = $api->createChargeHistory($params, $body);
 
     print_r($response);
 } catch (GerencianetException $e) {
