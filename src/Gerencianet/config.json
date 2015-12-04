@@ -92,7 +92,7 @@
       "route": "/v1/charge/:id/billet/resend",
       "method": "post"
     },
-    "chargeCreateHistory": {
+    "createChargeHistory": {
       "route": "/v1/charge/:id/history",
       "method": "post"
     }
