@@ -1,3 +1,9 @@
+# 1.0.2
+
+- Added: new endpoint (charge history)
+- Added: custom header
+- Updated: docs
+
 # 1.0.1
 
 - Added: new endpoint (resend billet)
