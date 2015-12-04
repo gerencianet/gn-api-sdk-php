@@ -1,3 +1,7 @@
+# 1.0.3
+
+- Fix: endpoint charge history
+
 # 1.0.2
 
 - Added: new endpoint (charge history)
