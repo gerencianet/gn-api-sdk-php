@@ -96,6 +96,10 @@
       "route": "/v1/charge/:id/history",
       "method": "post"
     },
+    "resendParcel": {
+      "route": "/v1/carnet/:id/parcel/:parcel/resend",
+      "method": "post"
+    },
     "createCarnetHistory": {
       "route": "/v1/carnet/:id/history",
       "method": "post"
