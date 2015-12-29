@@ -101,6 +101,8 @@ Then open any example in your browser.
 - [Creating carnets](/docs/CARNET.md)
 - [Detailing carnets](/docs/CARNET_DETAIL.md)
 - [Updating informations](/docs/CARNET_UPDATE.md)
+- [Adding information to carnet's history](/docs/CARNET_CREATE_HISTORY.md)
+
 
 #### Subscriptions
 
