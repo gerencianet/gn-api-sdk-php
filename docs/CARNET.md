@@ -2,12 +2,11 @@
 
 Carnet is a payment method that generates a set of charges with the same payment information and customer in all of them.
 
-To generate a carnet, you have as required: the items, a customer and the number of repeats (or parcels).
+To generate a carnet, you have as required: the items, a customer, the expiration date of the first charge and the number of repeats (or parcels).
 
 If you want, you can also send some additional informations:
 
-The metadata information (like in the banking billet), with notification_url and/or custom_id
-- The expiration date to the first charge;
+- The metadata information (like in the banking billet), with notification_url and/or custom_id;
 - If the carnet must be send by post office service (choosing, inclusive, if you or your client must receive it);
 - If the total value must be split among every charges or if each charge must have the value;
 - The instructions to the carnet (At most 4 lines).
@@ -63,7 +62,8 @@ $customer = [
 $body = [
     'items' => $items,
     'customer' => $customer,
-    'repeats' => 5
+    'repeats' => 5,
+    'expire_at' => '2020-12-02'
 ];
 ```
 
@@ -98,7 +98,8 @@ $metadata = [
 $body = [
     'items' => $items,
     'customer' => $customer,
-    'repeats' => 1,
+    'repeats' => 5,
+    'expire_at' => '2020-12-02',
     'metadata' => $metadata
 ];
 
@@ -106,38 +107,6 @@ $body = [
 
 The `notification_url` property will be used for notifications once things happen with charges status, as when it's payment was approved, for example. More about notifications [here](/docs/NOTIFICATION.md). The `custom_id` property can be used to set your own reference to the carnet.
 
-### Setting the expiration date to the first charge:
-`optional`
-
-If you don't set the expiration date for the first charge, the defaut value will be today + 8 days.
-
-```php
-$items = [
-    [
-        'name' => 'Item 1',
-        'amount' => 1,
-        'value' => 1000
-    ],
-    [
-        'name' => 'Item 2',
-        'amount' => 2,
-        'value' => 2000
-    ]
-];
-
-$customer = [
-    'name' => 'Gorbadoc Oldbuck',
-    'cpf' => '04267484171',
-    'phone_number' => '5144916523'
-];
-
-$body = [
-    'items' => $items,
-    'customer' => $customer,
-    'repeats' => 1,
-    'expire_at' => '2016-01-01'
-];
-```
 
 ### Setting post office service information:
 `optional`
@@ -164,11 +133,16 @@ $customer = [
     'phone_number' => '5144916523'
 ];
 
+$postOfficeService = [
+    'send_to' => 'customer'
+];
+
 $body = [
     'items' => $items,
     'customer' => $customer,
-    'repeats' => 1,
-    'post_office_service' => 'customer'
+    'repeats' => 5,
+    'expire_at' => '2020-12-02',
+    'post_office_service' => $postOfficeService
 ];
 ```
 
@@ -202,7 +176,8 @@ $customer = [
 $body = [
     'items' => $items,
     'customer' => $customer,
-    'repeats' => 1,
+    'repeats' => 5,
+    'expire_at' => '2020-12-02',
     'splite_items' => true
 ];
 ```
@@ -239,7 +214,8 @@ $instructions = [
 $body = [
     'items' => $items,
     'customer' => $customer,
-    'repeats' => 1,
+    'repeats' => 5,
+    'expire_at' => '2020-12-02',
     'instructions' => $instructions
 ];
 ```
@@ -271,7 +247,7 @@ Array
     [code] => 200
     [data] => Array
         (
-            [carnet_id] => 4
+            [carnet_id] => 1002
             [charges] => Array
                 (
                     [0] => Array

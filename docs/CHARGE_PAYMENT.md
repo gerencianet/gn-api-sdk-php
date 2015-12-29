@@ -64,8 +64,6 @@ try {
 
 ```
 
-If you don't set the `expire_at` attribute, the date will be the current day + 3.
-
 You'll receive the payment info, such as the barcode and the billet link:
 
 ```php

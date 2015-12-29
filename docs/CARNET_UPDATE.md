@@ -33,7 +33,7 @@ try {
 Then update metadata:
 
 ```php
-$params = ['id' => 1000];
+$params = ['id' => 1002];
 
 $body = [
     'custom_id' => 'Carnet 0001',
@@ -69,7 +69,7 @@ Array
 To update or set an expiration date to a parcel, the parcel must have a `waiting` or 'unpaid' status. You just have to provide the `carnet_id`, the number of the parcel (`parcel`) and a new expiration date (`expire_at`):
 
 ```php
-$params = ['id' => 1000, 'parcel' => 2];
+$params = ['id' => 1002, 'parcel' => 2];
 
 $body = [
     'expire_at' => '2018-01-01'

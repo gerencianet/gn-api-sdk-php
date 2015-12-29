@@ -13,9 +13,9 @@ $body = [
 
 try {
     $api = new Gerencianet($options);
-    $charge = $api->resendBillet($params, $body);
+    $response = $api->resendBillet($params, $body);
 
-    print_r($charge);
+    print_r($response);
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
