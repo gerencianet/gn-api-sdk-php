@@ -101,9 +101,9 @@ Then open any example in your browser.
 - [Creating carnets](/docs/CARNET.md)
 - [Detailing carnets](/docs/CARNET_DETAIL.md)
 - [Updating informations](/docs/CARNET_UPDATE.md)
+- [Resending the carnet](/docs/CARNET_RESEND.md)
 - [Resending carnet parcel](/docs/CARNET_RESEND_PARCEL.md)
 - [Adding information to carnet's history](/docs/CARNET_CREATE_HISTORY.md)
-
 
 #### Subscriptions
 
