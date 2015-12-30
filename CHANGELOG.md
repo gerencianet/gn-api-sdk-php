@@ -1,3 +1,8 @@
+# 1.0.4
+
+- Added: new endpoints (carnet history, resend parcel and resend carnet)
+- Updated: docs
+
 # 1.0.3
 
 - Fix: endpoint charge history
