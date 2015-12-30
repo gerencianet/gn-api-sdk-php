@@ -1,3 +1,7 @@
+# 1.0.5
+
+- Updated: ApiRequest
+
 # 1.0.4
 
 - Added: new endpoints (carnet history, resend parcel and resend carnet)
