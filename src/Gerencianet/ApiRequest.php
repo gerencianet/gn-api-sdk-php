@@ -21,14 +21,16 @@ class ApiRequest
             $this->auth->authorize();
         }
 
+        $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
+
         try {
             return $this->request->send($method, $route, ['json' => $body,
-            'headers' => ['Authorization' => 'Bearer '.$this->auth->accessToken], ]);
+            'headers' => ['Authorization' => 'Bearer '.$this->auth->accessToken, 'api-sdk' => 'php-' . $composerData['version']]]);
         } catch (AuthorizationException $e) {
             $this->auth->authorize();
 
             return $this->request->send($method, $route, ['json' => $body,
-            'headers' => ['Authorization' => 'Bearer '.$this->auth->accessToken], ]);
+            'headers' => ['Authorization' => 'Bearer '.$this->auth->accessToken, 'api-sdk' => 'php-' . $composerData['version']]]);
         }
     }
 
