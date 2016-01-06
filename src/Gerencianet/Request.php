@@ -3,7 +3,6 @@
 namespace Gerencianet;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request as GuzzleRequest;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use Gerencianet\Exception\GerencianetException;
@@ -23,7 +22,7 @@ class Request
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $this->client = new Client([
         'debug' => $this->config['debug'],
-        'base_uri' => $this->config['baseUri'],
+        'base_url' => $this->config['baseUri'],
         'headers' => [
           'Content-Type' => 'application/json',
           'api-sdk' => 'php-' . $composerData['version']
@@ -33,10 +32,10 @@ class Request
 
     public function send($method, $route, $requestOptions)
     {
-        $this->request = new GuzzleRequest($method, $route);
 
         try {
-            $response = $this->client->send($this->request, $requestOptions);
+            $this->request = $this->client->createRequest($method, $route, $requestOptions);
+            $response = $this->client->send($this->request);
 
             return json_decode($response->getBody(), true);
         } catch (ClientException $e) {

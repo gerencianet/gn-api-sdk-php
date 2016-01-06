@@ -24,6 +24,9 @@ Or include it in your composer.json file:
 ...
 ```
 
+## Requirements
+* PHP >= 5.4.0
+
 ## Getting started
 Require the module and namespaces:
 ```php
@@ -70,7 +73,7 @@ $api = new Gerencianet($options);
 
 To run tests install [PHPUnit](https://phpunit.de/getting-started.html) and run the following command:
 ```php
-$ phpunit -c test/config.xml
+$ phpunit -c config.xml
 ```
 
 ## Running examples

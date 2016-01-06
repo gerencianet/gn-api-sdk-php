@@ -9,20 +9,20 @@ $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
 
 $items = [
-	[
-		'name' => 'Item 1',
-		'amount' => 1,
-		'value' => 1000
-	],
   [
-  	'name' => 'Item 2',
-  	'amount' => 2,
-  	'value' => 2000
+    'name' => 'Item 1',
+    'amount' => 1,
+    'value' => 1000
+  ],
+  [
+    'name' => 'Item 2',
+    'amount' => 2,
+    'value' => 2000
   ]
 ];
-          
+
 $body = [
-	'items' => $items
+  'items' => $items
 ];
 
 try {
