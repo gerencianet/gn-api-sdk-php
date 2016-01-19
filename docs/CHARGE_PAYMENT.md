@@ -195,7 +195,7 @@ For testing purposes, you can go to your application playground in your Gerencia
 
 When in production, it will depend if your project is a web app or a mobile app.
 
-For web apps you should follow this [guide](https://api.gerencianet.com.br/checkout/card). It basically consists of copying/pasting a script tag in your checkout page.
+For web apps you should follow this [guide](https://docs.gerencianet.com.br/#!/charges/checkout/card). It basically consists of copying/pasting a script tag in your checkout page.
 
 For mobile apps you should use this [SDK for Android](https://github.com/gerencianet/gn-api-sdk-android) or this [SDK for iOS](https://github.com/gerencianet/gn-api-sdk-ios).
 
