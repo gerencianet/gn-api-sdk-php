@@ -17,7 +17,7 @@ try {
     print_r($subscription);
 } catch (GerencianetException $e) {
     print_r($e->code);
-    print_r($e->error);1000
+    print_r($e->error);
     print_r($e->errorDescription);
 } catch (Exception $e) {
     print_r($e->getMessage());
