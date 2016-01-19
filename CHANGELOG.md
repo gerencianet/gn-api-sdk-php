@@ -1,3 +1,11 @@
+# Next
+
+- Fix: Remove random number from detailSubscription example.
+
+# 1.0.6
+
+- Add: Add Support to PHP 5.4 and above
+
 # 1.0.5
 
 - Updated: ApiRequest
