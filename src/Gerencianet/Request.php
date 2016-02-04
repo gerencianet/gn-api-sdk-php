@@ -20,12 +20,14 @@ class Request
     {
         $this->config = Config::options($options);
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
+        $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
         $this->client = new Client([
         'debug' => $this->config['debug'],
         'base_url' => $this->config['baseUri'],
         'headers' => [
           'Content-Type' => 'application/json',
-          'api-sdk' => 'php-' . $composerData['version']
+          'api-sdk' => 'php-' . $composerData['version'],
+          'partner-token' => $partner_token
           ],
       ]);
     }
