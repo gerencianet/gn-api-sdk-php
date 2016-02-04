@@ -1,5 +1,7 @@
-# Next
+# 1.0.7
 
+- Updated: ApiRequest
+- Updated: Request
 - Fix: Remove random number from detailSubscription example.
 
 # 1.0.6
