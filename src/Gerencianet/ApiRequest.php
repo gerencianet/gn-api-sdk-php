@@ -8,11 +8,13 @@ class ApiRequest
 {
     private $auth;
     private $request;
+    private $options;
 
     public function __construct(array $options = null)
     {
         $this->auth = new Auth($options);
         $this->request = new Request($options);
+        $this->options = $options;
     }
 
     public function send($method, $route, $body)
