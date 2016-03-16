@@ -22,7 +22,7 @@ class Request
         $this->config = Config::options($options);
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
-        $this->certified_path = $options['certified_path'];
+        $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
         $this->client = new Client([
         'debug' => $this->config['debug'],
         'base_url' => $this->config['baseUri'],
