@@ -1,3 +1,8 @@
+# 1.0.8
+
+- Updated: Request
+- Added: User can define the certified path.
+
 # 1.0.7
 
 - Updated: ApiRequest
