@@ -15,12 +15,14 @@ class Request
     private $auth;
     private $request;
     private $config;
+    private $certified_path;
 
     public function __construct(array $options = null)
     {
         $this->config = Config::options($options);
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
+        $this->certified_path = $options['certified_path'];
         $this->client = new Client([
         'debug' => $this->config['debug'],
         'base_url' => $this->config['baseUri'],
@@ -36,6 +38,9 @@ class Request
     {
 
         try {
+            if($this->certified_path){
+                $this->client->setDefaultOption("verify", $this->certified_path);
+            }
             $this->request = $this->client->createRequest($method, $route, $requestOptions);
             $response = $this->client->send($this->request);
 
