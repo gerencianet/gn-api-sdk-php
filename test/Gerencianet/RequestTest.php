@@ -27,12 +27,12 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function shouldAuthorizeSuccessfully()
     {
-        $request = new Request($this->options);
-        $this->options['certified_path'] = __DIR__.'ca.crt';
 
+        $this->options['certified_path'] = __DIR__.'/ca.crt';
+        $request = new Request($this->options);
 
         $client = $this->getMockBuilder('Client')
-                              ->setMethods(array('send', 'createRequest'))
+                              ->setMethods(array('send', 'createRequest', 'setDefaultOption'))
                               ->getMock();
 
         $response = $this->getMockBuilder('Response')
