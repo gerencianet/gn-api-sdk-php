@@ -7,7 +7,6 @@ To generate a carnet, you have as required: the items, a customer, the expiratio
 If you want, you can also send some additional informations:
 
 - The metadata information (like in the banking billet), with notification_url and/or custom_id;
-- If the carnet must be send by post office service (choosing, inclusive, if you or your client must receive it);
 - If the total value must be split among every charges or if each charge must have the value;
 - The instructions to the carnet (At most 4 lines).
 
@@ -106,48 +105,6 @@ $body = [
 ```
 
 The `notification_url` property will be used for notifications once things happen with charges status, as when it's payment was approved, for example. More about notifications [here](/docs/NOTIFICATION.md). The `custom_id` property can be used to set your own reference to the carnet.
-
-
-### Setting post office service information:
-`optional`
-
-If you want the carnet to arrive at your house or at your client's house, you can count on Gerencianet's post office service. Just send an extra attribute:
-
-```php
-$items = [
-    [
-        'name' => 'Item 1',
-        'amount' => 1,
-        'value' => 1000
-    ],
-    [
-        'name' => 'Item 2',
-        'amount' => 2,
-        'value' => 2000
-    ]
-];
-
-$customer = [
-    'name' => 'Gorbadoc Oldbuck',
-    'cpf' => '04267484171',
-    'phone_number' => '5144916523'
-];
-
-$postOfficeService = [
-    'send_to' => 'customer'
-];
-
-$body = [
-    'items' => $items,
-    'customer' => $customer,
-    'repeats' => 5,
-    'expire_at' => '2020-12-02',
-    'post_office_service' => $postOfficeService
-];
-```
-
-If `send_to` is set to *customer*, the carnet arrives at you customer's. If it is set to *seller*, just wait for it to arrive at your place!
-
 
 ### Setting the split items information
 `optional`
