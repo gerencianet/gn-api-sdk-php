@@ -107,6 +107,14 @@
     "createCarnetHistory": {
       "route": "/v1/carnet/:id/history",
       "method": "post"
+    },
+    "cancelCarnet": {
+      "route": "/v1/carnet/:id/cancel",
+      "method": "put"
+    },
+    "cancelParcel": {
+      "route": "/v1/carnet/:id/parcel/:parcel/cancel",
+      "method": "put"
     }
   }
 }

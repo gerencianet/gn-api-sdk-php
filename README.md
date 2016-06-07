@@ -107,6 +107,8 @@ Then open any example in your browser.
 - [Resending the carnet](/docs/CARNET_RESEND.md)
 - [Resending carnet parcel](/docs/CARNET_RESEND_PARCEL.md)
 - [Adding information to carnet's history](/docs/CARNET_CREATE_HISTORY.md)
+- [Canceling the carnet](/docs/CARNET_CANCEL.md)
+- [Canceling carnet parcel](/docs/CARNET_CANCEL_PARCEL.md)
 
 #### Subscriptions
 
