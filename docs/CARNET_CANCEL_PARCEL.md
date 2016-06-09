@@ -1,6 +1,6 @@
-### Canceling carnet parcel
+### Canceling a carnet parcel
 
-You can cancel carnet parcel. To this, the charge status must be `new`, `waiting` or `unpaid`.
+To cancel a carnet parcel, it must have status `waiting` or `unpaid`.
 
 ```php
 $params = [
