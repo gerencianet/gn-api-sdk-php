@@ -1,3 +1,8 @@
+# 1.0.10
+
+- Added: new endpoints (cancel carnet and cancel parcel)
+- Updated: docs
+
 # 1.0.9
 
 - Fix: Tests.
