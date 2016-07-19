@@ -8,7 +8,8 @@ If you want, you can also send some additional informations:
 
 - The metadata information (like in the banking billet), with notification_url and/or custom_id;
 - If the total value must be split among every charges or if each charge must have the value;
-- The instructions to the carnet (At most 4 lines).
+- The message to the carnet
+- The configurations to the carnet
 
 Instantiate the module:
 
@@ -139,10 +140,10 @@ $body = [
 ];
 ```
 
-### Setting instructions
+### Setting message to customer
 `optional`
 
-If you want the carnet billet to have extra instructions, it's possible to send a maximum of 4 different instructions with a maximum of 90 caracters, just as follows:
+If you want the carnet billet to have a message to customer, it's possible to send a message with a maximum of 255 caracters, just as follows:
 
 ```php
 $items = [
@@ -163,9 +164,48 @@ $customer = [
     'phone_number' => '5144916523'
 ];
 
-$instructions = [
-    'Pay only with money',
-    'Do not pay with gold'
+$body = [
+    'items' => $items,
+    'customer' => $customer,
+    'repeats' => 5,
+    'expire_at' => '2020-12-02',
+    'message' => 'The delivery time is counted in working days, in other words not inlclude Saturdays, Sundays and holidays'
+];
+```
+
+### Setting configurations
+`optional`
+
+If you want the carnet billet to have own configurations. It's possible to send:
+- `fine`: it's the amount charged after expiration. Ex.: If you want 2%, you must send 200.
+- `interest`: it's the amount charged after expiration by day. Ex.: If you want 0.033%, you must send 33.
+- `show_information`: Sets if you want the customer see your name, phone and address. This parameter is an `array` with the data that can show. If you don't want show anything, just send `null` to this parameter.
+
+```php
+$items = [
+    [
+        'name' => 'Item 1',
+        'amount' => 1,
+        'value' => 1000
+    ],
+    [
+        'name' => 'Item 2',
+        'amount' => 2,
+        'value' => 2000]
+    ];
+
+$customer = [
+    'name' => 'Gorbadoc Oldbuck',
+    'cpf' => '04267484171',
+    'phone_number' => '5144916523'
+];
+
+$informations =  ['name', 'address', 'phone'];
+
+$configurations = [
+    'fine' => 200,
+    'interest' => 33,
+    'show_information' => $informations
 ];
 
 $body = [
@@ -173,7 +213,7 @@ $body = [
     'customer' => $customer,
     'repeats' => 5,
     'expire_at' => '2020-12-02',
-    'instructions' => $instructions
+    'configurations' => $configurations
 ];
 ```
 
