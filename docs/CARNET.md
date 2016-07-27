@@ -122,8 +122,9 @@ $items = [
     [
         'name' => 'Item 2',
         'amount' => 2,
-        'value' => 2000]
-    ];
+        'value' => 2000
+    ]
+];
 
 $customer = [
     'name' => 'Gorbadoc Oldbuck',
@@ -155,8 +156,9 @@ $items = [
     [
         'name' => 'Item 2',
         'amount' => 2,
-        'value' => 2000]
-    ];
+        'value' => 2000
+    ]
+];
 
 $customer = [
     'name' => 'Gorbadoc Oldbuck',
@@ -190,8 +192,9 @@ $items = [
     [
         'name' => 'Item 2',
         'amount' => 2,
-        'value' => 2000]
-    ];
+        'value' => 2000
+    ]
+];
 
 $customer = [
     'name' => 'Gorbadoc Oldbuck',
