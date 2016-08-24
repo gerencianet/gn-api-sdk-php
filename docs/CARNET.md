@@ -144,7 +144,7 @@ $body = [
 ### Setting message to customer
 `optional`
 
-If you want the carnet billet to have a message to customer, it's possible to send a message with a maximum of 255 caracters, just as follows:
+If you want the carnet billet to have a message to customer, it's possible to send a message with a maximum of 80 caracters, just as follows:
 
 ```php
 $items = [
@@ -171,7 +171,7 @@ $body = [
     'customer' => $customer,
     'repeats' => 5,
     'expire_at' => '2020-12-02',
-    'message' => 'The delivery time is counted in working days, in other words not inlclude Saturdays, Sundays and holidays'
+    'message' => 'The delivery time is counted in working days, not include weekends and holidays'
 ];
 ```
 

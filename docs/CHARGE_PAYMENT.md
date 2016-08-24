@@ -83,7 +83,7 @@ Array
 )
 ```
 
-If you want the banking billet to have a message to customer, it's possible to send a message with a maximum of 255 caracters, just as follows:
+If you want the banking billet to have a message to customer, it's possible to send a message with a maximum of 80 caracters, just as follows:
 
 ```php
 $params = ['id' => 1000];
@@ -99,7 +99,7 @@ $body = [
         'banking_billet' => [
             'expire_at' => '2018-12-12',
             'customer' => $customer,
-            'message' => 'The delivery time is counted in working days, in other words not inlclude Saturdays, Sundays and holidays'
+            'message' => 'The delivery time is counted in working days, not include weekends and holidays'
         ]
     ]
 ];
