@@ -3,9 +3,6 @@
 Sdk for Gerencianet Pagamentos' API.
 For more informations about parameters and values, please refer to [Gerencianet](http://gerencianet.com.br) documentation.
 
-**Em caso de dúvidas, você pode verificar a [Documentação](https://docs.gerencianet.com.br) da API na Gerencianet e, necessitando de mais detalhes ou informações, entre em contato com nossa consultoria técnica, via nossos [Canais de Comunicação](https://gerencianet.com.br/central-de-ajuda).**
-
-
 [![Build Status](https://travis-ci.org/gerencianet/gn-api-sdk-php.svg)](https://travis-ci.org/gerencianet/gn-api-sdk-php)
 [![Code Climate](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/gpa.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php)
 [![Test Coverage](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/coverage.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/coverage)
@@ -91,45 +88,7 @@ Then open any example in your browser.
 
 ## Additional Documentation
 
-#### Charges
-- [Creating charges](/docs/CHARGE.md)
-- [Paying a charge](/docs/CHARGE_PAYMENT.md)
-- [Detailing charges](/docs/CHARGE_DETAIL.md)
-- [Updating informations](/docs/CHARGE_UPDATE.md)
-- [Resending billet](/docs/RESEND_BILLET.md)
-- [Adding information to charge's history](/docs/CHARGE_CREATE_HISTORY.md)
-
-#### Carnets
-
-- [Creating carnets](/docs/CARNET.md)
-- [Detailing carnets](/docs/CARNET_DETAIL.md)
-- [Updating informations](/docs/CARNET_UPDATE.md)
-- [Resending the carnet](/docs/CARNET_RESEND.md)
-- [Resending carnet parcel](/docs/CARNET_RESEND_PARCEL.md)
-- [Adding information to carnet's history](/docs/CARNET_CREATE_HISTORY.md)
-- [Canceling the carnet](/docs/CARNET_CANCEL.md)
-- [Canceling carnet parcel](/docs/CARNET_CANCEL_PARCEL.md)
-
-#### Subscriptions
-
-- [Creating subscriptions](/docs/SUBSCRIPTION.md)
-- [Setting the payment method](/docs/SUBSCRIPTION_PAYMENT.md)
-- [Detailing subscriptions](/docs/SUBSCRIPTION_DETAIL.md)
-- [Updating informations](/docs/SUBSCRIPTION_UPDATE.md)
-- [Listing plans](/docs/PLAN_LIST.md)
-
-#### Marketplace
-
-- [Creating a marketplace](/docs/MARKETPLACE.md)
-
-#### Notifications
-
-- [Getting notifications](/docs/NOTIFICATION.md)
-
-#### Payments
-
-- [Getting the payment data](/docs/PAYMENT_DATA.md)
-
+The full documentation with all available endpoints is in https://dev.gerencianet.com.br/.
 
 ## License ##
 [MIT](LICENSE)
