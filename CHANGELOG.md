@@ -1,3 +1,8 @@
+# 1.0.11
+
+- Added: new endpoint (link charge)
+- Updated: docs
+
 # 1.0.10
 
 - Added: new endpoints (cancel carnet and cancel parcel)
