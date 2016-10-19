@@ -20,10 +20,13 @@ Or include it in your composer.json file:
 },
 ...
 ```
-
 ## Requirements
-* PHP >= 5.4.0
+* PHP >= 5.3
 
+## Tested with
+```
+php  5.3, 5.4 and 5.5
+```
 ## Getting started
 Require the module and namespaces:
 ```php
