@@ -21,7 +21,7 @@ $body = [
 
 try {
   $api = new Gerencianet($options);
-  $response = $api->chargeLink($params, $body);
+  $response = $api->updateChargeLink($params, $body);
 
   print_r($response);
 } catch (GerencianetException $e) {

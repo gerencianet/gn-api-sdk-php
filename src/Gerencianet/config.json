@@ -119,6 +119,14 @@
     "linkCharge": {
       "route": "/v1/charge/:id/link",
       "method": "post"
+    },
+    "chargeLink": {
+      "route": "/v1/charge/:id/link",
+      "method": "post"
+    },
+    "updateChargeLink": {
+      "route": "/v1/charge/:id/link",
+      "method": "put"
     }
   }
 }
