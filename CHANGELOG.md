@@ -1,6 +1,10 @@
+# 1.0.12
+
+- Added: new endpoint (update charge link)
+
 # 1.0.11
 
-- Added: new endpoint (link charge)
+- Added: new endpoint (charge link)
 - Updated: docs
 
 # 1.0.10
