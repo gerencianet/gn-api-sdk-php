@@ -1,3 +1,11 @@
+# 1.0.14
+
+- Added: timeout option
+
+# 1.0.13
+
+- Fix: code climate on dev dependencies
+
 # 1.0.12
 
 - Added: new endpoint (update charge link)

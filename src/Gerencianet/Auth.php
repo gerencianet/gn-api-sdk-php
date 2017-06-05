@@ -34,8 +34,10 @@ class Auth
     {
         $endpoints = Config::get('ENDPOINTS');
 
-        $requestOptions = ['auth' => [$this->clientId, $this->clientSecret],
-         'json' => ['grant_type' => 'client_credentials'], ];
+        $requestTimeout = isset($this->options['timeout'])? (double)$this->options['timeout'] : 30.0;
+        
+        $requestOptions = ['auth' => [$this->clientId, $this->clientSecret], 
+         'json' => ['grant_type' => 'client_credentials'], 'timeout' => $requestTimeout];
 
         $response = $this->request
                           ->send($endpoints['authorize']['method'],   $endpoints['authorize']['route'],

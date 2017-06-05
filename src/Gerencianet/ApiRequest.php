@@ -25,14 +25,17 @@ class ApiRequest
 
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $partner_token = isset($this->options['partner_token'])? $this->options['partner_token'] : "";
-
+        $requestTimeout = isset($this->options['timeout'])? (double)$this->options['timeout'] : 30.0;
+                
         try {
-            return $this->request->send($method, $route, ['json' => $body,
+            return $this->request->send($method, $route, ['json' => $body, 
+            'timeout' => $requestTimeout,
             'headers' => ['Authorization' => 'Bearer '.$this->auth->accessToken, 'api-sdk' => 'php-' . $composerData['version'], 'partner-token' => $partner_token]]);
         } catch (AuthorizationException $e) {
             $this->auth->authorize();
 
             return $this->request->send($method, $route, ['json' => $body,
+            'timeout' => $requestTimeout,
             'headers' => ['Authorization' => 'Bearer '.$this->auth->accessToken, 'api-sdk' => 'php-' . $composerData['version'], 'partner-token' => $partner_token]]);
         }
     }
