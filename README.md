@@ -25,7 +25,7 @@ Or include it in your composer.json file:
 
 ## Tested with
 ```
-php 5.5 and 7.1
+php 5.5, 5.6, 7.0 and 7.1
 ```
 ## Getting started
 Require the module and namespaces:
@@ -96,7 +96,7 @@ Then open any example in your browser.
 
 | Version | Status | Packagist | Repo | PHP Version |
 | --- | --- | --- | --- | --- |
-| 1.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v1](https://github.com/gerencianet/gn-api-sdk-php/tree/v1.x) | \>= 5.4 |
+| 1.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v1](https://github.com/gerencianet/gn-api-sdk-php/tree/1.x) | \>= 5.4 |
 | 2.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v2](https://github.com/gerencianet/gn-api-sdk-php) | \>= 5.5 |
 
 ## Additional Documentation
