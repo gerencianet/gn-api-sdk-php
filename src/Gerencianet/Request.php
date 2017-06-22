@@ -25,7 +25,7 @@ class Request
         $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
         $this->client = new Client([
         'debug' => $this->config['debug'],
-        'base_url' => $this->config['baseUri'],
+        'base_uri' => $this->config['baseUri'],
         'headers' => [
           'Content-Type' => 'application/json',
           'api-sdk' => 'php-' . $composerData['version'],
@@ -36,13 +36,12 @@ class Request
 
     public function send($method, $route, $requestOptions)
     {
-
         try {
             if($this->certified_path){
                 $this->client->setDefaultOption("verify", $this->certified_path);
             }
-            $this->request = $this->client->createRequest($method, $route, $requestOptions);
-            $response = $this->client->send($this->request);
+
+            $response = $this->client->request($method, $route, $requestOptions);
 
             return json_decode($response->getBody(), true);
         } catch (ClientException $e) {

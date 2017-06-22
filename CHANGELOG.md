@@ -1,3 +1,8 @@
+# 2.0.0
+
+- Breaking change: Drop PHP 5.4 support 
+- Breaking change: Update Guzzle version
+
 # 1.0.14
 
 - Added: timeout option

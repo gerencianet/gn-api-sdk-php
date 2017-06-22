@@ -3,8 +3,9 @@
 namespace Gerencianet;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Subscriber\Mock;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 
 class RequestTest extends \PHPUnit_Framework_TestCase
 {
@@ -32,7 +33,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request = new Request($this->options);
 
         $client = $this->getMockBuilder('Client')
-                              ->setMethods(array('send', 'createRequest', 'setDefaultOption'))
+                              ->setMethods(array('request', 'setDefaultOption'))
                               ->getMock();
 
         $response = $this->getMockBuilder('Response')
@@ -42,7 +43,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $response->method('getBody')->willReturn($this->success);
 
         $client->expects($this->once())
-                ->method('send')
+                ->method('request')
                 ->willReturn($response);
 
         $request->client = $client;
@@ -55,15 +56,17 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      * @test
      * @expectedException Gerencianet\Exception\AuthorizationException
      */
+
     public function shouldThrowExceptionForUnauthorized()
     {
         $request = new Request($this->options);
-        // Create a mock and queue two responses.
-        $mock = new Mock([
+
+        $mock = new MockHandler([
             new Response(401, ['Content-Length' => 100]),
         ]);
 
-        $request->client->getEmitter()->attach($mock);
+        $handler = HandlerStack::create($mock);
+        $request->client = new Client(['handler' => $handler]);
 
         $webResponse = $request->send('POST', '/authorize', ['json' => ['grant_type' => 'client_credentials']]);
     }
@@ -75,12 +78,13 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     public function shouldThrowExceptionForServerError()
     {
         $request = new Request($this->options);
-        // Create a mock and queue two responses.
-        $mock = new Mock([
+
+        $mock = new MockHandler([
             new Response(500, ['Content-Length' => 100]),
         ]);
 
-        $request->client->getEmitter()->attach($mock);
+        $handler = HandlerStack::create($mock);
+        $request->client = new Client(['handler' => $handler]);
 
         $webResponse = $request->send('POST', '/v1/authorize', ['json' => ['grant_type' => 'client_credentials']]);
     }

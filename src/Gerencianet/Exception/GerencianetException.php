@@ -14,8 +14,8 @@ class GerencianetException extends Exception
     {
         $error = $exception;
 
-        if ($exception instanceof \GuzzleHttp\Stream\Stream) {
-            $error = $this->parseStream($exception);
+        if ($exception instanceof \GuzzleHttp\Psr7\Stream) {
+                $error = $this->parseStream($exception);
         }
 
         $message = isset($error['error_description']['message']) ? $error['error_description']['message'] : $error['error_description'];

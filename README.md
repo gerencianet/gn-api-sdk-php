@@ -21,11 +21,11 @@ Or include it in your composer.json file:
 ...
 ```
 ## Requirements
-* PHP >= 5.4
+* PHP >= 5.5
 
 ## Tested with
 ```
-php 5.4 and 5.5
+php 5.5 and 7.1
 ```
 ## Getting started
 Require the module and namespaces:
@@ -51,7 +51,8 @@ Instantiate the module passing using your client_id, client_secret and sandbox e
 $options = [
   'client_id' => 'client_id',
   'client_secret' => 'client_secret',
-  'sandbox' => true
+  'sandbox' => true,
+  'timeout' => 30
 ];
 
 $api = new Gerencianet($options);
@@ -64,6 +65,7 @@ $options = [
   'client_id' => 'client_id',
   'client_secret' => 'client_secret',
   'sandbox' => false
+  'timeout' => 30
 ];
 
 $api = new Gerencianet($options);
@@ -88,6 +90,14 @@ php -S localhost:9000
 Then open any example in your browser.
 
 :warning: Some examples require you to change some parameters to work, like examples/charge/detail.php where you must change the id parameter.
+
+
+## Version Guidance
+
+| Version | Status | Packagist | Repo | PHP Version |
+| --- | --- | --- | --- | --- |
+| 1.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v1](https://github.com/gerencianet/gn-api-sdk-php/tree/v1.x) | \>= 5.4 |
+| 2.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v2](https://github.com/gerencianet/gn-api-sdk-php) | \>= 5.5 |
 
 ## Additional Documentation
 
