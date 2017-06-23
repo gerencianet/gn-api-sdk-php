@@ -16,7 +16,7 @@ Or include it in your composer.json file:
 ```
 ...
 "require": {
-  "gerencianet/gerencianet-sdk-php": "1.*"
+  "gerencianet/gerencianet-sdk-php": "2.*"
 },
 ...
 ```
