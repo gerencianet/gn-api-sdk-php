@@ -10,7 +10,7 @@ For more informations about parameters and values, please refer to [Gerencianet]
 ## Installation
 Require this package with [composer](https://getcomposer.org/):
 ```
-$ composer require gerencianet/gerencianet-sdk-php
+$ composer require gerencianet/gerencianet-sdk-php:^1.0.0
 ```
 Or include it in your composer.json file:
 ```
