@@ -1,3 +1,8 @@
+# 2.1.0
+
+- Added: new endpoint (update plan)
+- Added: new endpoint (create subscription history)
+
 # 2.0.0
 
 - Breaking change: Drop PHP 5.4 support 
