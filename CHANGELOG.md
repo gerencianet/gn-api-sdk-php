@@ -1,3 +1,8 @@
+# 1.0.15
+
+- Added: new endpoint (update plan)
+- Added: new endpoint (create subscription history)
+
 # 1.0.14
 
 - Added: timeout option
