@@ -135,6 +135,10 @@
     "createSubscriptionHistory": {
       "route": "/v1/subscription/:id/history",
       "method": "post"
+    },
+    "createChargeBalanceSheet": {
+      "route": "/v1/charge/:id/balance-sheet",
+      "method": "post"
     }
   }
 }
