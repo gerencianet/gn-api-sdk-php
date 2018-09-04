@@ -139,6 +139,10 @@
     "createChargeBalanceSheet": {
       "route": "/v1/charge/:id/balance-sheet",
       "method": "post"
+    },
+    "settleCharge": {
+      "route": "/v1/charge/:id/settle",
+      "method": "PUT"
     }
   }
 }
