@@ -1,5 +1,10 @@
 # 2.2.0
 
+- Added: new endpoint (settleCharge)
+- Added: new endpoint (settleCarnetParcel)
+
+# 2.2.0
+
 - Added: new endpoint (create charge balance sheet)
 
 # 2.1.0
