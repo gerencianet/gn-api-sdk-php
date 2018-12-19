@@ -1,4 +1,4 @@
-# 2.2.0
+# 2.3.0
 
 - Added: new endpoint (settleCharge)
 - Added: new endpoint (settleCarnetParcel)
