@@ -1,7 +1,7 @@
 {
   "name": "gerencianet/gerencianet-sdk-php",
   "description": "GN API SDK PHP",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "require": {
     "guzzlehttp/guzzle": "^6.0.0",
     "php": ">=5.5.0"
@@ -23,6 +23,8 @@
     "name": "Thomaz Feitoza"
   }, {
     "name": "Filipe Mata"
+  }, {
+    "name": "Thiago Resende"
   }],
   "autoload": {
     "psr-0": {
