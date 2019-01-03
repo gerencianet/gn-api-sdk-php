@@ -1,3 +1,8 @@
+# 2.3.0
+
+- Added: new endpoint (settle charge)
+- Added: new endpoint (settle carnet parcel)
+
 # 2.2.0
 
 - Added: new endpoint (create charge balance sheet)
