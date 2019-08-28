@@ -13,7 +13,7 @@
       "method": "post"
     },
     "oneStep": {
-      "route": "/v1/one-step",
+      "route": "/v1/charge/one-step",
       "method": "post"
     },
     "detailCharge": {
