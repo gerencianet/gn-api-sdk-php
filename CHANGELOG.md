@@ -1,3 +1,7 @@
+# 2.4.0
+
+- Added: new endpoint (oneStep charge)
+
 # 2.3.0
 
 - Added: new endpoint (settle charge)

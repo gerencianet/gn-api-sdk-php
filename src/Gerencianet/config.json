@@ -12,6 +12,10 @@
       "route": "/v1/charge",
       "method": "post"
     },
+    "oneStep": {
+      "route": "/v1/one-step",
+      "method": "post"
+    },
     "detailCharge": {
       "route": "/v1/charge/:id",
       "method": "get"
