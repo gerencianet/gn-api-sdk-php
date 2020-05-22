@@ -1,13 +1,10 @@
 <?php
-​
 require __DIR__.'/../../vendor/autoload.php';
-​
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
-​
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
-    
+
    $item_1 = [
        'name' => 'Gorbadoc Oldbuck',
        'amount' => 1,
@@ -20,7 +17,7 @@ $options = json_decode($file, true);
    $customer = [
        'name' => 'Gorbadoc Oldbuck',
        'cpf' => '94271564656',
-       'phone_number' => '5144916523',
+       'phone_number' => '5144916523'
    ];
    $discount = [
        'type' => 'currency',
@@ -63,7 +60,3 @@ $options = json_decode($file, true);
    } catch (Exception $e) {
        print_r($e->getMessage());
    }
-Collapse
-
-
-
