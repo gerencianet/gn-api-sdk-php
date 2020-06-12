@@ -1,3 +1,7 @@
+# 2.4.1
+
+- Fix: Files with endpoint oneStep charge
+
 # 2.4.0
 
 - Added: new endpoint (oneStep charge)
