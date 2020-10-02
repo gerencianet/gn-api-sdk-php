@@ -3,7 +3,7 @@
   "description": "GN API SDK PHP",
   "version": "2.4.1",
   "require": {
-    "guzzlehttp/guzzle": "^6.0.0",
+    "guzzlehttp/guzzle": "^7.0",
     "php": ">=5.5.0"
   },
   "require-dev": {
@@ -11,21 +11,32 @@
     "phpunit/phpunit": "~4.6"
   },
   "license": "MIT",
-  "authors": [{
-    "name": "Cecília Deveza"
-  }, {
-    "name": "Danniel Hugo"
-  }, {
-    "name": "Francisco Thiene"
-  }, {
-    "name": "Talita Campos"
-  }, {
-    "name": "Thomaz Feitoza"
-  }, {
-    "name": "Filipe Mata"
-  }, {
-    "name": "Thiago Resende"
-  }],
+  "authors": [
+    {
+      "name": "Cecília Deveza"
+    },
+    {
+      "name": "Danniel Hugo"
+    },
+    {
+      "name": "Francisco Thiene"
+    },
+    {
+      "name": "Talita Campos"
+    },
+    {
+      "name": "Thomaz Feitoza"
+    },
+    {
+      "name": "Filipe Mata"
+    },
+    {
+      "name": "Thiago Resende"
+    },
+    {
+      "name": "Luciano Tonet"
+    }
+  ],
   "autoload": {
     "psr-0": {
       "Gerencianet": "src/"
