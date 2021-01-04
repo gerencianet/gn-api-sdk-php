@@ -11,9 +11,6 @@ use Gerencianet\Exception\AuthorizationException;
 class Request
 {
     private $client;
-    private $baseUri;
-    private $auth;
-    private $request;
     private $config;
     private $certified_path;
 
@@ -24,21 +21,25 @@ class Request
         $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
         $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
         $this->client = new Client([
-        'debug' => $this->config['debug'],
-        'base_uri' => $this->config['baseUri'],
-        'headers' => [
-          'Content-Type' => 'application/json',
-          'api-sdk' => 'php-' . $composerData['version'],
-          'partner-token' => $partner_token
-          ],
-      ]);
+            'debug' => $this->config['debug'],
+            'base_uri' => $this->config['baseUri'],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'api-sdk' => 'php-' . $composerData['version'],
+                'partner-token' => $partner_token
+            ]
+        ]);
     }
 
     public function send($method, $route, $requestOptions)
     {
         try {
             if($this->certified_path){
-                $this->client->setDefaultOption("verify", $this->certified_path);
+                $this->client->setDefaultOption('verify', $this->certified_path);
+            }
+
+            if($this->config['pixCert']){
+                $requestOptions['cert'] = $this->config['pixCert'];
             }
 
             $response = $this->client->request($method, $route, $requestOptions);
