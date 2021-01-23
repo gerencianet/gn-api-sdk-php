@@ -165,9 +165,31 @@
         "route": "/oauth/token",
         "method": "post"
       },
+
+      "pixConfigWebhook": {
+          "route": "/v2/webhook/:chave",
+          "method": "put"
+      },
+      "pixGetWebhook": {
+          "route": "/v2/webhook/:chave",
+          "method": "get"
+      },
+      "pixListWebhook": {
+          "route": "/v2/webhook",
+          "method": "get"
+      },
+      "pixDeleteWebhook": {
+          "route": "/v2/webhook",
+          "method": "delete"
+      },
+
       "pixCreateCharge": {
         "route": "/v2/cob/:txid",
         "method": "put"
+      },
+      "pixCreateImmediateCharge": {
+        "route": "/v2/cob",
+        "method": "post"
       },
       "pixDetailCharge": {
         "route": "/v2/cob/:txid",
@@ -179,6 +201,10 @@
       },
       "pixListCharges": {
         "route": "/v2/cob",
+        "method": "get"
+      },
+      "pixGenerateQRCode": {
+        "route": "/v2/loc/:id/qrcode",
         "method": "get"
       }
     }

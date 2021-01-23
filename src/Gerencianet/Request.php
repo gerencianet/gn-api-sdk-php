@@ -20,7 +20,8 @@ class Request
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
         $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
-        $this->client = new Client([
+
+        $clientData = [
             'debug' => $this->config['debug'],
             'base_uri' => $this->config['baseUri'],
             'headers' => [
@@ -28,7 +29,9 @@ class Request
                 'api-sdk' => 'php-' . $composerData['version'],
                 'partner-token' => $partner_token
             ]
-        ]);
+        ];
+
+        $this->client = new Client($clientData);
     }
 
     public function send($method, $route, $requestOptions)
@@ -38,8 +41,15 @@ class Request
                 $this->client->setDefaultOption('verify', $this->certified_path);
             }
 
-            if($this->config['pixCert']){
+            if(isset($this->config['pixCert'])){
                 $requestOptions['cert'] = $this->config['pixCert'];
+            }
+
+            // Custom header data
+            if(isset($this->config['headers'])) {
+                foreach($this->config['headers'] as $key => $value) {
+                    $requestOptions['headers'][$key] = $value;
+                }
             }
 
             $response = $this->client->request($method, $route, $requestOptions);

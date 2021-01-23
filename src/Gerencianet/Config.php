@@ -44,6 +44,10 @@ class Config
             }
         }
 
+        if (isset($options['headers'])) {
+            $conf['headers'] = $options['headers'];
+        }
+
         return $conf;
     }
 

@@ -26,11 +26,11 @@ class Endpoints
 
     public static function getInstance($options = null, $requester = null)
     {
-        if(self::$instance === null){
+        if (!isset(self::$instance)) {
             if(!isset($options)) {
                 throw new Exception('config not defined');
             }
-            
+
             self::$instance = new self($options, $requester);
         }
         return self::$instance;
