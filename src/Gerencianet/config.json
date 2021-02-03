@@ -179,7 +179,7 @@
           "method": "get"
       },
       "pixDeleteWebhook": {
-          "route": "/v2/webhook",
+          "route": "/v2/webhook/:chave",
           "method": "delete"
       },
 
@@ -206,6 +206,42 @@
       "pixGenerateQRCode": {
         "route": "/v2/loc/:id/qrcode",
         "method": "get"
+      },
+      "pixDevolution": {
+        "route": "/v2/pix/:e2eId/devolucao/:id",
+        "method": "put"
+      },
+      "pixDevolutionGet": {
+        "route": "/v2/pix/:e2eId/devolucao/:id",
+        "method": "get"
+      },
+      "pixSend": {
+        "route": "/v2/pix",
+        "method": "post"
+      },
+      "pixSendList": {
+        "route": "/v2/pix/:e2eId",
+        "method": "get"
+      },
+      "pixReceivedList": {
+        "route": "/v2/pix",
+        "method": "get"
+      },
+      "pixLocationCreate": {
+        "route": "/v2/loc",
+        "method": "post"
+      },
+      "pixLocationList": {
+        "route": "/v2/loc",
+        "method": "get"
+      },
+      "pixLocationGet": {
+        "route": "/v2/loc/:id",
+        "method": "get"
+      },
+      "pixLocationDeleteTxid": {
+        "route": "/v2/loc/:id/txid",
+        "method": "delete"
       }
     }
   }

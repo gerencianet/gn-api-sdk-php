@@ -4,7 +4,7 @@ namespace Gerencianet;
 
 use GuzzleHttp\Client;
 
-class AuthTest extends \PHPUnit_Framework_TestCase
+class AuthTest extends \PHPUnit\Framework\TestCase
 {
     private $options = [
       'client_id' => 'client_id',
@@ -14,7 +14,7 @@ class AuthTest extends \PHPUnit_Framework_TestCase
 
     private $success;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->success = json_encode(['access_token' => 'token', 'expires_in' => 500, 'token_type' => 'bearer']);
     }

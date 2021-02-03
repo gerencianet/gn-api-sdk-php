@@ -7,7 +7,7 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+class RequestTest extends \PHPUnit\Framework\TestCase
 {
 
     private $options = [
@@ -18,7 +18,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
     private $success;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->success = json_encode(['access_token' => 'token', 'expires_in' => 500, 'token_type' => 'bearer']);
     }

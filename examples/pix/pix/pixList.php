@@ -8,19 +8,19 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../../config.json');
 $options = json_decode($file, true);
 
-$options['headers'] = array(
-    'x-skip-mtls-checking' => 'true',
+$options['header'] = array(
+    'x-account-code' => ''
 );
 
 try {
-	$api = Gerencianet::getInstance($options);
 
-	$params = ['chave' => ''];
-	$body = ['webhookUrl' => ''];
+    $api = Gerencianet::getInstance($options);
 
-	$pix = $api->pixConfigWebhook($params, $body);
-	echo json_encode($pix);
+    $params = ['e2eId' => ''];
 
+    $pix = $api->pixSendList($params);
+
+    echo json_encode($pix);
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);

@@ -9,15 +9,17 @@ $file = file_get_contents(__DIR__.'/../../config.json');
 $options = json_decode($file, true);
 
 try {
-	$params = ['txid' => '2hDbQgh341ukY60TiKeYhstfPCqZrjlEk5G'];
+	$params = ['txid' => ''];
 	$api = Gerencianet::getInstance($options);
     $pix = $api->pixDetailCharge($params);
 
-    print_r($pix);
+    echo json_encode($pix);
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
     print_r($e->errorDescription);
+
+    throw new Error($e->error);
 } catch (Exception $e) {
-    print_r($e->getMessage());
+    throw new Error($e->getMessage());
 }

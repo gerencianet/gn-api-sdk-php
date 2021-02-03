@@ -4,7 +4,7 @@ namespace Gerencianet;
 
 use Gerencianet\Exception\AuthorizationException;
 
-class ApiRequestTest extends \PHPUnit_Framework_TestCase
+class ApiRequestTest extends \PHPUnit\Framework\TestCase
 {
     private $options = [
       'client_id' => 'client_id',
@@ -15,7 +15,7 @@ class ApiRequestTest extends \PHPUnit_Framework_TestCase
     private $authorization;
     private $response;
 
-    public function setUp()
+    public function setUp(): void
     {
         $this->authorization = json_encode(['access_token' => 'token', 'expires_in' => 500, 'token_type' => 'bearer']);
         $this->response = json_encode(['code' => 200]);

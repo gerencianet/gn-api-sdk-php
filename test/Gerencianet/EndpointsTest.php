@@ -2,12 +2,12 @@
 
 namespace Gerencianet;
 
-class EndpointsTest extends \PHPUnit_Framework_TestCase
+class EndpointsTest extends \PHPUnit\Framework\TestCase
 {
     private $options;
     private $requester;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->options = ['sandbox' => true, 'client_id' => 'client_id', 'client_secret' => 'client_secret'];
         $this->requester = $this->getMockBuilder('ApiRequest')

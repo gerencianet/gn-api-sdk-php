@@ -8,11 +8,25 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../../config.json');
 $options = json_decode($file, true);
 
-try {
-	$params = ['inicio' => '2020-11-22T16:01:35Z', 'fim' => '2021-02-22T16:01:35Z'];
+//Para habilitar o end-point pix/enviar é necessário entrar em contato
+//com a equipe Comercial da Gerencianet para novo anexo contratual.
 
-	$api = Gerencianet::getInstance($options);
-    $pix = $api->pixListCharges($params);
+try {
+    $api = Gerencianet::getInstance($options);
+
+    $body = [
+        'valor' => '0.01',
+        'pagador' => [
+            'chave' => ''
+        ],
+        'favorecido' => [
+            'chave' => ''
+        ]
+    ];
+    echo json_encode($body);
+    $params = [];
+
+    $pix = $api->pixSend($params, $body);
 
     echo json_encode($pix);
 } catch (GerencianetException $e) {
