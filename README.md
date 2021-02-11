@@ -16,21 +16,27 @@ Or include it in your composer.json file:
 ```
 ...
 "require": {
-  "gerencianet/gerencianet-sdk-php": "2.*"
+  "gerencianet/gerencianet-sdk-php": "3.*"
 },
 ...
 ```
+Install the dependencies
+```
+$ composer install
+```
+
 ## Requirements
-* PHP >= 5.5
+* PHP >= 5.6
+* Extension ext-simplexml
 
 ## Tested with
 ```
-php 5.5, 5.6, 7.0 and 7.1
+php 5.6 and 7.X
 ```
 ## Getting started
 Require the module and namespaces:
 ```php
-require __DIR__ . '/../sdk/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 
 use Gerencianet\Gerencianet;
 ```
@@ -45,13 +51,17 @@ try {
 }
 ```
 
+To begin, you must configure the parameters in the config.json file. Instantiate the information `client_id`, `client_secret` for your application and `sandbox` equal to *true*, if your environment is Homologation, or *false*, if it is Production. If you use Pix charges, inform in the attribute `pix_cert` the directory and name of your certificate in .pem format.
+
 ### For development environment
 Instantiate the module passing using your client_id, client_secret and sandbox equals true:
 ```php
 $options = [
   'client_id' => 'client_id',
   'client_secret' => 'client_secret',
+  'pix_cert' => '../certs/developmentCertificate.pem',
   'sandbox' => true,
+  'debug' => false,
   'timeout' => 30
 ];
 
@@ -64,23 +74,27 @@ To change the environment to production, just set the third sandbox to false:
 $options = [
   'client_id' => 'client_id',
   'client_secret' => 'client_secret',
-  'sandbox' => false
+  'pix_cert' => '../certs/productionCertificate.pem',
+  'sandbox' => false,
+  'debug' => false,
   'timeout' => 30
 ];
 
 $api = new Gerencianet($options);
 ```
 
-## Running tests
+To generate your certificate open a ticket at https://gerencianet.com.br/fale-conosco informing your account number, application name and environment (Homologation/Production). Our team will return with the .p12 certificate for you to consume the endpoints.
 
-To run tests install [PHPUnit](https://phpunit.de/getting-started.html) and run the following command:
-```php
-$ phpunit -c config.xml
+For use in PHP, the certificate must be converted to .pem.
+Below you will find example using the OpenSSL command for conversion.
+
+### Command OpenSSL
+```
+// Gerar certificado e chave em único arquivo
+openssl pkcs12 -in certificado.p12 -out certificado.pem -nodes
 ```
 
 ## Running examples
-Update examples/config.json file with client_id and client_secret of your application.
-
 You can run using any web server, like Apache or nginx, or simple start a php server as follow:
 
 ```php
@@ -89,7 +103,7 @@ php -S localhost:9000
 
 Then open any example in your browser.
 
-:warning: Some examples require you to change some parameters to work, like examples/charge/detail.php where you must change the id parameter.
+:warning: Some examples require you to change some parameters to work, like `examples/charge/oneStepBillet.php` or `examples/pix/charge/create.php` where you must change the id parameter.
 
 
 ## Version Guidance
@@ -97,7 +111,8 @@ Then open any example in your browser.
 | Version | Status | Packagist | Repo | PHP Version |
 | --- | --- | --- | --- | --- |
 | 1.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v1](https://github.com/gerencianet/gn-api-sdk-php/tree/1.x) | \>= 5.4 |
-| 2.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v2](https://github.com/gerencianet/gn-api-sdk-php) | \>= 5.5 |
+| 2.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v2](https://github.com/gerencianet/gn-api-sdk-php/tree/2.x) | \>= 5.5 |
+| 3.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v3](https://github.com/gerencianet/gn-api-sdk-php) | \>= 5.6 |
 
 ## Additional Documentation
 
