@@ -7,6 +7,7 @@ use Gerencianet\Gerencianet;
 
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
+unset($options['pix_cert']);
 
 $params = ['id' => 0];
 

@@ -1,3 +1,7 @@
+# 3.0.0
+- Added: api Pix
+- Fix: updated dependencies
+
 # 2.4.1
 
 - Fix: Files with endpoint oneStep charge

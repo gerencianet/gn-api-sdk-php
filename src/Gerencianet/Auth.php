@@ -11,9 +11,9 @@ class Auth
     private $accessToken;
     private $tokenType;
     private $expires;
-    private $sandbox = false;
     private $config;
     private $request;
+    private $pixCert;
 
     public function __construct($options)
     {
@@ -25,8 +25,8 @@ class Auth
         }
 
         $this->request = new Request($options);
-
         $this->clientId = $this->config['clientId'];
+        $this->pixCert = isset($this->config['pixCert']) ? $this->config['pixCert'] : null;
         $this->clientSecret = $this->config['clientSecret'];
     }
 
@@ -35,12 +35,13 @@ class Auth
         $endpoints = Config::get('ENDPOINTS');
 
         $requestTimeout = isset($this->options['timeout'])? (double)$this->options['timeout'] : 30.0;
-        
-        $requestOptions = ['auth' => [$this->clientId, $this->clientSecret], 
+        $requestOptions = ['auth' => [$this->clientId, $this->clientSecret],
          'json' => ['grant_type' => 'client_credentials'], 'timeout' => $requestTimeout];
 
+        $endpoints = $this->pixCert ? $endpoints['PIX'] : $endpoints['DEFAULT'];
+
         $response = $this->request
-                          ->send($endpoints['authorize']['method'],   $endpoints['authorize']['route'],
+                          ->send($endpoints['authorize']['method'], $endpoints['authorize']['route'],
                           $requestOptions);
 
         $this->accessToken = $response['access_token'];

@@ -4,6 +4,7 @@ use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
+unset($options['pix_cert']);
 
    $item_1 = [
        'name' => 'Gorbadoc Oldbuck',

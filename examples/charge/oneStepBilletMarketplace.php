@@ -1,18 +1,13 @@
 <?php
 
-require __DIR__.'/../../autoload.php';
+require __DIR__.'/../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-    $clientId = 'informe_seu_client_id'; // insira seu Client_Id, conforme o ambiente (Des ou Prod)
-    $clientSecret = 'informe_seu_client_secret'; // insira seu Client_Secret, conforme o ambiente (Des ou Prod)
-     
-    $options = [
-      'client_id' => $clientId,
-      'client_secret' => $clientSecret,
-      'sandbox' => true // altere conforme o ambiente (true = desenvolvimento e false = producao)
-    ];
+$file = file_get_contents(__DIR__.'/../config.json');
+$options = json_decode($file, true);
+unset($options['pix_cert']);
 
      $repass_1 = [
       'payee_code' => "Insira_aqui_o_indentificador_da conta_destino", // identificador da conta Gerencianet (repasse 1)
@@ -56,10 +51,10 @@ use Gerencianet\Gerencianet;
    $conditional_discount = [ // configurações de desconto condicional
        'type' => 'percentage', // seleção do tipo de desconto 
        'value' => 500, // porcentagem de desconto
-       'until_date' => '2019-09-13' // data máxima para aplicação do desconto
+       'until_date' => '2018-09-13' // data máxima para aplicação do desconto
    ];
    $bankingBillet = [
-       'expire_at' => '2019-09-13', // data de vencimento do titulo
+       'expire_at' => '2018-09-13', // data de vencimento do titulo
        'message' => 'teste\nteste\nteste\nteste', // mensagem a ser exibida no boleto
        'customer' => $customer,
        'discount' =>$discount,
