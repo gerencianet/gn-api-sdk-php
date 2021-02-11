@@ -5,7 +5,9 @@ require __DIR__.'/../../vendor/autoload.php';
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$options = json_decode(__DIR__.'/../config.json', true);
+$file = file_get_contents(__DIR__.'/../config.json');
+$options = json_decode($file, true);
+unset($options['pix_cert']);
 
 $params = ['id' => 0];
 

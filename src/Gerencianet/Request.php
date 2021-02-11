@@ -11,9 +11,6 @@ use Gerencianet\Exception\AuthorizationException;
 class Request
 {
     private $client;
-    private $baseUri;
-    private $auth;
-    private $request;
     private $config;
     private $certified_path;
 
@@ -23,22 +20,36 @@ class Request
         $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
         $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
         $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
-        $this->client = new Client([
-        'debug' => $this->config['debug'],
-        'base_uri' => $this->config['baseUri'],
-        'headers' => [
-          'Content-Type' => 'application/json',
-          'api-sdk' => 'php-' . $composerData['version'],
-          'partner-token' => $partner_token
-          ],
-      ]);
+
+        $clientData = [
+            'debug' => $this->config['debug'],
+            'base_uri' => $this->config['baseUri'],
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'api-sdk' => 'php-' . $composerData['version'],
+                'partner-token' => $partner_token
+            ]
+        ];
+
+        $this->client = new Client($clientData);
     }
 
     public function send($method, $route, $requestOptions)
     {
         try {
             if($this->certified_path){
-                $this->client->setDefaultOption("verify", $this->certified_path);
+                $this->client->setDefaultOption('verify', $this->certified_path);
+            }
+
+            if(isset($this->config['pixCert'])){
+                $requestOptions['cert'] = $this->config['pixCert'];
+            }
+
+            // Custom header data
+            if(isset($this->config['headers'])) {
+                foreach($this->config['headers'] as $key => $value) {
+                    $requestOptions['headers'][$key] = $value;
+                }
             }
 
             $response = $this->client->request($method, $route, $requestOptions);

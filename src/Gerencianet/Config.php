@@ -29,10 +29,14 @@ class Config
             $conf['clientSecret'] = $options['client_secret'];
         }
 
+        if(Config::isPix($options))
+            $conf['pixCert'] = $options['pix_cert'];
+
         if (isset($options['url'])) {
             $conf['baseUri'] = $options['url'];
         } else {
             $config = self::get('URL');
+            $config = Config::isPix($options) ? $config['PIX'] : $config['DEFAULT'];
             $conf['baseUri'] = $config['production'];
 
             if ($conf['sandbox']) {
@@ -40,6 +44,15 @@ class Config
             }
         }
 
+        if (isset($options['headers'])) {
+            $conf['headers'] = $options['headers'];
+        }
+
         return $conf;
+    }
+
+    public static function isPix($options)
+    {
+        return (isset($options['pix_cert']) && is_string($options['pix_cert']));
     }
 }

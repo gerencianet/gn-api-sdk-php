@@ -7,6 +7,7 @@ use Gerencianet\Gerencianet;
 
 $file = file_get_contents(__DIR__.'/../config.json');
 $options = json_decode($file, true);
+unset($options['pix_cert']);
 ​
 $paymentToken = 'a6c8ee07360c2a342662d73f3a1e18db5e1a890a';
 ​
