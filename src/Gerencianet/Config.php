@@ -28,6 +28,9 @@ class Config
         if (isset($options['client_secret'])) {
             $conf['clientSecret'] = $options['client_secret'];
         }
+        if (isset($options['timeout'])) {
+            $conf['timeout'] = $options['timeout'];
+        }
 
         if(Config::isPix($options))
             $conf['pixCert'] = $options['pix_cert'];

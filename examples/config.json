@@ -1,7 +1,8 @@
 {
   "client_id": "client_id",
   "client_secret": "client_secret",
-  "pix_cert" : "../certs/developmentCertificate.pem",
+  "pix_cert": "../certs/developmentCertificate.pem",
   "sandbox": true,
-  "debug": false
+  "debug": false,
+  "timeout": 30
 }
