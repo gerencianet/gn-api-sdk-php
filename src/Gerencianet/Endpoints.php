@@ -57,7 +57,7 @@ class Endpoints
     private function map()
     {
         $this->methods = array_map(function ($endpoint) {
-            return function ($params, $body) use ($endpoint) {
+            return function ($params = [], $body = []) use ($endpoint) {
                 $route = $this->getRoute($endpoint, $params);
                 $query = $this->getQueryString($params);
                 $route .= $query;
