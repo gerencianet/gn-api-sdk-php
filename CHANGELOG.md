@@ -1,3 +1,15 @@
+# 3.1.0
+- Added: New endpoint pix (Create Evp)
+- Added: New endpoint pix (List Evp)
+- Added: New endpoint pix (Delete Evp)
+- Added: New endpoint pix (Update Settings)
+- Added: New endpoint pix (List Settings)
+- Added: New endpoint pix (List Balance)
+- Added: Function to define the endpoints file
+- Fix: Fefinition of timeout in settings
+- Fix: Fet default value in the map function
+- Updated: Field description "solicitacaoPagador"
+
 # 3.0.0
 - Added: api Pix
 - Fix: updated dependencies
