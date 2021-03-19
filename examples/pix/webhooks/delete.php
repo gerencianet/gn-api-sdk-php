@@ -9,12 +9,12 @@ $file = file_get_contents(__DIR__.'/../../config.json');
 $options = json_decode($file, true);
 
 try {
-    $api = Gerencianet::getInstance($options);
-    echo json_encode($api);
     $params = ['chave' => ''];
+
+    $api = Gerencianet::getInstance($options);
     $pix = $api->pixDeleteWebhook($params);
 
-    print_r($pix);
+    echo json_encode(["code" => 204]);
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
