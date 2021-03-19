@@ -12,7 +12,7 @@ try {
 	$params = ['txid' => ''];
 
 	$body = [
-		"solicitacaoPagador" => "Cobrança alterada"
+		"solicitacaoPagador" => "Informe o número ou identificador da cobrança."
 	];
 	$api = Gerencianet::getInstance($options);
     $pix = $api->pixUpdateCharge($params, $body);

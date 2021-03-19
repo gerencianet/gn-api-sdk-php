@@ -25,7 +25,7 @@ try {
             "original" => "0.01"
           ],
           "chave" => "",
-          "solicitacaoPagador" => "Cobrança dos serviços prestados.",
+          "solicitacaoPagador" => "Informe o número ou identificador do pedido.",
           "infoAdicionais" => [
             [
                 "nome" => "Campo 1", // Nome do campo string (Nome) ≤ 50 characters
