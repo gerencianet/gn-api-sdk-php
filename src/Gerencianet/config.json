@@ -242,6 +242,30 @@
       "pixLocationDeleteTxid": {
         "route": "/v2/loc/:id/txid",
         "method": "delete"
+      },
+      "pixCreateEvp": {
+        "route": "/v2/gn/evp",
+        "method": "post"
+      },
+      "pixListEvp": {
+        "route": "/v2/gn/evp",
+        "method": "get"
+      },
+      "pixDeleteEvp": {
+        "route": "/v2/gn/evp/:chave",
+        "method": "delete"
+      },
+      "pixListBalance": {
+        "route": "/v2/gn/saldo",
+        "method": "get"
+      },
+      "pixUpdateSettings": {
+        "route": "/v2/gn/config",
+        "method": "put"
+      },
+      "pixListSettings": {
+        "route": "/v2/gn/config",
+        "method": "get"
       }
     }
   }
