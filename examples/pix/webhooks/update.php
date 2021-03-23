@@ -1,26 +1,25 @@
 <?php
 
-require __DIR__.'/../../../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../../config.json');
+$file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
 
 $options['headers'] = array(
     'x-skip-mtls-checking' => 'true',
 );
 
+$params = ['chave' => ''];
+$body = ['webhookUrl' => ''];
+
 try {
-	$api = Gerencianet::getInstance($options);
+    $api = Gerencianet::getInstance($options);
+    $pix = $api->pixConfigWebhook($params, $body);
 
-	$params = ['chave' => ''];
-	$body = ['webhookUrl' => ''];
-
-	$pix = $api->pixConfigWebhook($params, $body);
-	echo json_encode($pix);
-
+    echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);

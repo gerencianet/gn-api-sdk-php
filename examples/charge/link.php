@@ -1,11 +1,11 @@
 <?php
 
-require __DIR__.'/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../config.json');
+$file = file_get_contents(__DIR__ . '/../config.json');
 $options = json_decode($file, true);
 unset($options['pix_cert']);
 
@@ -15,7 +15,7 @@ $body = [
   'billet_discount' => 0,
   'card_discount' => 0,
   'message' => '',
-  'expire_at' => '2018-12-12',
+  'expire_at' => '2021-12-10',
   'request_delivery_address' => false,
   'payment_method' => 'all'
 ];
@@ -24,7 +24,7 @@ try {
   $api = new Gerencianet($options);
   $response = $api->chargeLink($params, $body);
 
-  print_r($response);
+  echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT) . '</pre>';
 } catch (GerencianetException $e) {
   print_r($e->code);
   print_r($e->error);

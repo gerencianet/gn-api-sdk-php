@@ -1,19 +1,20 @@
 <?php
 
-require __DIR__.'/../../../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../../config.json');
+$file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
+
+$params = ['inicio' => '2020-11-22T16:01:35Z', 'fim' => '2021-02-22T16:01:35Z'];
 
 try {
     $api = Gerencianet::getInstance($options);
-	$params = ['inicio' => '2020-11-22T16:01:35Z', 'fim' => '2021-02-22T16:01:35Z'];
     $pix = $api->pixListWebhook($params);
 
-	echo json_encode($pix);
+    echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);

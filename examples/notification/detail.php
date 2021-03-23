@@ -1,11 +1,11 @@
 <?php
 
-require __DIR__.'/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../config.json');
+$file = file_get_contents(__DIR__ . '/../config.json');
 $options = json_decode($file, true);
 unset($options['pix_cert']);
 
@@ -13,9 +13,9 @@ $params = ['token' => 'token'];
 
 try {
     $api = new Gerencianet($options);
-    $notification = $api->getNotification($params, []);
+    $response = $api->getNotification($params, []);
 
-    print_r($notification);
+    echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
