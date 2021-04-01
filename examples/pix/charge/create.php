@@ -46,13 +46,15 @@ try {
         $qrcode = $api->pixGenerateQRCode($params);
 
         echo 'Detalhes da cobrança:';
-        echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT) . '</pre>';
+        echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 
         echo 'QR Code:';
-        echo '<pre>' . json_encode($qrcode, JSON_PRETTY_PRINT) . '</pre>';
+        echo '<pre>' . json_encode($qrcode, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 
         echo 'Imagem:<br />';
         echo '<img src="' . $qrcode['imagemQrcode'] . '" />';
+    } else {
+        echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
     }
 } catch (GerencianetException $e) {
     print_r($e->code);

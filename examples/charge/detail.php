@@ -15,7 +15,7 @@ try {
     $api = new Gerencianet($options);
     $response = $api->detailCharge($params, []);
 
-    echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT) . '</pre>';
+    echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
