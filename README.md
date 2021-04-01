@@ -88,6 +88,8 @@ $options = [
 $api = new Gerencianet($options);
 ```
 
+### If you use the Pix option:
+
 **To generate your certificate:** Access the menu API (1)-> Meus Certificados (2) and choose the environment you want the certificate: Produção or Homologação -> click in Novo Certificado (3). 
 ![To generate your certificate](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603543f7d1778b2d725dea1e/603543f7d1778b2d725dea1e_85669.png)
 
@@ -107,6 +109,20 @@ Below you will find example using the OpenSSL command for conversion.
 // Gerar certificado e chave em único arquivo
 openssl pkcs12 -in certificado.p12 -out certificado.pem -nodes
 ```
+
+### To register your Pix keys
+The registration of Pix keys can be done through the application. If you don't already have our app installed, click on [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) or [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), according to your smartphone's operating system, to download it.
+
+To register your Pix keys through the application:
+1. Access your account through **app Gerencianet**.
+2. In the side menu, touch **Pix** to start your registration.
+3. Read the information that appears on the screen and click **Registrar Chave**.
+    If this is no longer your first contact, tap **Minhas Chaves** and then the icon (➕).
+4. **Select the data** you are going to register as a Pix Key and tap **avançar** - you must choose at least 1 of the 4 available key options (cell, e-mail, CPF e/ou random key).
+5. After registering the desired Pix keys, click on **concluir**.
+6. **Ready! Your keys are already registered with us.**
+
+
 
 ## Running examples
 You can run using any web server, like Apache or nginx, or simple start a php server as follow:
@@ -132,6 +148,8 @@ Then open any example in your browser.
 ## Additional Documentation
 
 The full documentation with all available endpoints is in https://dev.gerencianet.com.br/.
+
+If you don't have a digital account atnetnet, [open yours now](https://sistema.gerencianet.com.br/)!
 
 ## License ##
 [MIT](LICENSE)
