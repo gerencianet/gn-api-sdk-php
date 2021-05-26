@@ -3,7 +3,6 @@
 namespace Gerencianet;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 use GuzzleHttp\Exception\RequestException;
@@ -59,7 +58,7 @@ class Request
                 
                 return json_decode($response->getBody(), true);
             } catch (RequestException $e) {
-                $response = Psr7\Message::bodySummary($e->getResponse(), 300);
+                $response = ($e->getResponse()->getBody(true)) ? $e->getResponse()->getBody(true) : [];
 
                 return json_decode($response, true);
             }
