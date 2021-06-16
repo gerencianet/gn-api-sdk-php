@@ -9,7 +9,7 @@ $file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
 
 $options['headers'] = array(
-    'x-skip-mtls-checking' => 'true',
+    'x-skip-mtls-checking' => 'false',
 );
 
 $params = ['chave' => ''];
