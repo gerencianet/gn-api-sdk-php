@@ -1,25 +1,25 @@
 <?php
 
-require __DIR__.'/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../config.json');
+$file = file_get_contents(__DIR__ . '/../config.json');
 $options = json_decode($file, true);
 unset($options['pix_cert']);
 
 $body = [
-	'name' => 'My plan',
-	'interval' => 2,
-	'repeats' => null
+    'name' => 'My plan',
+    'interval' => 2,
+    'repeats' => null
 ];
 
 try {
     $api = new Gerencianet($options);
-    $plan = $api->createPlan([], $body);
+    $response = $api->createPlan([], $body);
 
-    print_r($plan);
+    echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);

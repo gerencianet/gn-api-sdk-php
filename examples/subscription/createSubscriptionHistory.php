@@ -1,25 +1,25 @@
 <?php
 
-require __DIR__.'/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../config.json');
+$file = file_get_contents(__DIR__ . '/../config.json');
 $options = json_decode($file, true);
 unset($options['pix_cert']);
 
 $params = ['id' => 0];
 
 $body = [
-  'description' => 'This carnet is about a service'
+    'description' => 'This carnet is about a service'
 ];
 
 try {
     $api = new Gerencianet($options);
     $response = $api->createSubscriptionHistory($params, $body);
 
-    print_r($response);
+    echo '<pre>' . json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);

@@ -1,34 +1,30 @@
 <?php
 
-require __DIR__.'/../../../vendor/autoload.php';
+require __DIR__ . '/../../../vendor/autoload.php';
 
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Gerencianet;
 
-$file = file_get_contents(__DIR__.'/../../config.json');
+$file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
 
 //Para habilitar o end-point pix/enviar é necessário entrar em contato
 //com a equipe Comercial da Gerencianet para novo anexo contratual.
+$body = [
+    'valor' => '0.01',
+    'pagador' => [
+        'chave' => ''
+    ],
+    'favorecido' => [
+        'chave' => ''
+    ]
+];
 
 try {
     $api = Gerencianet::getInstance($options);
+    $pix = $api->pixSend([], $body);
 
-    $body = [
-        'valor' => '0.01',
-        'pagador' => [
-            'chave' => ''
-        ],
-        'favorecido' => [
-            'chave' => ''
-        ]
-    ];
-    echo json_encode($body);
-    $params = [];
-
-    $pix = $api->pixSend($params, $body);
-
-    echo json_encode($pix);
+    echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
