@@ -5,6 +5,7 @@ namespace Gerencianet;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
+use GuzzleHttp\Exception\RequestException;
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Exception\AuthorizationException;
 
@@ -52,9 +53,15 @@ class Request
                 }
             }
 
-            $response = $this->client->request($method, $route, $requestOptions);
+            try {
+                $response = $this->client->request($method, $route, $requestOptions);
+                
+                return json_decode($response->getBody(), true);
+            } catch (RequestException $e) {
+                $response = ($e->getResponse()->getBody(true)) ? $e->getResponse()->getBody(true) : [];
 
-            return json_decode($response->getBody(), true);
+                return json_decode($response, true);
+            }
         } catch (ClientException $e) {
             throw new AuthorizationException($e->getResponse()->getStatusCode(),
                        $e->getResponse()->getReasonPhrase(),
