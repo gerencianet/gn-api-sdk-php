@@ -36,7 +36,7 @@ $ composer require gerencianet/gerencianet-sdk-php
 
 ## Tested with
 ```
-php 7.2 and 7.4
+php 7.2, 7.4 and 8.0
 ```
 ## Getting started
 Require the module and namespaces:
