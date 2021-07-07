@@ -19,7 +19,7 @@
 SDK em PHP para integração com a API da Gerencianet.
 Para mais informações sobre parâmetros e valores, consulte a documentação da [Gerencianet](http://gerencianet.com.br).
 
-Jump To:
+Ir para:
 * [Requisitos](#requisitos)
 * [Testado com](#testado-com)
 * [Instalação](#instalação)
