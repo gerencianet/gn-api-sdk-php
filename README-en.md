@@ -9,15 +9,15 @@
 
 ---
 
-SDK in PHP for integration with Gerencianet API.
-For more informations about parameters and values, please refer to [Gerencianet](http://gerencianet.com.br) documentation.
-
 [![Latest Stable Version](http://poser.pugx.org/gerencianet/gerencianet-sdk-php/v)](https://packagist.org/packages/gerencianet/gerencianet-sdk-php)
 [![License](http://poser.pugx.org/gerencianet/gerencianet-sdk-php/license)](https://packagist.org/packages/gerencianet/gerencianet-sdk-php)
 [![Total Downloads](http://poser.pugx.org/gerencianet/gerencianet-sdk-php/downloads)](https://packagist.org/packages/gerencianet/gerencianet-sdk-php)
 [![Build Status](https://travis-ci.org/gerencianet/gn-api-sdk-php.svg)](https://travis-ci.org/gerencianet/gn-api-sdk-php)
 [![Code Climate](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/gpa.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php)
 [![Test Coverage](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/coverage.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/coverage)
+
+SDK in PHP for integration with Gerencianet API.
+For more informations about parameters and values, please refer to [Gerencianet](http://gerencianet.com.br) documentation.
 
 Jump To:
 * [Requirements](#requirements)
