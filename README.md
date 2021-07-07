@@ -9,16 +9,36 @@
 
 ---
 
-SDK em PHP para integração com a API da Gerencianet.
-
-Para mais informações sobre parâmetros e valores, consulte a documentação da [Gerencianet](http://gerencianet.com.br).
-
 [![Última versão estável](http://poser.pugx.org/gerencianet/gerencianet-sdk-php/v)](https://packagist.org/packages/gerencianet/gerencianet-sdk-php)
 [![Licença](http://poser.pugx.org/gerencianet/gerencianet-sdk-php/license)](https://packagist.org/packages/gerencianet/gerencianet-sdk-php)
 [![Total de downloads](http://poser.pugx.org/gerencianet/gerencianet-sdk-php/downloads)](https://packagist.org/packages/gerencianet/gerencianet-sdk-php)
 [![Build Status](https://travis-ci.org/gerencianet/gn-api-sdk-php.svg)](https://travis-ci.org/gerencianet/gn-api-sdk-php)
 [![Code Climate](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/gpa.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php)
 [![Test Coverage](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/coverage.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/coverage)
+
+SDK em PHP para integração com a API da Gerencianet.
+Para mais informações sobre parâmetros e valores, consulte a documentação da [Gerencianet](http://gerencianet.com.br).
+
+Jump To:
+* [Requisitos](#requisitos)
+* [Testado com](#testado-com)
+* [Instalação](#instalação)
+* [Começando](#começando)
+* [Executar exemplos](#executar-exemplos)
+* [Guia de versão](#guia-de-versão)
+* [Documentação Adicional](#documentação-adicional)
+* [Licença](#licença)
+
+
+## Requisitos
+* PHP >= 7.2
+* Guzzle >= 7.0
+* Extensão ext-simplexml
+
+## Testado com
+```
+PHP 7.2, 7.4 e 8.0
+```
 
 ## Instalação
 Clone este repositório e execute o seguinte comando para instalar as dependências
@@ -40,15 +60,6 @@ Ou baixe este pacote com [Composer](https://getcomposer.org/):
 $ composer require gerencianet/gerencianet-sdk-php
 ```
 
-## Requisitos
-* PHP >= 7.2
-* Guzzle >= 7.0
-* Extensão ext-simplexml
-
-## Testado com
-```
-PHP 7.2, 7.4 e 8.0
-```
 ## Começando
 Requer o módulo e os namespaces:
 ```php
@@ -169,5 +180,5 @@ A documentação completa com todos os endpoints e detalhes da API está dispon�
 
 Se você ainda não tem uma conta digital da Gerencianet, [abra a sua agora](https://sistema.gerencianet.com.br/)!
 
-## Licença ##
+## Licença
 [MIT](LICENSE)
