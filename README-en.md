@@ -24,6 +24,10 @@ Jump To:
 * [Teted with](#tested-with)
 * [Installation](#installation)
 * [Getting started](#getting-started)
+  * [How to get Client_Id and Client_Secret credentials](#how-to-get-client_id-and-client_secret-credentials)
+  * [How to generate a Pix certificate](#how-to-generate-a-pix-certificate)
+  * [How to convert a Pix certificate](#how-to-convert-a-pix-certificate)
+  * [How to register Pix keys](#how-to-register-pix-keys)
 * [Running examples](#running-examples)
 * [Version Guidance](#version-guidance)
 * [Additional Documentation](#additional-documentation)
@@ -114,7 +118,7 @@ $api = new Gerencianet($options);
 ```
 
 
-### How to get Client_Id and Client_Secret credentials
+## How to get Client_Id and Client_Secret credentials
 
 **Create a new application to use the Pix API:** Access the menu API (1)-> Minhas Aplicações -> Nova Aplicação(2) -> Ative API Pix (3) and choose the scopes you want to release in Produção e/ou Homologação (remembering that these can be changed later). -> click in Criar Nova aplicação(4).
 ![Create a new application to use the Pix API](https://t-images.imgix.net/https%3A%2F%2Fapp-us-east-1.t-cdn.net%2F5fa37ea6b47fe9313cb4c9ca%2Fposts%2F603543ff4253cf5983339cf1%2F603543ff4253cf5983339cf1_88071.png?width=1240&w=1240&auto=format%2Ccompress&ixlib=js-2.3.1&s=2f24c7ea5674dbbea13773b3a0b1e95c)
@@ -123,15 +127,20 @@ $api = new Gerencianet($options);
 ![Change an existing application to use the Pix API](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603544082060b2e9b88bc717/603544082060b2e9b88bc717_22430.png)
 
 
-### If you use the Pix option:
+## How to generate a Pix certificate
 
 All Pix requests must contain a security certificate that will be provided by Gerencianet within your account, in PFX(.p12) format. This requirement is fully described in the .[PIX security manual](https://www.bcb.gov.br/estabilidadefinanceira/comunicacaodados).
 
 **To generate your certificate:** Access the menu API (1)-> Meus Certificados (2) and choose the environment you want the certificate: Produção or Homologação -> click in Novo Certificado (3). 
 ![To generate your certificate](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603543f7d1778b2d725dea1e/603543f7d1778b2d725dea1e_85669.png)
 
-For use in PHP, the certificate must be converted to `.pem` format.
-Below you will find example using the OpenSSL command for conversion. Or you can [download the certificate converter made available by Gerencianet](https://pix.gerencianet.com.br/ferramentas/conversorGerencianet.exe).
+## How to convert a Pix certificate
+
+:warning: For use in PHP, the certificate must be converted to `.pem` format.
+
+You can [download the certificate converter made available by Gerencianet](https://pix.gerencianet.com.br/ferramentas/conversorGerencianet.exe).
+
+Or use the example below, running the OpenSSL command for conversion.
 
 ### Command OpenSSL
 ```
@@ -139,7 +148,7 @@ Below you will find example using the OpenSSL command for conversion. Or you can
 openssl pkcs12 -in certificado.p12 -out certificado.pem -nodes
 ```
 
-### To register your Pix keys
+## How to register Pix keys
 The registration of Pix keys can be done through the application. If you don't already have our app installed, click on [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) or [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), according to your smartphone's operating system, to download it.
 
 To register your Pix keys through the application:
