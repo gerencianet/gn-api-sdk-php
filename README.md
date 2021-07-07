@@ -29,6 +29,7 @@ Jump To:
 * [Documentação Adicional](#documentação-adicional)
 * [Licença](#licença)
 
+---
 
 ## Requisitos
 * PHP >= 7.2
