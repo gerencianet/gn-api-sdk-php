@@ -19,6 +19,28 @@ For more informations about parameters and values, please refer to [Gerencianet]
 [![Code Climate](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/gpa.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php)
 [![Test Coverage](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/badges/coverage.svg)](https://codeclimate.com/github/gerencianet/gn-api-sdk-php/coverage)
 
+Jump To:
+* [Requirements](#requirements)
+* [Teted with](#tested-with)
+* [Installation](Istallation)
+* [Getting started](#getting-started)
+* [Running examples](#running-examples)
+* [Version Guidance](#version-guidance)
+* [Additional Documentation](#additional-documentation)
+* [License](#license)
+
+---
+
+## Requirements
+* PHP >= 7.2
+* Guzzle >= 7.0
+* Extension ext-simplexml
+
+## Tested with
+```
+PHP 7.2, 7.4 and 8.0
+```
+
 ## Installation
 Clone this repository and execute the following command to install the dependencies
 ```
@@ -39,15 +61,6 @@ Or require this package with [composer](https://getcomposer.org/):
 $ composer require gerencianet/gerencianet-sdk-php
 ```
 
-## Requirements
-* PHP >= 7.2
-* Guzzle >= 7.0
-* Extension ext-simplexml
-
-## Tested with
-```
-PHP 7.2, 7.4 and 8.0
-```
 ## Getting started
 Require the module and namespaces:
 ```php
