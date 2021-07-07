@@ -24,6 +24,10 @@ Ir para:
 * [Testado com](#testado-com)
 * [Instalação](#instalação)
 * [Começando](#começando)
+  * [Como obter as credenciais Client_Id e Client_Secret](#como-obter-as-credenciais-client_id-e-client_secret)
+  * [Como gerar um certificado Pix](#como-gerar-um-certificado-pix)
+  * [Como converter um certificado Pix](#como-converter-um-certificado-pix)
+  * [Como cadastrar as chaves Pix](#como-cadastrar-as-chaves-pix)
 * [Executar exemplos](#executar-exemplos)
 * [Guia de versão](#guia-de-versão)
 * [Documentação Adicional](#documentação-adicional)
@@ -115,7 +119,7 @@ $options = [
 $api = new Gerencianet($options);
 ```
 
-### Como obter as credenciais Client_Id e Client_Secret
+## Como obter as credenciais Client_Id e Client_Secret
 
 **Crie uma nova aplicação para usar a API Pix:** Acesse o menu API (1)-> Minhas Aplicações -> Nova Aplicação(2) -> Ative API Pix (3) e escolha os escopos que deseja liberar em Produção e/ou Homologação (lembrando que estes podem ser alterados posteriormente) -> clique em Criar Nova aplicação(4).
 ![Crie uma nova aplicação para usar a API Pix](https://t-images.imgix.net/https%3A%2F%2Fapp-us-east-1.t-cdn.net%2F5fa37ea6b47fe9313cb4c9ca%2Fposts%2F603543ff4253cf5983339cf1%2F603543ff4253cf5983339cf1_88071.png?width=1240&w=1240&auto=format%2Ccompress&ixlib=js-2.3.1&s=2f24c7ea5674dbbea13773b3a0b1e95c)
@@ -124,7 +128,8 @@ $api = new Gerencianet($options);
 **Alterar uma aplicação existente para usar a API Pix:** Acesse o menu API (1)-> Minhas Aplicações e escolha a sua aplicação (2) -> Editar(Botão laranja) -> Ative API Pix (3) e escolha os escopos que deseja liberar em Produção e/ou Homologação (lembrando que estes podem ser alterados posteriormente) -> clique em Atualizar aplicação (4).
 ![Alterar uma aplicação existente para usar a API Pix](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603544082060b2e9b88bc717/603544082060b2e9b88bc717_22430.png)
 
-### Se você usar a opção Pix:
+
+## Como gerar um certificado Pix
 
 Todas as requisições do Pix devem conter um certificado de segurança que será fornecido pela Gerencianet dentro da sua conta, no formato PFX(.p12). Essa exigência está descrita na íntegra no [manual de segurança do PIX](https://www.bcb.gov.br/estabilidadefinanceira/comunicacaodados).
 
@@ -132,8 +137,13 @@ Todas as requisições do Pix devem conter um certificado de segurança que ser�
 ![Para gerar seu certificado](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603543f7d1778b2d725dea1e/603543f7d1778b2d725dea1e_85669.png)
 
 
-Para uso em PHP, o certificado deve ser convertido em formato `.pem`.
-Abaixo você encontrará um exemplo de uso do comando OpenSSL para conversão. Ou você pode [baixar o conversor de certificados disponibilizado pela Gerencianet](https://pix.gerencianet.com.br/ferramentas/conversorGerencianet.exe).
+## Como converter um certificado Pix
+
+:warning: Para uso em PHP, o certificado deve ser convertido em formato `.pem`.
+
+Você pode [baixar o conversor de certificados disponibilizado pela Gerencianet](https://pix.gerencianet.com.br/ferramentas/conversorGerencianet.exe). 
+
+Ou utilize do exemplo abaixo, executando o comando OpenSSL para conversão.
 
 ### Comando OpenSSL
 ```
@@ -141,7 +151,7 @@ Abaixo você encontrará um exemplo de uso do comando OpenSSL para conversão. O
 openssl pkcs12 -in certificado.p12 -out certificado.pem -nodes
 ```
 
-### Para registrar suas chaves Pix
+## Como cadastrar as chaves Pix
 O cadastro das chaves Pix pode ser feito através do aplicativo. Caso ainda não tenha nosso aplicativo instalado, clique em [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) ou [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), de acordo com o sistema operacional do seu smartphone, para fazer o download.
 
 Para registrar suas chaves Pix por meio do aplicativo:
