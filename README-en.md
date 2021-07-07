@@ -163,9 +163,9 @@ Then open any example in your browser.
 
 ## Additional Documentation
 
-The full documentation with all available endpoints is in https://dev.gerencianet.com.br/.
+Complete documentation with all endpoints and API details is available at https://dev.gerencianet.com.br/.
 
-If you don't have a digital account, [open yours now](https://sistema.gerencianet.com.br/)!
+If you don't have a Gerencianet digital account yet, [open yours now](https://sistema.gerencianet.com.br/)!
 
 ## License ##
 [MIT](LICENSE)
