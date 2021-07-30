@@ -24,7 +24,7 @@ Ir para:
 * [Testado com](#testado-com)
 * [Instalação](#instalação)
 * [Começando](#começando)
-  * [Como obter as credenciais Client_Id e Client_Secret](#como-obter-as-credenciais-client_id-e-client_secret)
+  * [Como obter as credenciais Client_Id e Client_Secret](#como-obter-as-credenciais-client-id-e-client-secret)
   * [Como gerar um certificado Pix](#como-gerar-um-certificado-pix)
   * [Como converter um certificado Pix](#como-converter-um-certificado-pix)
   * [Como cadastrar as chaves Pix](#como-cadastrar-as-chaves-pix)
@@ -35,17 +35,17 @@ Ir para:
 
 ---
 
-## Requisitos
+## **Requisitos**
 * PHP >= 7.2
 * Guzzle >= 7.0
 * Extensão ext-simplexml
 
-## Testado com
+## **Testado com**
 ```
 PHP 7.2, 7.4 e 8.0
 ```
 
-## Instalação
+## **Instalação**
 Clone este repositório e execute o seguinte comando para instalar as dependências
 ```
 $ composer install
@@ -65,7 +65,7 @@ Ou baixe este pacote com [Composer](https://getcomposer.org/):
 $ composer require gerencianet/gerencianet-sdk-php
 ```
 
-## Começando
+## **Começando**
 Requer o módulo e os namespaces:
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -89,7 +89,7 @@ Para começar, você deve configurar os parâmetros no arquivo `config.json`. In
 
 Veja exemplos de configuração a seguir:
 
-### Para ambiente de homologação
+### **Para ambiente de homologação**
 Instancie os parâmetros do módulo usando client_id, client_secret, sandbox igual a `true` e pix_cert como o nome do certificado de homologação:
 ```php
 $options = [
@@ -104,7 +104,7 @@ $options = [
 $api = new Gerencianet($options);
 ```
 
-### Para ambiente de produção
+### **Para ambiente de produção**
 Instancie os parâmetros do módulo usando client_id, client_secret, sandbox igual a `false` e pix_cert como o nome do certificado de produção:
 ```php
 $options = [
@@ -119,17 +119,27 @@ $options = [
 $api = new Gerencianet($options);
 ```
 
-## Como obter as credenciais Client_Id e Client_Secret
+## **Como obter as credenciais Client-Id e Client-Secret**
 
-**Crie uma nova aplicação para usar a API Pix:** Acesse o menu API (1)-> Minhas Aplicações -> Nova Aplicação(2) -> Ative API Pix (3) e escolha os escopos que deseja liberar em Produção e/ou Homologação (lembrando que estes podem ser alterados posteriormente) -> clique em Criar Nova aplicação(4).
-![Crie uma nova aplicação para usar a API Pix](https://t-images.imgix.net/https%3A%2F%2Fapp-us-east-1.t-cdn.net%2F5fa37ea6b47fe9313cb4c9ca%2Fposts%2F603543ff4253cf5983339cf1%2F603543ff4253cf5983339cf1_88071.png?width=1240&w=1240&auto=format%2Ccompress&ixlib=js-2.3.1&s=2f24c7ea5674dbbea13773b3a0b1e95c)
+### **Crie uma nova aplicação para usar a API Gerencianet:**
+1. Acesse o painel da Gerencianet no menu **API**.
+2. No canto esquerdo, clique em **Minhas Aplicações** depois em **Nova Aplicação**.
+3. Insira um nome para a aplicação, ative a **API de emissões (Boletos e Carnês)** e **API Pix**, e escolha os escopos que deseja liberar em **Produção** e/ou **Homologação** conforme sua necessidade (lembrando que estes podem ser alterados posteriormente).
+4. Clique em Criar **Nova aplicação**.
+
+![Crie uma nova aplicação para usar a API Gerencianet](https://t-images.imgix.net/https%3A%2F%2Fapp-us-east-1.t-cdn.net%2F5fa37ea6b47fe9313cb4c9ca%2Fposts%2F603543ff4253cf5983339cf1%2F603543ff4253cf5983339cf1_88071.png?width=1240&w=1240&auto=format%2Ccompress&ixlib=js-2.3.1&s=2f24c7ea5674dbbea13773b3a0b1e95c)
 
 
-**Alterar uma aplicação existente para usar a API Pix:** Acesse o menu API (1)-> Minhas Aplicações e escolha a sua aplicação (2) -> Editar(Botão laranja) -> Ative API Pix (3) e escolha os escopos que deseja liberar em Produção e/ou Homologação (lembrando que estes podem ser alterados posteriormente) -> clique em Atualizar aplicação (4).
+### **Alterar uma aplicação existente para usar a API Pix:**
+1. Acesse o painel da Gerencianet no menu **API**.
+2. No canto esquerdo, clique em **Minhas Aplicações**, escolha a sua aplicação e clique no botão **Editar** (Botão laranja).
+3. Ative API Pix (3) e escolha os escopos que deseja liberar em **Produção** e/ou **Homologação** conforme sua necessidade (lembrando que estes podem ser alterados posteriormente)
+4. Clique em **Atualizar aplicação**.
+
 ![Alterar uma aplicação existente para usar a API Pix](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603544082060b2e9b88bc717/603544082060b2e9b88bc717_22430.png)
 
 
-## Como gerar um certificado Pix
+## **Como gerar um certificado Pix**
 
 Todas as requisições do Pix devem conter um certificado de segurança que será fornecido pela Gerencianet dentro da sua conta, no formato PFX(.p12). Essa exigência está descrita na íntegra no [manual de segurança do PIX](https://www.bcb.gov.br/estabilidadefinanceira/comunicacaodados).
 
@@ -137,7 +147,7 @@ Todas as requisições do Pix devem conter um certificado de segurança que ser�
 ![Para gerar seu certificado](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603543f7d1778b2d725dea1e/603543f7d1778b2d725dea1e_85669.png)
 
 
-## Como converter um certificado Pix
+## **Como converter um certificado Pix**
 
 :warning: Para uso em PHP, o certificado deve ser convertido em formato `.pem`.
 
@@ -145,14 +155,18 @@ Você pode [baixar o conversor de certificados disponibilizado pela Gerencianet]
 
 Ou utilize do exemplo abaixo, executando o comando OpenSSL para conversão.
 
-### Comando OpenSSL
+### **Comando OpenSSL**
 ```
 // Gerar certificado e chave em único arquivo
 openssl pkcs12 -in certificado.p12 -out certificado.pem -nodes
 ```
 
-## Como cadastrar as chaves Pix
-O cadastro das chaves Pix pode ser feito através do aplicativo. Caso ainda não tenha nosso aplicativo instalado, clique em [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) ou [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), de acordo com o sistema operacional do seu smartphone, para fazer o download.
+## **Como cadastrar as chaves Pix**
+O cadastro das chaves Pix pode ser feito através do aplicativo da Gerencianet ou por um endpoint da API. A seguir você encontra os passos de como registrá-las.
+
+### **Cadastrar chave Pix pelo aplicativo mobile:**
+
+Caso ainda não tenha nosso aplicativo instalado, clique em [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) ou [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), de acordo com o sistema operacional do seu smartphone, para fazer o download.
 
 Para registrar suas chaves Pix por meio do aplicativo:
 1. Acesse sua conta através do **app Gerencianet**.
@@ -163,8 +177,20 @@ Para registrar suas chaves Pix por meio do aplicativo:
 5. Após cadastrar as chaves do Pix desejadas, clique em **concluir**.
 6. **Pronto! Suas chaves já estão cadastradas com a gente.**
 
+### **Cadastrar chave Pix através da API:**
+O endpoint utilizado para criar uma chave Pix aleatória (evp), é o `POST /v2/gn/evp` ([Criar chave evp](https://dev.gerencianet.com.br/docs/api-pix-endpoints#section-criar-chave-evp)). Um detalhe é que, através deste endpoint é realizado o registro somente de chaves Pix do tipo aleatória.
 
-## Executar exemplos
+Para consumí-lo, basta executar o exemplo  `/examples/pix/key/create.php` da nossa SDK. A requisição enviada para esse endpoint não precisa de um body. 
+
+A resposta de exemplo abaixo representa Sucesso (201), apresentando a chave Pix registrada.
+```json
+{
+  "chave": "345e4568-e89b-12d3-a456-006655440001"
+}
+```
+
+
+## **Executar exemplos**
 Você pode executar usando qualquer servidor web, como Apache ou nginx, ou simplesmente iniciar um servidor php da seguinte forma:
 
 ```php
@@ -176,7 +202,7 @@ Ou abra qualquer exemplo em seu navegador.
 :warning: Alguns exemplos requerem que você altere alguns parâmetros para funcionar, como `examples/charge/oneStepBillet.php` ou `examples/pix/charge/create.php` onde você deve alterar o parâmetro `id`.
 
 
-## Guia de versão
+## **Guia de versão**
 
 | Versão | Status | Packagist | Repo | Versão PHP |
 | --- | --- | --- | --- | --- |
@@ -185,11 +211,11 @@ Ou abra qualquer exemplo em seu navegador.
 | 3.x | Mantido | `gerencianet/gerencianet-sdk-php` | [v3](https://github.com/gerencianet/gn-api-sdk-php/tree/3.x) | \>= 5.6 |
 | 4.x | Mantido | `gerencianet/gerencianet-sdk-php` | [v4](https://github.com/gerencianet/gn-api-sdk-php) | \>= 7.2 |
 
-## Documentação Adicional
+## **Documentação Adicional**
 
 A documentação completa com todos os endpoints e detalhes da API está disponível em https://dev.gerencianet.com.br/.
 
 Se você ainda não tem uma conta digital da Gerencianet, [abra a sua agora](https://sistema.gerencianet.com.br/)!
 
-## Licença
+## **Licença**
 [MIT](LICENSE)
