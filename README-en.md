@@ -24,7 +24,7 @@ Jump To:
 * [Teted with](#tested-with)
 * [Installation](#installation)
 * [Getting started](#getting-started)
-  * [How to get Client_Id and Client_Secret credentials](#how-to-get-client_id-and-client_secret-credentials)
+  * [How to get Client_Id and Client_Secret credentials](#how-to-get-client-id-and-client-secret-credentials)
   * [How to generate a Pix certificate](#how-to-generate-a-pix-certificate)
   * [How to convert a Pix certificate](#how-to-convert-a-pix-certificate)
   * [How to register Pix keys](#how-to-register-pix-keys)
@@ -35,17 +35,17 @@ Jump To:
 
 ---
 
-## Requirements
+## **Requirements**
 * PHP >= 7.2
 * Guzzle >= 7.0
 * Extension ext-simplexml
 
-## Tested with
+## **Tested with**
 ```
 PHP 7.2, 7.4 and 8.0
 ```
 
-## Installation
+## **Installation**
 Clone this repository and execute the following command to install the dependencies
 ```
 $ composer install
@@ -65,7 +65,7 @@ Or require this package with [composer](https://getcomposer.org/):
 $ composer require gerencianet/gerencianet-sdk-php
 ```
 
-## Getting started
+## **Getting started**
 Require the module and namespaces:
 ```php
 require __DIR__ . '/vendor/autoload.php';
@@ -87,7 +87,7 @@ To begin, you must configure the parameters in the config.json file. Instantiate
 
 See configuration examples below:
 
-### For homologation environment
+### **For homologation environment**
 Instance of module parameters using client_id, client_secret, sandbox equal to `true` and pix_cert as the name of the approval certificate:
 ```php
 $options = [
@@ -102,7 +102,7 @@ $options = [
 $api = new Gerencianet($options);
 ```
 
-### For production environment
+### **For production environment**
 Instantiate module parameters using client_id, client_secret, sandbox equal to `false` and pix_cert as the production certificate name:
 ```php
 $options = [
@@ -118,23 +118,37 @@ $api = new Gerencianet($options);
 ```
 
 
-## How to get Client_Id and Client_Secret credentials
+## **How to get Client-Id and Client-Secret credentials**
 
-**Create a new application to use the Pix API:** Access the menu API (1)-> Minhas Aplicações -> Nova Aplicação(2) -> Ative API Pix (3) and choose the scopes you want to release in Produção e/ou Homologação (remembering that these can be changed later). -> click in Criar Nova aplicação(4).
+**Create a new application to use the Gerencianet API:** 
+1. Access the Gerencianet panel in the **API** menu.
+2. In the left corner, click on **Minhas Aplicações** then on **Nova Aplicação**.
+3. Enter a name for the application, activate the **API de emissões (Boletos e Carnês)** and **API Pix**, and choose the scopes you want to release in **Produção** and/or **Homologação** as needed (remembering that these can be changed later).
+4. Click **Criar nova aplicação**.
+
 ![Create a new application to use the Pix API](https://t-images.imgix.net/https%3A%2F%2Fapp-us-east-1.t-cdn.net%2F5fa37ea6b47fe9313cb4c9ca%2Fposts%2F603543ff4253cf5983339cf1%2F603543ff4253cf5983339cf1_88071.png?width=1240&w=1240&auto=format%2Ccompress&ixlib=js-2.3.1&s=2f24c7ea5674dbbea13773b3a0b1e95c)
 
-**Change an existing application to use the Pix API:** Access the menu API (1)-> Minhas Aplicações e escolha a sua aplicação (2) -> Editar(Botão laranja) -> Ative API Pix (3) and choose the scopes you want to release in Produção e/ou Homologação. -> click in Atualizar aplicação (4).
+**Change an existing application to use the Pix API:** 
+1. Access the Gerencianet panel in the **API** menu.
+2. In the left corner, click on **Minhas Aplicações**, choose your application and click on the **Editar** button (Orange button).
+3. Activate API Pix (3) and choose the scopes you want to release in **Produção** and/or **Homologação** as needed (remembering that these can be changed later)
+4. Click **Atualizar Aplicação**.
+
 ![Change an existing application to use the Pix API](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603544082060b2e9b88bc717/603544082060b2e9b88bc717_22430.png)
 
 
-## How to generate a Pix certificate
+## **How to generate a Pix certificate**
 
 All Pix requests must contain a security certificate that will be provided by Gerencianet within your account, in PFX(.p12) format. This requirement is fully described in the .[PIX security manual](https://www.bcb.gov.br/estabilidadefinanceira/comunicacaodados).
 
-**To generate your certificate:** Access the menu API (1)-> Meus Certificados (2) and choose the environment you want the certificate: Produção or Homologação -> click in Novo Certificado (3). 
+**To generate your certificate:**
+1. Access the Gerencianet panel in the **API** menu.
+2. In the left corner, click on **Meus certificados** and choose the environment in which you want the certificate: **Produção** or **Homologação**.
+3. Click **Novo certificado**.
+
 ![To generate your certificate](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603543f7d1778b2d725dea1e/603543f7d1778b2d725dea1e_85669.png)
 
-## How to convert a Pix certificate
+## **How to convert a Pix certificate**
 
 :warning: For use in PHP, the certificate must be converted to `.pem` format.
 
@@ -142,14 +156,17 @@ You can [download the certificate converter made available by Gerencianet](https
 
 Or use the example below, running the OpenSSL command for conversion.
 
-### Command OpenSSL
+### **Command OpenSSL**
 ```
 // Generate certificate and key in single file
 openssl pkcs12 -in certificado.p12 -out certificado.pem -nodes
 ```
 
-## How to register Pix keys
-The registration of Pix keys can be done through the application. If you don't already have our app installed, click on [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) or [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), according to your smartphone's operating system, to download it.
+## **How to register Pix keys**
+The registration of Pix keys can be done through the Gerencianet application or through an API endpoint. Below you will find the steps on how to register them.
+
+### **Register Pix key via mobile app:**
+If you don't already have our app installed, click on [Android](https://play.google.com/store/apps/details?id=br.com.gerencianet.app) or [iOS](https://apps.apple.com/br/app/gerencianet/id1443363326), according to your smartphone's operating system, to download it.
 
 To register your Pix keys through the application:
 1. Access your account through **app Gerencianet**.
@@ -157,12 +174,23 @@ To register your Pix keys through the application:
 3. Read the information that appears on the screen and click **Registrar Chave**.
     If this is no longer your first contact, tap **Minhas Chaves** and then the icon (➕).
 4. **Select the data** you are going to register as a Pix Key and tap **avançar** - you must choose at least 1 of the 4 available key options (cell, e-mail, CPF e/ou random key).
-5. After registering the desired Pix keys, click on **concluir**.
+5. After registering the desired Pix keys, click on **Concluir**.
 6. **Ready! Your keys are already registered with us.**
 
+### **Register Pix key via API:**
+The endpoint used to create a random Pix key (evp), is `POST /v2/gn/evp` ([Register evp key](https://dev.gerencianet.com.br/docs/api-pix-endpoints#section-criar-chave-evp)). A detail is that, through this endpoint, only random Pix keys are registered.
+
+To consume it, just run the `/examples/pix/key/create.php` example from our SDK. The request sent to this endpoint does not need a body.
+
+The example response below represents Success (201), showing the registered Pix key.
+```json
+{
+  "chave": "345e4568-e89b-12d3-a456-006655440001"
+}
+```
 
 
-## Running examples
+## **Running examples**
 You can run using any web server, like Apache or nginx, or simple start a php server as follow:
 
 ```php
@@ -174,7 +202,7 @@ Then open any example in your browser.
 :warning: Some examples require you to change some parameters to work, like `examples/charge/oneStepBillet.php` or `examples/pix/charge/create.php` where you must change the id parameter.
 
 
-## Version Guidance
+## **Version Guidance**
 
 | Version | Status | Packagist | Repo | PHP Version |
 | --- | --- | --- | --- | --- |
@@ -183,11 +211,11 @@ Then open any example in your browser.
 | 3.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v3](https://github.com/gerencianet/gn-api-sdk-php/tree/3.x) | \>= 5.6 |
 | 4.x | Maintained | `gerencianet/gerencianet-sdk-php` | [v4](https://github.com/gerencianet/gn-api-sdk-php) | \>= 7.2 |
 
-## Additional Documentation
+## **Additional Documentation**
 
 Complete documentation with all endpoints and API details is available at https://dev.gerencianet.com.br/.
 
 If you don't have a Gerencianet digital account yet, [open yours now](https://sistema.gerencianet.com.br/)!
 
-## License ##
+## **License**
 [MIT](LICENSE)
