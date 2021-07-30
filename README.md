@@ -133,7 +133,7 @@ $api = new Gerencianet($options);
 ### **Alterar uma aplicação existente para usar a API Pix:**
 1. Acesse o painel da Gerencianet no menu **API**.
 2. No canto esquerdo, clique em **Minhas Aplicações**, escolha a sua aplicação e clique no botão **Editar** (Botão laranja).
-3. Ative API Pix (3) e escolha os escopos que deseja liberar em **Produção** e/ou **Homologação** conforme sua necessidade (lembrando que estes podem ser alterados posteriormente)
+3. Ative **API Pix** e escolha os escopos que deseja liberar em **Produção** e/ou **Homologação** conforme sua necessidade (lembrando que estes podem ser alterados posteriormente)
 4. Clique em **Atualizar aplicação**.
 
 ![Alterar uma aplicação existente para usar a API Pix](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603544082060b2e9b88bc717/603544082060b2e9b88bc717_22430.png)
@@ -143,7 +143,11 @@ $api = new Gerencianet($options);
 
 Todas as requisições do Pix devem conter um certificado de segurança que será fornecido pela Gerencianet dentro da sua conta, no formato PFX(.p12). Essa exigência está descrita na íntegra no [manual de segurança do PIX](https://www.bcb.gov.br/estabilidadefinanceira/comunicacaodados).
 
-**Para gerar seu certificado:** Acesse o menu API (1) -> Meus Certificados (2) e escolha o ambiente em que deseja o certificado: Produção ou Homologação -> clique em Novo Certificado (3).
+**Para gerar seu certificado:** 
+1. Acesse o painel da Gerencianet no menu **API**.
+2. No canto esquerdo, clique em **Meus Certificados** e escolha o ambiente em que deseja o certificado: **Produção** ou **Homologação**.
+3. Clique em **Novo Certificado**.
+
 ![Para gerar seu certificado](https://app-us-east-1.t-cdn.net/5fa37ea6b47fe9313cb4c9ca/posts/603543f7d1778b2d725dea1e/603543f7d1778b2d725dea1e_85669.png)
 
 
