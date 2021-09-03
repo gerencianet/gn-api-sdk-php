@@ -77,11 +77,13 @@ Embora as respostas dos serviços da web estejam no formato json, a SDK converte
 
 ```php
 try {
-  /* code */
+  /* Código */
+  $api = new Gerencianet($options); // Intância da classe Gerencianet, passando $options, array com as credenciais
+  $response = $api->createCharge([], $body); // Execução da função. Todas as funções se encontram em `/src/Gerencianet/config.json`
 } catch(GerencianetException $e) {
-  /* Gerencianet's api errors will come here */
+  /* Os erros da API Gerencianet virão aqui */
 } catch(Exception $ex) {
-  /* Other errors will come here */
+  /* Outros erros virão aqui */
 }
 ```
 
