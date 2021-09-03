@@ -75,9 +75,11 @@ use Gerencianet\Gerencianet;
 Although the web services responses are in json format, the SDK will convert any server response to array. The code must be within a try-catch and exceptions can be handled as follow:
 ```php
 try {
-  /* code */
+  /* Code */
+  $api = new Gerencianet($options); // Instance of class Gerencianet, passing $options, array with credentials
+  $response = $api->createCharge([], $body); // Execution of the function. All functions are found in `/src/Gerencianet/config.json`
 } catch(GerencianetException $e) {
-  /* Gerencianet's api errors will come here */
+  /* Gerencianet API errors will come here */
 } catch(Exception $ex) {
   /* Other errors will come here */
 }
