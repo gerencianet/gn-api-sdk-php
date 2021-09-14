@@ -18,8 +18,7 @@ class Request
     public function __construct(array $options = null)
     {
         $this->config = Config::options($options);
-        $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
-        $partner_token = isset($options['partner_token'])? $options['partner_token'] : "";
+        $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);        
         $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
 
         $clientData = [
@@ -27,10 +26,13 @@ class Request
             'base_uri' => $this->config['baseUri'],
             'headers' => [
                 'Content-Type' => 'application/json',
-                'api-sdk' => 'php-' . $composerData['version'],
-                'partner-token' => $partner_token
+                'api-sdk' => 'php-' . $composerData['version']
             ]
         ];
+
+        if (isset($options['partner_token'])) {
+            $clientData['headers']['partner-token'] = $options['partner_token'];
+        }
 
         $this->client = new Client($clientData);
     }
