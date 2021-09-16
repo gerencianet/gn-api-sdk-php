@@ -55,7 +55,7 @@ Se você já tem um projeto gerenciado com [Composer](https://getcomposer.org/),
 ```
 ...
 "require": {
-  "gerencianet/gerencianet-sdk-php": "4.*"
+  "gerencianet/gerencianet-sdk-php": "^4"
 },
 ...
 ```
@@ -77,13 +77,11 @@ Embora as respostas dos serviços da web estejam no formato json, a SDK converte
 
 ```php
 try {
-  /* Código */
-  $api = new Gerencianet($options); // Intância da classe Gerencianet, passando $options, array com as credenciais
-  $response = $api->createCharge([], $body); // Execução da função. Todas as funções se encontram em `/src/Gerencianet/config.json`
+  /* code */
 } catch(GerencianetException $e) {
-  /* Os erros da API Gerencianet virão aqui */
+  /* Gerencianet's api errors will come here */
 } catch(Exception $ex) {
-  /* Outros erros virão aqui */
+  /* Other errors will come here */
 }
 ```
 

@@ -55,7 +55,7 @@ If you already have a project with composer, include the dependency in your comp
 ```
 ...
 "require": {
-  "gerencianet/gerencianet-sdk-php": "4.*"
+  "gerencianet/gerencianet-sdk-php": "^4"
 },
 ...
 ```
