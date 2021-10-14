@@ -12,11 +12,16 @@ $body = [
     "pix" => [
         "receberSemChave" => true,
         "chaves" => [
-            "isabelle@email.com" => [
+            "355e4568-e89b-1243-a456-006655440001" => [
                 "recebimento" => [
                     "txidObrigatorio" => false,
                     "qrCodeEstatico" => [
                         "recusarTodos" => false
+                    ],
+                    "webhook" => [
+                        "notificacao" => [
+                            "tarifa" => true
+                        ]
                     ]
                 ]
             ],
