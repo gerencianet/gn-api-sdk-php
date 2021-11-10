@@ -55,23 +55,21 @@ class Request
                 }
             }
 
-            try {
-                $response = $this->client->request($method, $route, $requestOptions);
+            $response = $this->client->request($method, $route, $requestOptions);
 
-                return json_decode($response->getBody(), true);
-            } catch (RequestException $e) {
-                $response = ($e->getResponse()->getBody(true)) ? $e->getResponse()->getBody(true) : [];
-
-                return json_decode($response, true);
-            }
+            return json_decode($response->getBody(), true);
         } catch (ClientException $e) {
-            throw new AuthorizationException(
-                $e->getResponse()->getStatusCode(),
-                $e->getResponse()->getReasonPhrase(),
-                $e->getResponse()->getBody()
-            );
+            if (is_array(json_decode($e->getResponse()->getBody(), true)) && $e->getResponse()->getStatusCode() != 401) {
+                throw new GerencianetException(json_decode($e->getResponse()->getBody(), true), $e->getResponse()->getStatusCode());
+            } else {
+                throw new AuthorizationException(
+                    $e->getResponse()->getStatusCode(),
+                    $e->getResponse()->getReasonPhrase(),
+                    $e->getResponse()->getBody()
+                );
+            }
         } catch (ServerException $se) {
-            throw new GerencianetException($se->getResponse()->getBody());
+            throw new GerencianetException($se->getResponse()->getBody(), $se->getResponse()->getStatusCode());
         }
     }
 

@@ -10,24 +10,34 @@ class GerencianetException extends Exception
     private $error;
     private $errorDescription;
 
-    public function __construct($exception)
+    public function __construct($exception, $code)
     {
         $error = $exception;
 
         if ($exception instanceof \GuzzleHttp\Psr7\Stream) {
-                $error = $this->parseStream($exception);
+            $error = $this->parseStream($exception);
         }
 
-        $message = isset($error['error_description']['message']) ? $error['error_description']['message'] : $error['error_description'];
+        if (isset($error['message'])) {
+            $message = $error['message'];
 
-        if (isset($error['error_description']['property'])) {
-            $message .= ': '.$error['error_description']['property'];
+            $this->code = $code;
+            $this->errorDescription = $error['message'];
+        } else if (isset($error['error'])) { // erros API Cobranças
+            $message = isset($error['error_description']['message']) ? $error['error_description']['message'] : $error['error_description'];
+            
+            $this->code = $error['code'];
+            $this->error = $error['error'];
+            $this->errorDescription = $error['error_description'];
+        } else { // erros API Pix
+            $message = (isset($error['erros']['mensagem']) ?  $error['mensagem'] . ": " . $error['caminho'] . " " . $error['erros']['mensagem'] : $error['mensagem'] . ": " . $error['mensagem']);
+
+            $this->code = $code;
+            $this->error = (isset($error['erros']) ?  $error['mensagem'] : $error['nome']);
+            $this->errorDescription = (isset($error['erros']) ?  $error['erros'] : $error['mensagem']);
         }
 
-        $this->error = $error['error'];
-        $this->errorDescription = $error['error_description'];
-
-        parent::__construct($message, $error['code']);
+        parent::__construct($message, $this->code);
     }
 
     private function parseStream($stream)
@@ -42,7 +52,7 @@ class GerencianetException extends Exception
 
     public function __toString()
     {
-        return 'Error '.$this->code.': '.$this->message."\n";
+        return 'Error ' . $this->code . ': ' . $this->message . "\n";
     }
 
     public function __get($property)
