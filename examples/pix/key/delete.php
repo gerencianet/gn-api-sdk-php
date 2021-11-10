@@ -8,19 +8,17 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
 
-$params = ['chave' => ''];
+$params = ['chave' => '345e4568-e89b-12d3-a456-006655440001'];
 
 try {
     $api = Gerencianet::getInstance($options);
     $pix = $api->pixDeleteEvp($params);
 
-    echo json_encode(["code" => 200]);
+    echo '<pre>' . json_encode($pix, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . '</pre>';
 } catch (GerencianetException $e) {
     print_r($e->code);
     print_r($e->error);
     print_r($e->errorDescription);
-
-    throw new Error($e->error);
 } catch (Exception $e) {
-    throw new Error($e->getMessage());
+    print_r($e->getMessage());
 }

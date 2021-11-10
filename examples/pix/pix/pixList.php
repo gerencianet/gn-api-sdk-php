@@ -8,7 +8,7 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
 
-$params = ['e2eId' => ''];
+$params = ['e2eId' => 'E18236120202104191813s0326120V4K'];
 
 try {
     $api = Gerencianet::getInstance($options);
@@ -19,8 +19,6 @@ try {
     print_r($e->code);
     print_r($e->error);
     print_r($e->errorDescription);
-
-    throw new Error($e->error);
 } catch (Exception $e) {
-    throw new Error($e->getMessage());
+    print_r($e->getMessage());
 }

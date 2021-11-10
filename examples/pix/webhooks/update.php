@@ -12,8 +12,8 @@ $options['headers'] = array(
     'x-skip-mtls-checking' => 'false',
 );
 
-$params = ['chave' => ''];
-$body = ['webhookUrl' => ''];
+$params = ['chave' => 'suachavepix@email.com.br'];
+$body = ['webhookUrl' => 'https://seudominio.com.br/webhook/'];
 
 try {
     $api = Gerencianet::getInstance($options);
@@ -24,8 +24,6 @@ try {
     print_r($e->code);
     print_r($e->error);
     print_r($e->errorDescription);
-
-    throw new Error($e->error);
 } catch (Exception $e) {
-    throw new Error($e->getMessage());
+    print_r($e->getMessage());
 }

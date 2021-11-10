@@ -16,9 +16,8 @@ try {
     echo json_encode($auth->__get('accessToken'));
 } catch (GerencianetException $e) {
     print_r($e->code);
+    print_r($e->error);
     print_r($e->errorDescription);
-
-    throw new Error($e->error);
 } catch (Exception $e) {
-    throw new Error($e->getMessage());
+    print_r($e->getMessage());
 }
