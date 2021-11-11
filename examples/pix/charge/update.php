@@ -8,7 +8,7 @@ use Gerencianet\Gerencianet;
 $file = file_get_contents(__DIR__ . '/../../config.json');
 $options = json_decode($file, true);
 
-$params = ['txid' => ''];
+$params = ['txid' => 'dt9BHlyzrb5jrFNAdfEDVpHgiOmDbVqVxd'];
 
 $body = [
     "solicitacaoPagador" => "Informe o número ou identificador da cobrança."
@@ -23,8 +23,6 @@ try {
     print_r($e->code);
     print_r($e->error);
     print_r($e->errorDescription);
-
-    throw new Error($e->error);
 } catch (Exception $e) {
-    throw new Error($e->getMessage());
+    print_r($e->getMessage());
 }
