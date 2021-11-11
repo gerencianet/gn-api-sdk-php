@@ -5,7 +5,6 @@ namespace Gerencianet;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
-use GuzzleHttp\Exception\RequestException;
 use Gerencianet\Exception\GerencianetException;
 use Gerencianet\Exception\AuthorizationException;
 
@@ -18,8 +17,8 @@ class Request
     public function __construct(array $options = null)
     {
         $this->config = Config::options($options);
-        $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);        
-        $this->certified_path = isset($options['certified_path'])? $options['certified_path'] : null;
+        $composerData = json_decode(file_get_contents(__DIR__ . '/../../composer.json'), true);
+        $this->certified_path = isset($options['certified_path']) ? $options['certified_path'] : null;
 
         $clientData = [
             'debug' => $this->config['debug'],
@@ -40,36 +39,36 @@ class Request
     public function send($method, $route, $requestOptions)
     {
         try {
-            if($this->certified_path){
+            if ($this->certified_path) {
                 $this->client->setDefaultOption('verify', $this->certified_path);
             }
 
-            if(isset($this->config['pixCert'])){
+            if (isset($this->config['pixCert'])) {
                 $requestOptions['cert'] = $this->config['pixCert'];
             }
 
             // Custom header data
-            if(isset($this->config['headers'])) {
-                foreach($this->config['headers'] as $key => $value) {
+            if (isset($this->config['headers'])) {
+                foreach ($this->config['headers'] as $key => $value) {
                     $requestOptions['headers'][$key] = $value;
                 }
             }
 
-            try {
-                $response = $this->client->request($method, $route, $requestOptions);
-                
-                return json_decode($response->getBody(), true);
-            } catch (RequestException $e) {
-                $response = ($e->getResponse()->getBody(true)) ? $e->getResponse()->getBody(true) : [];
+            $response = $this->client->request($method, $route, $requestOptions);
 
-                return json_decode($response, true);
-            }
+            return json_decode($response->getBody(), true);
         } catch (ClientException $e) {
-            throw new AuthorizationException($e->getResponse()->getStatusCode(),
-                       $e->getResponse()->getReasonPhrase(),
-                       $e->getResponse()->getBody());
+            if (is_array(json_decode($e->getResponse()->getBody(), true)) && $e->getResponse()->getStatusCode() != 401) {
+                throw new GerencianetException(json_decode($e->getResponse()->getBody(), true), $e->getResponse()->getStatusCode());
+            } else {
+                throw new AuthorizationException(
+                    $e->getResponse()->getStatusCode(),
+                    $e->getResponse()->getReasonPhrase(),
+                    $e->getResponse()->getBody()
+                );
+            }
         } catch (ServerException $se) {
-            throw new GerencianetException($se->getResponse()->getBody());
+            throw new GerencianetException($se->getResponse()->getBody(), $se->getResponse()->getStatusCode());
         }
     }
 
