@@ -44,7 +44,11 @@ class Request
             }
 
             if (isset($this->config['pixCert'])) {
-                $requestOptions['cert'] = $this->config['pixCert'];
+                if (file_exists(realpath($this->config['pixCert']))) {
+                    $requestOptions['cert'] = realpath($this->config['pixCert']);
+                } else {
+                    throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Certificate not found'], 403);
+                }
             }
 
             // Custom header data
