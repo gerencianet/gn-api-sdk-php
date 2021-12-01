@@ -46,6 +46,14 @@ class Request
             if (isset($this->config['pixCert'])) {
                 if (file_exists(realpath($this->config['pixCert']))) {
                     $requestOptions['cert'] = realpath($this->config['pixCert']);
+
+                    $certinfo = openssl_x509_parse(file_get_contents($requestOptions['cert']));
+                    $today = date("Y-m-d H:i:s");
+                    $validTo = date('Y-m-d H:i:s', $certinfo['validTo_time_t']);
+
+                    if ($validTo <= $today) {
+                        throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Authentication certificate expired on ' . $validTo], 403);
+                    }
                 } else {
                     throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Certificate not found'], 403);
                 }
