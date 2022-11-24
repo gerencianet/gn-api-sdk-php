@@ -1,42 +1,56 @@
 {
-  "name": "gerencianet/gerencianet-sdk-php",
-  "description": "GN API SDK PHP",
-  "version": "4.1.1",
-  "require": {
-    "guzzlehttp/guzzle": "^7.0",
-    "php": ">=7.2"
-  },
-  "license": "MIT",
-  "authors": [{
-    "name": "Cecília Deveza"
-  }, {
-    "name": "Danniel Hugo"
-  }, {
-    "name": "Francisco Thiene"
-  }, {
-    "name": "Talita Campos"
-  }, {
-    "name": "Thomaz Feitoza"
-  }, {
-    "name": "Filipe Mata"
-  }, {
-    "name": "Thiago Resende"
-  },{
-    "name": "Jéssica Gava"
-  },{
-    "name": "Guilherme Cota"
-  },{
-    "name": "Sady Coimbra"
-  },{
-    "name": "Matheus Rodrigues"
-  },{
-    "name": "João Oliveira"
-  },{
-    "name": "Paloma Brito"
-  }],
-  "autoload": {
-    "psr-0": {
-      "Gerencianet": "src/"
-    }
-  }
+	"name": "gerencianet/gerencianet-sdk-php",
+	"description": "GN API SDK PHP",
+	"version": "5.0.0",
+	"require": {
+		"guzzlehttp/guzzle": "^7.0",
+		"php": ">=7.2"
+	},
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Cecília Deveza"
+		},
+		{
+			"name": "Danniel Hugo"
+		},
+		{
+			"name": "Francisco Thiene"
+		},
+		{
+			"name": "Talita Campos"
+		},
+		{
+			"name": "Thomaz Feitoza"
+		},
+		{
+			"name": "Filipe Mata"
+		},
+		{
+			"name": "Thiago Resende"
+		},
+		{
+			"name": "Jéssica Gava"
+		},
+		{
+			"name": "Guilherme Cota"
+		},
+		{
+			"name": "Sady Coimbra"
+		},
+		{
+			"name": "Matheus Rodrigues"
+		},
+		{
+			"name": "João Oliveira"
+		},
+		{
+			"name": "Paloma Brito"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Gerencianet\\": "src/Gerencianet"
+		}
+	}
 }
