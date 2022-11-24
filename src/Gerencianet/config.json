@@ -1,268 +1,460 @@
 {
-  "URL": {
-    "DEFAULT" : {
-      "production": "https://api.gerencianet.com.br",
-      "sandbox": "https://sandbox.gerencianet.com.br"
-    },
-    "PIX": {
-      "production": "https://api-pix.gerencianet.com.br",
-      "sandbox": "https://api-pix-h.gerencianet.com.br"
+    "APIs": {
+        "DEFAULT": {
+            "URL": {
+                "production": "https://api.gerencianet.com.br",
+                "sandbox": "https://sandbox.gerencianet.com.br"
+            },
+            "ENDPOINTS": {
+                "authorize": {
+                    "route": "/v1/authorize",
+                    "method": "post"
+                },
+                "createCharge": {
+                    "route": "/v1/charge",
+                    "method": "post"
+                },
+                "createOneStepCharge": {
+                    "route": "/v1/charge/one-step",
+                    "method": "post"
+                },
+                "oneStepPartner": {
+                    "route": "/v1/partner/charge/one-step",
+                    "method": "post"
+                },
+                "detailCharge": {
+                    "route": "/v1/charge/:id",
+                    "method": "get"
+                },
+                "updateChargeMetadata": {
+                    "route": "/v1/charge/:id/metadata",
+                    "method": "put"
+                },
+                "updateBillet": {
+                    "route": "/v1/charge/:id/billet",
+                    "method": "put"
+                },
+                "definePayMethod": {
+                    "route": "/v1/charge/:id/pay",
+                    "method": "post"
+                },
+                "definePayMethodPartner": {
+                    "route": "/v1/partner/charge/:id/pay",
+                    "method": "post"
+                },
+                "cancelCharge": {
+                    "route": "/v1/charge/:id/cancel",
+                    "method": "put"
+                },
+                "createCarnet": {
+                    "route": "/v1/carnet",
+                    "method": "post"
+                },
+                "detailCarnet": {
+                    "route": "/v1/carnet/:id",
+                    "method": "get"
+                },
+                "updateCarnetParcel": {
+                    "route": "/v1/carnet/:id/parcel/:parcel",
+                    "method": "put"
+                },
+                "updateCarnetMetadata": {
+                    "route": "/v1/carnet/:id/metadata",
+                    "method": "put"
+                },
+                "getNotification": {
+                    "route": "/v1/notification/:token",
+                    "method": "get"
+                },
+                "listPlans": {
+                    "route": "/v1/plans",
+                    "method": "get"
+                },
+                "createPlan": {
+                    "route": "/v1/plan",
+                    "method": "post"
+                },
+                "deletePlan": {
+                    "route": "/v1/plan/:id",
+                    "method": "delete"
+                },
+                "createSubscription": {
+                    "route": "/v1/plan/:id/subscription",
+                    "method": "post"
+                },
+                "createOneStepSubscription": {
+                    "route": "/v1/plan/:id/subscription/one-step",
+                    "method": "post"
+                },
+                "createOneStepSubscriptionLink": {
+                    "route": "/v1/plan/:id/subscription/one-step/link",
+                    "method": "post"
+                },
+                "detailSubscription": {
+                    "route": "/v1/subscription/:id",
+                    "method": "get"
+                },
+                "defineSubscriptionPayMethod": {
+                    "route": "/v1/subscription/:id/pay",
+                    "method": "post"
+                },
+                "cancelSubscription": {
+                    "route": "/v1/subscription/:id/cancel",
+                    "method": "put"
+                },
+                "updateSubscriptionMetadata": {
+                    "route": "/v1/subscription/:id/metadata",
+                    "method": "put"
+                },
+                "createSubscriptionHistory": {
+                    "route": "/v1/subscription/:id/history",
+                    "method": "post"
+                },
+                "sendSubscriptionLinkEmail": {
+                    "route": "/v1/charge/:id/subscription/resend",
+                    "method": "post"
+                },
+                "getInstallments": {
+                    "route": "/v1/installments",
+                    "method": "get"
+                },
+                "sendBilletEmail": {
+                    "route": "/v1/charge/:id/billet/resend",
+                    "method": "post"
+                },
+                "createChargeHistory": {
+                    "route": "/v1/charge/:id/history",
+                    "method": "post"
+                },
+                "sendCarnetEmail": {
+                    "route": "/v1/carnet/:id/resend",
+                    "method": "post"
+                },
+                "sendCarnetParcelEmail": {
+                    "route": "/v1/carnet/:id/parcel/:parcel/resend",
+                    "method": "post"
+                },
+                "createCarnetHistory": {
+                    "route": "/v1/carnet/:id/history",
+                    "method": "post"
+                },
+                "cancelCarnet": {
+                    "route": "/v1/carnet/:id/cancel",
+                    "method": "put"
+                },
+                "cancelCarnetParcel": {
+                    "route": "/v1/carnet/:id/parcel/:parcel/cancel",
+                    "method": "put"
+                },
+                "createOneStepLink": {
+                    "route": "/v1/charge/one-step/link",
+                    "method": "post"
+                },
+                "defineLinkPayMethod": {
+                    "route": "/v1/charge/:id/link",
+                    "method": "post"
+                },
+                "updateChargeLink": {
+                    "route": "/v1/charge/:id/link",
+                    "method": "put"
+                },
+                "sendLinkEmail": {
+                    "route": "/v1/charge/:id/link/resend",
+                    "method": "post"
+                },
+                "updatePlan": {
+                    "route": "/v1/plan/:id",
+                    "method": "put"
+                },
+                "defineBalanceSheetBillet": {
+                    "route": "/v1/charge/:id/balance-sheet",
+                    "method": "post"
+                },
+                "settleCharge": {
+                    "route": "/v1/charge/:id/settle",
+                    "method": "put"
+                },
+                "settleCarnet": {
+                    "route": "/v1/carnet/:id/settle",
+                    "method": "put"
+                },
+                "settleCarnetParcel": {
+                    "route": "/v1/carnet/:id/parcel/:parcel/settle",
+                    "method": "put"
+                }
+            }
+        },
+        "PIX": {
+            "URL": {
+                "production": "https://api-pix.gerencianet.com.br",
+                "sandbox": "https://api-pix-h.gerencianet.com.br"
+            },
+            "ENDPOINTS": {
+                "authorize": {
+                    "route": "/oauth/token",
+                    "method": "post"
+                },
+                "pixConfigWebhook": {
+                    "route": "/v2/webhook/:chave",
+                    "method": "put"
+                },
+                "pixDetailWebhook": {
+                    "route": "/v2/webhook/:chave",
+                    "method": "get"
+                },
+                "pixListWebhook": {
+                    "route": "/v2/webhook",
+                    "method": "get"
+                },
+                "pixDeleteWebhook": {
+                    "route": "/v2/webhook/:chave",
+                    "method": "delete"
+                },
+                "pixCreateCharge": {
+                    "route": "/v2/cob/:txid",
+                    "method": "put"
+                },
+                "pixCreateImmediateCharge": {
+                    "route": "/v2/cob",
+                    "method": "post"
+                },
+                "pixDetailCharge": {
+                    "route": "/v2/cob/:txid",
+                    "method": "get"
+                },
+                "pixUpdateCharge": {
+                    "route": "/v2/cob/:txid",
+                    "method": "patch"
+                },
+                "pixListCharges": {
+                    "route": "/v2/cob",
+                    "method": "get"
+                },
+                "pixDevolution": {
+                    "route": "/v2/pix/:e2eId/devolucao/:id",
+                    "method": "put"
+                },
+                "pixDetailDevolution": {
+                    "route": "/v2/pix/:e2eId/devolucao/:id",
+                    "method": "get"
+                },
+                "pixSend": {
+                    "route": "/v2/gn/pix/:idEnvio",
+                    "method": "put"
+                },
+                "pixSendDetail": {
+                    "route": "/v2/gn/pix/enviados/:e2eId",
+                    "method": "get"
+                },
+                "pixSendList": {
+                    "route": "/v2/gn/pix/enviados",
+                    "method": "get"
+                },
+                "pixDetailReceived": {
+                    "route": "/v2/pix/:e2eId",
+                    "method": "get"
+                },
+                "pixReceivedList": {
+                    "route": "/v2/pix",
+                    "method": "get"
+                },
+                "pixGenerateQRCode": {
+                    "route": "/v2/loc/:id/qrcode",
+                    "method": "get"
+                },
+                "pixCreateLocation": {
+                    "route": "/v2/loc",
+                    "method": "post"
+                },
+                "pixLocationList": {
+                    "route": "/v2/loc",
+                    "method": "get"
+                },
+                "pixDetailLocation": {
+                    "route": "/v2/loc/:id",
+                    "method": "get"
+                },
+                "pixUnlinkTxidLocation": {
+                    "route": "/v2/loc/:id/txid",
+                    "method": "delete"
+                },
+                "pixCreateEvp": {
+                    "route": "/v2/gn/evp",
+                    "method": "post"
+                },
+                "pixListEvp": {
+                    "route": "/v2/gn/evp",
+                    "method": "get"
+                },
+                "pixDeleteEvp": {
+                    "route": "/v2/gn/evp/:chave",
+                    "method": "delete"
+                },
+                "pixSplitDetailCharge": {
+                    "route": "/v2/gn/split/cob/:txid",
+                    "method": "get"
+                },
+                "pixSplitLinkCharge": {
+                    "route": "/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+                    "method": "put"
+                },
+                "pixSplitDetailDueCharge": {
+                    "route": "/v2/gn/split/cobv/:txid",
+                    "method": "get"
+                },
+                "pixSplitLinkDueCharge": {
+                    "route": "/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+                    "method": "put"
+                },
+                "pixSplitConfig": {
+                    "route": "/v2/gn/split/config",
+                    "method": "post"
+                },
+                "pixSplitConfigId": {
+                    "route": "/v2/gn/split/config/:id",
+                    "method": "put"
+                },
+                "pixSplitDetailConfig": {
+                    "route": "/v2/gn/split/config/:id",
+                    "method": "get"
+                },
+                "getAccountBalance": {
+                    "route": "/v2/gn/saldo",
+                    "method": "get"
+                },
+                "updateAccountConfig": {
+                    "route": "/v2/gn/config",
+                    "method": "put"
+                },
+                "listAccountConfig": {
+                    "route": "/v2/gn/config",
+                    "method": "get"
+                },
+                "pixCreateDueCharge": {
+                    "route": "/v2/cobv/:txid",
+                    "method": "put"
+                },
+                "pixUpdateDueCharge": {
+                    "route": "/v2/cobv/:txid",
+                    "method": "patch"
+                },
+                "pixDetailDueCharge": {
+                    "route": "/v2/cobv/:txid",
+                    "method": "get"
+                },
+                "pixListDueCharges": {
+                    "route": "/v2/cobv/",
+                    "method": "get"
+                },
+                "createReport": {
+                    "route": "/v2/gn/relatorios/extrato-conciliacao",
+                    "method": "post"
+                },
+                "detailReport": {
+                    "route": "/v2/gn/relatorios/:id",
+                    "method": "get"
+                }
+            }
+        },
+        "OPEN-FINANCE": {
+            "URL": {
+                "production": "https://apis.gerencianet.com.br",
+                "sandbox": "https://apis-h.gerencianet.com.br"
+            },
+            "ENDPOINTS": {
+                "authorize": {
+                    "route": "/open-finance/oauth/token",
+                    "method": "post"
+                },
+                "ofConfigUpdate": {
+                    "route": "/open-finance/config",
+                    "method": "put"
+                },
+                "ofConfigDetail": {
+                    "route": "/open-finance/config",
+                    "method": "get"
+                },
+                "ofListParticipants": {
+                    "route": "/open-finance/participantes",
+                    "method": "get"
+                },
+                "ofStartPixPayment": {
+                    "route": "/open-finance/pagamentos/pix",
+                    "method": "post"
+                },
+                "ofListPixPayment": {
+                    "route": "/open-finance/pagamentos/pix",
+                    "method": "get"
+                }
+            }
+        },
+        "PAGAMENTOS": {
+            "URL": {
+                "production": "https://apis.gerencianet.com.br",
+                "sandbox": null
+            },
+            "ENDPOINTS": {
+                "authorize": {
+                    "route": "/pagamento/oauth/token",
+                    "method": "post"
+                },
+                "payDetailBarCode": {
+                    "route": "/pagamento/codBarras/:codBarras",
+                    "method": "get"
+                },
+                "payRequestBarCode": {
+                    "route": "/pagamento/codBarras/:codBarras",
+                    "method": "post"
+                },
+                "payDetailPayment": {
+                    "route": "/pagamento/:idPagamento",
+                    "method": "get"
+                },
+                "payListPayments": {
+                    "route": "/pagamento/resumo",
+                    "method": "get"
+                }
+            }
+        },
+        "ACCOUNTS-OPENING": {
+            "URL": {
+                "production": "https://apis.gerencianet.com.br",
+                "sandbox": null
+            },
+            "ENDPOINTS": {
+                "authorize": {
+                    "route": "/oauth/token",
+                    "method": "post"
+                },
+                "createAccount": {
+                    "route": "/cadastro/conta-simplificada",
+                    "method": "post"
+                },
+                "getAccountCredentials": {
+                    "route": "/cadastro/conta-simplificada/:idContaSimplificada/credenciais",
+                    "method": "get"
+                },
+                "getAccountCertificate": {
+                    "route": "/cadastro/conta-simplificada/:idContaSimplificada/certificado",
+                    "method": "get"
+                },
+                "accountConfigWebhook": {
+                    "route": "/cadastro/webhook",
+                    "method": "post"
+                },
+                "accountListWebhook": {
+                    "route": "/cadastro/webhooks",
+                    "method": "get"
+                },
+                "accountDetailWebhook": {
+                    "route": "/cadastro/webhook/:identificadorWebhook",
+                    "method": "get"
+                },
+                "accountDeleteWebhook": {
+                    "route": "/cadastro/webhook/:identificadorWebhook",
+                    "method": "delete"
+                }
+            }
+        }
     }
-  },
-  "ENDPOINTS": {
-    "DEFAULT" : {
-      "authorize": {
-        "route": "/v1/authorize",
-        "method": "post"
-      },
-      "createCharge": {
-        "route": "/v1/charge",
-        "method": "post"
-      },
-      "oneStep": {
-        "route": "/v1/charge/one-step",
-        "method": "post"
-      },
-      "detailCharge": {
-        "route": "/v1/charge/:id",
-        "method": "get"
-      },
-      "updateChargeMetadata": {
-        "route": "/v1/charge/:id/metadata",
-        "method": "put"
-      },
-      "updateBillet": {
-        "route": "/v1/charge/:id/billet",
-        "method": "put"
-      },
-      "payCharge": {
-        "route": "/v1/charge/:id/pay",
-        "method": "post"
-      },
-      "cancelCharge": {
-        "route": "/v1/charge/:id/cancel",
-        "method": "put"
-      },
-      "createCarnet": {
-        "route": "/v1/carnet",
-        "method": "post"
-      },
-      "detailCarnet": {
-        "route": "/v1/carnet/:id",
-        "method": "get"
-      },
-      "updateParcel": {
-        "route": "/v1/carnet/:id/parcel/:parcel",
-        "method": "put"
-      },
-      "updateCarnetMetadata": {
-        "route": "/v1/carnet/:id/metadata",
-        "method": "put"
-      },
-      "getNotification": {
-        "route": "/v1/notification/:token",
-        "method": "get"
-      },
-      "getPlans": {
-        "route": "/v1/plans",
-        "method": "get"
-      },
-      "createPlan": {
-        "route": "/v1/plan",
-        "method": "post"
-      },
-      "deletePlan": {
-        "route": "/v1/plan/:id",
-        "method": "delete"
-      },
-      "createSubscription": {
-        "route": "/v1/plan/:id/subscription",
-        "method": "post"
-      },
-      "detailSubscription": {
-        "route": "/v1/subscription/:id",
-        "method": "get"
-      },
-      "paySubscription": {
-        "route": "/v1/subscription/:id/pay",
-        "method": "post"
-      },
-      "cancelSubscription": {
-        "route": "/v1/subscription/:id/cancel",
-        "method": "put"
-      },
-      "updateSubscriptionMetadata": {
-        "route": "/v1/subscription/:id/metadata",
-        "method": "put"
-      },
-      "getInstallments": {
-        "route": "/v1/installments",
-        "method": "get"
-      },
-      "resendBillet": {
-        "route": "/v1/charge/:id/billet/resend",
-        "method": "post"
-      },
-      "createChargeHistory": {
-        "route": "/v1/charge/:id/history",
-        "method": "post"
-      },
-      "resendCarnet": {
-        "route": "/v1/carnet/:id/resend",
-        "method": "post"
-      },
-      "resendParcel": {
-        "route": "/v1/carnet/:id/parcel/:parcel/resend",
-        "method": "post"
-      },
-      "createCarnetHistory": {
-        "route": "/v1/carnet/:id/history",
-        "method": "post"
-      },
-      "cancelCarnet": {
-        "route": "/v1/carnet/:id/cancel",
-        "method": "put"
-      },
-      "cancelParcel": {
-        "route": "/v1/carnet/:id/parcel/:parcel/cancel",
-        "method": "put"
-      },
-      "chargeLink": {
-        "route": "/v1/charge/:id/link",
-        "method": "post"
-      },
-      "updateChargeLink": {
-        "route": "/v1/charge/:id/link",
-        "method": "put"
-      },
-      "updatePlan": {
-        "route": "/v1/plan/:id",
-        "method": "put"
-      },
-      "createSubscriptionHistory": {
-        "route": "/v1/subscription/:id/history",
-        "method": "post"
-      },
-      "createChargeBalanceSheet": {
-        "route": "/v1/charge/:id/balance-sheet",
-        "method": "post"
-      },
-      "settleCharge": {
-        "route": "/v1/charge/:id/settle",
-        "method": "put"
-      },
-      "settleCarnetParcel": {
-        "route": "/v1/carnet/:id/parcel/:parcel/settle",
-        "method": "put"
-      }
-    },
-    "PIX": {
-      "authorize": {
-        "route": "/oauth/token",
-        "method": "post"
-      },
-
-      "pixConfigWebhook": {
-          "route": "/v2/webhook/:chave",
-          "method": "put"
-      },
-      "pixGetWebhook": {
-          "route": "/v2/webhook/:chave",
-          "method": "get"
-      },
-      "pixListWebhook": {
-          "route": "/v2/webhook",
-          "method": "get"
-      },
-      "pixDeleteWebhook": {
-          "route": "/v2/webhook/:chave",
-          "method": "delete"
-      },
-
-      "pixCreateCharge": {
-        "route": "/v2/cob/:txid",
-        "method": "put"
-      },
-      "pixCreateImmediateCharge": {
-        "route": "/v2/cob",
-        "method": "post"
-      },
-      "pixDetailCharge": {
-        "route": "/v2/cob/:txid",
-        "method": "get"
-      },
-      "pixUpdateCharge": {
-        "route": "/v2/cob/:txid",
-        "method": "patch"
-      },
-      "pixListCharges": {
-        "route": "/v2/cob",
-        "method": "get"
-      },
-      "pixGenerateQRCode": {
-        "route": "/v2/loc/:id/qrcode",
-        "method": "get"
-      },
-      "pixDevolution": {
-        "route": "/v2/pix/:e2eId/devolucao/:id",
-        "method": "put"
-      },
-      "pixDevolutionGet": {
-        "route": "/v2/pix/:e2eId/devolucao/:id",
-        "method": "get"
-      },
-      "pixSend": {
-        "route": "/v2/pix",
-        "method": "post"
-      },
-      "pixSendList": {
-        "route": "/v2/pix/:e2eId",
-        "method": "get"
-      },
-      "pixReceivedList": {
-        "route": "/v2/pix",
-        "method": "get"
-      },
-      "pixLocationCreate": {
-        "route": "/v2/loc",
-        "method": "post"
-      },
-      "pixLocationList": {
-        "route": "/v2/loc",
-        "method": "get"
-      },
-      "pixLocationGet": {
-        "route": "/v2/loc/:id",
-        "method": "get"
-      },
-      "pixLocationDeleteTxid": {
-        "route": "/v2/loc/:id/txid",
-        "method": "delete"
-      },
-      "pixCreateEvp": {
-        "route": "/v2/gn/evp",
-        "method": "post"
-      },
-      "pixListEvp": {
-        "route": "/v2/gn/evp",
-        "method": "get"
-      },
-      "pixDeleteEvp": {
-        "route": "/v2/gn/evp/:chave",
-        "method": "delete"
-      },
-      "pixListBalance": {
-        "route": "/v2/gn/saldo",
-        "method": "get"
-      },
-      "pixUpdateSettings": {
-        "route": "/v2/gn/config",
-        "method": "put"
-      },
-      "pixListSettings": {
-        "route": "/v2/gn/config",
-        "method": "get"
-      }
-    }
-  }
 }
