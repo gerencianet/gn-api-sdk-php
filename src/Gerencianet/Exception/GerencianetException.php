@@ -18,18 +18,26 @@ class GerencianetException extends Exception
             $error = $this->parseStream($exception);
         }
 
+        $this->apiReturns($error, $code);   
+    }
+
+    private function apiReturns($error, $code){
         if (isset($error['message'])) {
             $message = $error['message'];
 
             $this->code = $code;
             $this->errorDescription = $error['message'];
-        } else if (isset($error['error'])) { // erros API Cobranças
+        } else if (isset($error['error'])) { // error API Cobranças
             $message = isset($error['error_description']['message']) ? $error['error_description']['message'] : $error['error_description'];
-            
+
             $this->code = $error['code'];
             $this->error = $error['error'];
             $this->errorDescription = $error['error_description'];
-        } else { // erros API Pix
+        } else if (isset($error['type'])) { // error API cobv e reports
+            $this->code = $error['status'];
+            $this->error = $error['title'] . ". " . $error['detail'];
+            $this->errorDescription = $error['violacoes'];
+        } else { // error API Pix
             $message = (isset($error['erros']['mensagem']) ?  $error['mensagem'] . ": " . $error['caminho'] . " " . $error['erros']['mensagem'] : $error['mensagem'] . ": " . $error['mensagem']);
 
             $this->code = $code;

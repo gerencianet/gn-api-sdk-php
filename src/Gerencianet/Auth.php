@@ -12,37 +12,45 @@ class Auth
     private $tokenType;
     private $expires;
     private $config;
+    private $options;
     private $request;
-    private $pixCert;
+    private $certificate;
 
     public function __construct($options)
     {
+        $this->options = $options;
         $this->config = Config::options($options);
 
-        if (!isset($this->config['clientId']) ||
-         !isset($this->config['clientSecret'])) {
-            throw new Exception('Client id or secret not found');
+        if (
+            !isset($this->config['clientId']) ||
+            !isset($this->config['clientSecret'])
+        ) {
+            throw new Exception('Client_Id or Client_Secret not found');
         }
 
         $this->request = new Request($options);
+
         $this->clientId = $this->config['clientId'];
-        $this->pixCert = isset($this->config['pixCert']) ? $this->config['pixCert'] : null;
         $this->clientSecret = $this->config['clientSecret'];
+        $this->certificate = (isset($this->config['certificate'])) ? $this->config['certificate'] : ((isset($this->config['pix_cert'])) ? $this->config['pix_cert'] : null);
     }
 
     public function authorize()
     {
-        $endpoints = Config::get('ENDPOINTS');
+        $endpoints = Config::get($this->options['api']);
+        $requestTimeout = isset($this->options['timeout']) ? (float)$this->options['timeout'] : 30.0;
 
-        $requestTimeout = isset($this->options['timeout'])? (double)$this->options['timeout'] : 30.0;
-        $requestOptions = ['auth' => [$this->clientId, $this->clientSecret],
-         'json' => ['grant_type' => 'client_credentials'], 'timeout' => $requestTimeout];
-
-        $endpoints = $this->pixCert ? $endpoints['PIX'] : $endpoints['DEFAULT'];
+        $requestOptions = [
+            'auth' => [$this->clientId, $this->clientSecret],
+            'json' => ['grant_type' => 'client_credentials'], 'timeout' => $requestTimeout
+        ];
 
         $response = $this->request
-                          ->send($endpoints['authorize']['method'], $endpoints['authorize']['route'],
-                          $requestOptions);
+            ->send(
+                $endpoints['ENDPOINTS']['authorize']['method'],
+                $endpoints['ENDPOINTS']['authorize']['route'],
+                $requestOptions
+            );
 
         $this->accessToken = $response['access_token'];
         $this->expires = time() + $response['expires_in'];

@@ -23,27 +23,31 @@ class ApiRequest
             $this->auth->authorize();
         }
 
-        $composerData = json_decode(file_get_contents(__DIR__.'/../../composer.json'), true);
-        $requestTimeout = isset($this->options['timeout'])? (double)$this->options['timeout'] : 30.0;
+        $composerData = json_decode(file_get_contents(__DIR__ . '/../../composer.json'), true);
+        $requestTimeout = isset($this->options['timeout']) ? (float)$this->options['timeout'] : 30.0;
         $requestHeaders = [
             'Authorization' => 'Bearer ' . $this->auth->accessToken,
-            'api-sdk' => 'php-' . $composerData['version']            
+            'api-sdk' => 'php-' . $composerData['version']
         ];
 
-        if (isset($this->options['partner_token'])) {
-            $requestHeaders['partner-token'] = $this->options['partner_token'];
+        if (isset($this->options['partner_token']) || isset($this->options['partner-token'])) {
+            $clientData['headers']['partner-token'] = isset($this->options['partner_token']) ? $this->options['partner_token'] : $this->options['partner-token'];
         }
-                
+
         try {
-            return $this->request->send($method, $route, ['json' => $body, 
-            'timeout' => $requestTimeout,
-            'headers' => $requestHeaders]);
+            return $this->request->send($method, $route, [
+                'json' => $body,
+                'timeout' => $requestTimeout,
+                'headers' => $requestHeaders
+            ]);
         } catch (AuthorizationException $e) {
             $this->auth->authorize();
 
-            return $this->request->send($method, $route, ['json' => $body,
-            'timeout' => $requestTimeout,
-            'headers' => $requestHeaders]);
+            return $this->request->send($method, $route, [
+                'json' => $body,
+                'timeout' => $requestTimeout,
+                'headers' => $requestHeaders
+            ]);
         }
     }
 

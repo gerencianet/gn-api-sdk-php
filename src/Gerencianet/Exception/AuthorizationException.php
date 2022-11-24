@@ -18,8 +18,8 @@ class AuthorizationException extends Exception
         parent::__construct($reason, $status);
     }
 
-  public function __toString()
-  {
-      return 'Authorization Error '.$this->status.': '.$this->message."\n";
-  }
+    public function __toString()
+    {
+        return 'Authorization Error ' . $this->status . ': ' . $this->message . "\n";
+    }
 }

@@ -29,37 +29,57 @@ class Request
             ]
         ];
 
-        if (isset($options['partner_token'])) {
-            $clientData['headers']['partner-token'] = $options['partner_token'];
+        if (isset($options['partner_token']) || isset($options['partner-token'])) {
+            $clientData['headers']['partner-token'] = isset($options['partner_token']) ? $options['partner_token'] : $options['partner-token'];
         }
 
         $this->client = new Client($clientData);
     }
 
+    private function verifyCertificate($certificate)
+    {
+        if ($this->certified_path) {
+            $this->client->setDefaultOption('verify', $this->certified_path);
+        }
+
+        if (isset($certificate)) {
+            if (file_exists($certPath = realpath($certificate))) {
+                if (!$fileContents = file_get_contents($certPath)) {
+                    throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Unable to read the cert file'], 403);
+                }
+
+                if (strtolower(substr($certPath, -3)) === 'p12') {
+                    if (!openssl_pkcs12_read($fileContents, $certData, $password = '')) {
+                        throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Unable to read the cert file p12'], 403);
+                    }
+
+                    $fileContents = $certData['cert'];
+                    $requestOptions['curl'] = [CURLOPT_SSLCERTTYPE => 'P12'];
+                }
+
+                if (!$publicKey = openssl_x509_parse($fileContents)) {
+                    throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Certificate invalid'], 403);
+                }
+
+                $today = date("Y-m-d H:i:s");
+                $validTo = date('Y-m-d H:i:s', $publicKey['validTo_time_t']);
+
+                if ($validTo <= $today) {
+                    throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Authentication certificate expired on ' . $validTo], 403);
+                }
+
+                return $certPath;
+            } else {
+                throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Certificate not found'], 403);
+            }
+        }
+    }
+
     public function send($method, $route, $requestOptions)
     {
         try {
-            if ($this->certified_path) {
-                $this->client->setDefaultOption('verify', $this->certified_path);
-            }
+            $requestOptions['cert'] = $this->verifyCertificate($this->config['certificate']);
 
-            if (isset($this->config['pixCert'])) {
-                if (file_exists(realpath($this->config['pixCert']))) {
-                    $requestOptions['cert'] = realpath($this->config['pixCert']);
-
-                    $certinfo = openssl_x509_parse(file_get_contents($requestOptions['cert']));
-                    $today = date("Y-m-d H:i:s");
-                    $validTo = date('Y-m-d H:i:s', $certinfo['validTo_time_t']);
-
-                    if ($validTo <= $today) {
-                        throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Authentication certificate expired on ' . $validTo], 403);
-                    }
-                } else {
-                    throw new GerencianetException(['nome' => 'forbidden', 'mensagem' => 'Certificate not found'], 403);
-                }
-            }
-
-            // Custom header data
             if (isset($this->config['headers'])) {
                 foreach ($this->config['headers'] as $key => $value) {
                     $requestOptions['headers'][$key] = $value;
@@ -68,7 +88,15 @@ class Request
 
             $response = $this->client->request($method, $route, $requestOptions);
 
-            return json_decode($response->getBody(), true);
+            if (stristr($response->getHeader('Content-Type')[0], 'application/json')) {
+                if (json_decode($response->getBody(), true) !== null) {
+                    return json_decode($response->getBody(), true);
+                } else {
+                    return ["code" => $response->getStatusCode()];
+                }
+            } else {
+                return $response->getBody()->getContents();
+            }
         } catch (ClientException $e) {
             if (is_array(json_decode($e->getResponse()->getBody(), true)) && $e->getResponse()->getStatusCode() != 401) {
                 throw new GerencianetException(json_decode($e->getResponse()->getBody(), true), $e->getResponse()->getStatusCode());

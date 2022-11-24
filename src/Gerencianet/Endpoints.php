@@ -14,21 +14,16 @@ class Endpoints
     public function __construct($options, $requester = null)
     {
         $this->requester = $requester;
+        $this->options = $options;
 
-        if (!$this->requester) {
-            $this->requester = new ApiRequest($options);
-        }
-
-        $this->endpoints = Config::get('ENDPOINTS');
-        $this->endpoints = Config::isPix($options) ? $this->endpoints['PIX'] : $this->endpoints['DEFAULT'];
-        $this->map();
+        $this->endpoints = Config::get('APIs');
     }
 
     public static function getInstance($options = null, $requester = null)
     {
         if (!isset(self::$instance)) {
-            if(!isset($options)) {
-                throw new Exception('config not defined');
+            if (!isset($options)) {
+                throw new Exception('Credentials Client_Id and Client_Secret not defined');
             }
 
             self::$instance = new self($options, $requester);
@@ -38,11 +33,9 @@ class Endpoints
 
     public function __call($method, $args)
     {
-        if (isset($this->methods[$method])) {
-            return $this->methods[$method]((isset($args[0]) ? $args[0] : null), (isset($args[1]) ? $args[1] : null));
-        } else {
-            throw new Exception('nonexistent endpoint');
-        }
+        $this->map($method);
+
+        return $this->methods[$method]((isset($args[0]) ? $args[0] : []), (isset($args[1]) ? $args[1] : []));
     }
 
     public static function __callStatic($method, $args)
@@ -50,21 +43,52 @@ class Endpoints
         if (method_exists('\\Gerencianet\Utils', $method)) {
             return Utils::$method((isset($args[0]) ? $args[0] : null), (isset($args[1]) ? $args[1] : null));
         } else {
-            throw new Exception('nonexistent endpoint');
+            throw new Exception("Nonexistent requested '$method' method");
         }
     }
 
-    private function map()
+    private function map($method)
     {
+        if (!isset($this->endpoints['ENDPOINTS'])) {
+            if (array_column($this->endpoints['PIX'], $method)) {
+                $this->endpoints = $this->endpoints['PIX'];
+                $this->options['api'] = 'PIX';
+            } else if (array_column($this->endpoints['OPEN-FINANCE'], $method)) {
+                $this->endpoints = $this->endpoints['OPEN-FINANCE'];
+                $this->options['api'] = 'OPEN-FINANCE';
+            } else if (array_column($this->endpoints['PAGAMENTOS'], $method)) {
+                $this->endpoints = $this->endpoints['PAGAMENTOS'];
+                $this->options['api'] = 'PAGAMENTOS';
+            } else if (array_column($this->endpoints['ACCOUNTS-OPENING'], $method)) {
+                $this->endpoints = $this->endpoints['ACCOUNTS-OPENING'];
+                $this->options['api'] = 'ACCOUNTS-OPENING';
+            } else if (array_column($this->endpoints['DEFAULT'], $method)) {
+                $this->endpoints = $this->endpoints['DEFAULT'];
+                $this->options['api'] = 'DEFAULT';
+            } else {
+                throw new Exception("Nonexistent requested '$method' method");
+            }
+        }
+
         $this->methods = array_map(function ($endpoint) {
             return function ($params = [], $body = []) use ($endpoint) {
                 $route = $this->getRoute($endpoint, $params);
                 $query = $this->getQueryString($params);
                 $route .= $query;
 
+                $this->options['url'] = ($this->options['sandbox']) ? $this->endpoints['URL']['sandbox'] : $this->endpoints['URL']['production'];
+
+                if ($this->options['url'] === null) {
+                    throw new Exception($this->options['api'] . ' API endpoints works only in production environment');
+                }
+
+                if (!$this->requester) {
+                    $this->requester = new ApiRequest($this->options);
+                }
+
                 return $this->requester->send($endpoint['method'], $route, $body);
             };
-        }, $this->endpoints);
+        }, $this->endpoints['ENDPOINTS']);
     }
 
     private function getRoute($endpoint, &$params)
@@ -76,7 +100,7 @@ class Endpoints
 
         foreach ($variables as $value) {
             if (isset($params[$value])) {
-                $route = str_replace(':'.$value, $params[$value], $route);
+                $route = str_replace(':' . $value, $params[$value], $route);
                 unset($params[$value]);
             }
         }
@@ -96,7 +120,7 @@ class Endpoints
         $reduce = function ($previous, $current) use ($keys, $params, $length) {
             $next = ($current == $length - 1) ? '' : '&';
 
-            return $previous.$keys[$current].'='.$params[$keys[$current]].$next;
+            return $previous . $keys[$current] . '=' . (is_bool($params[$keys[$current]]) ? (((int) $params[$keys[$current]] === 1) ? 'true' : 'false')  : $params[$keys[$current]]) . $next;
         };
 
         return array_reduce(array_keys($keys), $reduce, '?');
