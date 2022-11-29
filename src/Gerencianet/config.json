@@ -18,7 +18,7 @@
                     "route": "/v1/charge/one-step",
                     "method": "post"
                 },
-                "oneStepPartner": {
+                "createOneStepChargePartner": {
                     "route": "/v1/partner/charge/one-step",
                     "method": "post"
                 },
