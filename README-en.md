@@ -38,7 +38,7 @@ Jump To:
 
 ## **Tested with**
 ```
-PHP 7.2, 7.4, 8.0 and 8.1
+PHP 7.2, 7.3, 7.4, 8.0 and 8.1
 ```
 
 ## **Installation**
@@ -73,7 +73,7 @@ Instantiate the module parameters using `client_id`, `client_secret`, `sandbox` 
 $options = [
 	"client_id" => "Client_Id...",
 	"client_secret" => "Client_Secret...",
-	"certificate" => realpath("/www/gn-api-sdk-php/examples/credentials/homologation.p12"), // Absolute path to the certificate in .p12 or .pem format
+	"certificate" => realpath(__DIR__ . "/homologation.p12"), // Absolute path to the certificate in .p12 or .pem format
 	"sandbox" => true,
 	"debug" => false,
 	"timeout" => 30
@@ -86,7 +86,7 @@ Instantiate the module parameters using `client_id`, `client_secret`, `sandbox` 
 $options = [
 	"client_id" => "Client_Id...",
 	"client_secret" => "Client_Secret...",
-	"certificate" => realpath("/www/gn-api-sdk-php/examples/credentials/production.p12"), // Absolute path to the certificate in .p12 or .pem format
+	"certificate" => realpath(__DIR__ . "/production.p12"), // Absolute path to the certificate in .p12 or .pem format
 	"sandbox" => false,
 	"debug" => false,
 	"timeout" => 30
