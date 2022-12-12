@@ -1,3 +1,7 @@
+# 5.0.1
+- Fix: Certificate verification
+- Add: New example of pix devolution Open Finance
+
 # 5.0.0
 - Fix: psr-4 autoloading standard
 - Fix: Method pixSend() now requires sending the Id
