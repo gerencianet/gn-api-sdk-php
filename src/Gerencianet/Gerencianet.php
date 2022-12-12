@@ -85,8 +85,10 @@
  * @method string detailReport(array $params)
  * @method string pixSplitDetailCharge(array $params)
  * @method string pixSplitLinkCharge(array $params)
+ * @method string pixSplitUnlinkCharge(array $params)
  * @method string pixSplitDetailDueCharge(array $params)
  * @method string pixSplitLinkDueCharge(array $params)
+ * @method string pixSplitUnlinkDueCharge(array $params)
  * @method string pixSplitConfig(array $params = [], array $body)
  * @method string pixSplitConfigId(array $params, array $body)
  * @method string pixSplitDetailConfig(array $params)
@@ -96,9 +98,10 @@
  * @method array ofConfigDetail()
  * @method array ofListParticipants(array $params)
  * @method array ofStartPixPayment(array $params = [], array $body)
+ * @method array ofDevolutionPix(array $params = [], array $body)
  * @method array ofListPixPayment(array $params)
  * 
- * API PAGAMENTOS
+ * API PAYMENTS
  * @method array payDetailBarCode(array $params)
  * @method array payRequestBarCode(array $params, array $body)
  * @method array payDetailPayment(array $params)

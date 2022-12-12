@@ -67,7 +67,7 @@ class Config
             $conf['baseUri'] = $options['url'];
         }
 
-        if ($options['api'] !== 'DEFAULT') {
+        if ($options['api'] !== 'CHARGES') {
             $conf['certificate'] = (isset($options['certificate']) ? $options['certificate'] : $options['pix_cert']);
         }
 

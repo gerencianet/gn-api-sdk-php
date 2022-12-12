@@ -56,15 +56,15 @@ class Endpoints
             } else if (array_column($this->endpoints['OPEN-FINANCE'], $method)) {
                 $this->endpoints = $this->endpoints['OPEN-FINANCE'];
                 $this->options['api'] = 'OPEN-FINANCE';
-            } else if (array_column($this->endpoints['PAGAMENTOS'], $method)) {
-                $this->endpoints = $this->endpoints['PAGAMENTOS'];
-                $this->options['api'] = 'PAGAMENTOS';
-            } else if (array_column($this->endpoints['ACCOUNTS-OPENING'], $method)) {
-                $this->endpoints = $this->endpoints['ACCOUNTS-OPENING'];
-                $this->options['api'] = 'ACCOUNTS-OPENING';
-            } else if (array_column($this->endpoints['DEFAULT'], $method)) {
-                $this->endpoints = $this->endpoints['DEFAULT'];
-                $this->options['api'] = 'DEFAULT';
+            } else if (array_column($this->endpoints['PAYMENTS'], $method)) {
+                $this->endpoints = $this->endpoints['PAYMENTS'];
+                $this->options['api'] = 'PAYMENTS';
+            } else if (array_column($this->endpoints['OPENING-ACCOUNTS'], $method)) {
+                $this->endpoints = $this->endpoints['OPENING-ACCOUNTS'];
+                $this->options['api'] = 'OPENING-ACCOUNTS';
+            } else if (array_column($this->endpoints['CHARGES'], $method)) {
+                $this->endpoints = $this->endpoints['CHARGES'];
+                $this->options['api'] = 'CHARGES';
             } else {
                 throw new Exception("Nonexistent requested '$method' method");
             }

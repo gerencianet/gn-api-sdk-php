@@ -1,6 +1,6 @@
 {
     "APIs": {
-        "DEFAULT": {
+        "CHARGES": {
             "URL": {
                 "production": "https://api.gerencianet.com.br",
                 "sandbox": "https://sandbox.gerencianet.com.br"
@@ -298,6 +298,10 @@
                     "route": "/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
                     "method": "put"
                 },
+                "pixSplitUnlinkCharge": {
+                    "route": "/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+                    "method": "delete"
+                },
                 "pixSplitDetailDueCharge": {
                     "route": "/v2/gn/split/cobv/:txid",
                     "method": "get"
@@ -305,6 +309,10 @@
                 "pixSplitLinkDueCharge": {
                     "route": "/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
                     "method": "put"
+                },
+                "pixSplitUnlinkDueCharge": {
+                    "route": "/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+                    "method": "delete"
                 },
                 "pixSplitConfig": {
                     "route": "/v2/gn/split/config",
@@ -382,13 +390,17 @@
                     "route": "/open-finance/pagamentos/pix",
                     "method": "post"
                 },
+                "ofDevolutionPix": {
+                    "route": "/open-finance/devolucao/pagamento/pix",
+                    "method": "post"
+                },
                 "ofListPixPayment": {
                     "route": "/open-finance/pagamentos/pix",
                     "method": "get"
                 }
             }
         },
-        "PAGAMENTOS": {
+        "PAYMENTS": {
             "URL": {
                 "production": "https://apis.gerencianet.com.br",
                 "sandbox": null
@@ -416,7 +428,7 @@
                 }
             }
         },
-        "ACCOUNTS-OPENING": {
+        "OPENING-ACCOUNTS": {
             "URL": {
                 "production": "https://apis.gerencianet.com.br",
                 "sandbox": null
