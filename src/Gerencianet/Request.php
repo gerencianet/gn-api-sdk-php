@@ -78,7 +78,9 @@ class Request
     public function send($method, $route, $requestOptions)
     {
         try {
-            $requestOptions['cert'] = $this->verifyCertificate($this->config['certificate']);
+            if (isset($this->config['certificate'])) {
+                $requestOptions['cert'] = $this->verifyCertificate($this->config['certificate']);
+            }
 
             if (isset($this->config['headers'])) {
                 foreach ($this->config['headers'] as $key => $value) {
