@@ -1,3 +1,6 @@
+# 5.0.2
+- Add: New example of create charge history
+
 # 5.0.1
 - Fix: Certificate verification
 - Add: New example of pix devolution Open Finance
