@@ -1,3 +1,6 @@
+# 5.1.0
+- Updated: Variable "valorDevolucao" changed to "valor" and "identificadorPagamento" is sent as a parameter in method "ofDevolutionPix()"
+
 # 5.0.2
 - Add: New example of create charge history
 
