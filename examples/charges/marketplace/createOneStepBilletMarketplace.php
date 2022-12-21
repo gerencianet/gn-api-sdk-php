@@ -18,6 +18,7 @@ $item_1 = [
 	"amount" => 1,
 	"value" => 1500,
 	"marketplace" => [
+		"mode" => 2, // "mode = 1", rate will be discounted from issuing account only. "mode = 2", rate will be discounted proportionally to the percentage defined for all accounts
 		"repasses" => [
 			[
 				"payee_code" => "Enter_Destination_Account_Identifier_Here", // Gerencianet account identifier (transfer 1)
