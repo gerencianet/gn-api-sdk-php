@@ -391,7 +391,7 @@
                     "method": "post"
                 },
                 "ofDevolutionPix": {
-                    "route": "/open-finance/devolucao/pagamento/pix",
+                    "route": "/open-finance/pagamentos/pix/:identificadorPagamento/devolver",
                     "method": "post"
                 },
                 "ofListPixPayment": {

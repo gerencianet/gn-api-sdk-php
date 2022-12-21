@@ -13,14 +13,17 @@ if (file_exists($options = realpath(__DIR__ . "/../../credentials/options.php"))
 	require_once $options;
 }
 
+$params = [
+	"identificadorPagamento" => "urn:partcipant:00000000-0000-0000-0000-000000000000",
+];
+
 $body = [
-	"identificadorPagamento" => "urn:gerencianet:ea807997-9c28-47a7-8ebc-eeb672ea59f0",
-	"valorDevolucao" => "0.01"
+	"valor" => "0.01"
 ];
 
 try {
 	$api = Gerencianet::getInstance($options);
-	$response = $api->ofDevolutionPix($params = [], $body);
+	$response = $api->ofDevolutionPix($params, $body);
 
 	print_r("<pre>" . json_encode($response, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "</pre>");
 } catch (GerencianetException $e) {
