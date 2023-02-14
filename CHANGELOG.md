@@ -1,3 +1,6 @@
+# 5.1.1
+- Add: New examples of pix split
+
 # 5.1.0
 - Updated: Variable "valorDevolucao" changed to "valor" and "identificadorPagamento" is sent as a parameter in method "ofDevolutionPix()"
 
