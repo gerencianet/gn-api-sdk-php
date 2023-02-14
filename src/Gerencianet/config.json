@@ -299,7 +299,7 @@
                     "method": "put"
                 },
                 "pixSplitUnlinkCharge": {
-                    "route": "/v2/gn/split/cob/:txid/vinculo/:splitConfigId",
+                    "route": "/v2/gn/split/cob/:txid/vinculo",
                     "method": "delete"
                 },
                 "pixSplitDetailDueCharge": {
@@ -311,7 +311,7 @@
                     "method": "put"
                 },
                 "pixSplitUnlinkDueCharge": {
-                    "route": "/v2/gn/split/cobv/:txid/vinculo/:splitConfigId",
+                    "route": "/v2/gn/split/cobv/:txid/vinculo",
                     "method": "delete"
                 },
                 "pixSplitConfig": {

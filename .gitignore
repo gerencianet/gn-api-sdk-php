@@ -1,4 +1,3 @@
 composer.lock
 vendor/
 examples/open-accounts/
-examples/pix/split/
