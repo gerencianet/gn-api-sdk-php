@@ -1,3 +1,6 @@
+# 5.1.2
+- Fix: Compatibility with PHP >= 7.2
+
 # 5.1.1
 - Add: New examples of pix split
 
