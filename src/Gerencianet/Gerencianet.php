@@ -1,5 +1,7 @@
 <?php
 
+namespace Gerencianet;
+
 /**
  * Class Gerencianet
  * @package Gerencianet
@@ -116,9 +118,6 @@
  * @method array accountDetailWebhook(array $params)
  * @method array accountListWebhook(array $params)
  */
-
-namespace Gerencianet;
-
 class Gerencianet extends Endpoints
 {
     public function __construct($options, $requester = null, $endpointsConfigFile = null)
