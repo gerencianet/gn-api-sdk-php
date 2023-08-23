@@ -1,3 +1,6 @@
+# 5.1.3
+- New: Added new examples of pix split to Efí SDK
+
 # 5.1.2
 - Fix: Compatibility with PHP >= 7.2
 
