@@ -1,7 +1,20 @@
-<h1 align="center">SDK Gerencianet para PHP</h1>
+<h1 align="center">SDK Efí by Gerencianet para PHP</h1>
 
-![SDK Gerencianet para PHP](https://media-exp1.licdn.com/dms/image/C4D1BAQH9taNIaZyh_Q/company-background_10000/0/1603126623964?e=2159024400&v=beta&t=coQC_AK70vTYL3NdvbeIaeYts8nKumNHjvvIGCmq5XA)
+![Gerencianet agora é Efí](https://sejaefi.link/rylucSCXT3)
 
+<div style='border: 1px solid rgba(255,105,0,0.47);border-radius: 8px 8px 8px 8px;
+; padding: 10px;'>
+
+<h3 style="color: #f37021; font-weight: bold;">Novidade!</h3>
+
+Inicialmente, a mudança de marca não vai impactar as integrações e a comunicação com o sistema que você já usa na Gerencianet.
+
+- **Você que está chegando agor**a, recomendamos iniciar a integração já com a nova SDK da Efí. [Acesse nosso novo GitHub](https://github.com/efipay/sdk-php-apis-efi).
+
+- **Se já possui um sistema com a SDK da Gerencianet**, ressaltamos a importância de <u>migrar para a nova SDK Efí</u>, crucial para garantir que você esteja bem preparado para as inovações futuras! Para facilitar esse processo, desenvolvemos o **Validador de Migração**. [Veja mais detalhes](#validador-de-migração).
+</div>
+
+---
 <p align="center">
   <span><b>Português</b></span> |
   <a href="https://github.com/gerencianet/gn-api-sdk-php/blob/master/README-en.md">Inglês</a>
@@ -18,17 +31,24 @@ SDK em PHP para integração com as APIs da Gerencianet para emissão de Pix, bo
 Para mais informações sobre [parâmetros](http://dev.gerencianet.com.br) e [valores/tarifas](http://gerencianet.com.br/tarifas) consulte nosso site.
 
 Ir para:
-* [Requisitos](#requisitos)
-* [Testado com](#testado-com)
-* [Instalação](#instalação)
-* [Começando](#começando)
-  * [Como obter as credenciais Client_Id e Client_Secret](#como-obter-as-credenciais-client-id-e-client-secret)
-  * [Como gerar um certificado Pix](#como-gerar-um-certificado-pix)
-  * [Como cadastrar as chaves Pix](#como-cadastrar-as-chaves-pix)
-* [Executar exemplos](#executar-exemplos)
-* [Guia de versão](#guia-de-versão)
-* [Documentação Adicional](#documentação-adicional)
-* [Licença](#licença)
+- [**Requisitos**](#requisitos)
+- [**Testado com**](#testado-com)
+- [**Instalação**](#instalação)
+- [**Começando**](#começando)
+	- [**Para ambiente de homologação**](#para-ambiente-de-homologação)
+	- [**Para ambiente de produção**](#para-ambiente-de-produção)
+- [**Como obter as credenciais Client-Id e Client-Secret**](#como-obter-as-credenciais-client-id-e-client-secret)
+	- [**Crie uma nova aplicação para usar a API Gerencianet:**](#crie-uma-nova-aplicação-para-usar-a-api-gerencianet)
+- [**Como gerar um certificado Pix**](#como-gerar-um-certificado-pix)
+- [**Como cadastrar as chaves Pix**](#como-cadastrar-as-chaves-pix)
+	- [**Cadastrar chave Pix pelo aplicativo mobile:**](#cadastrar-chave-pix-pelo-aplicativo-mobile)
+	- [**Cadastrar chave Pix através da API:**](#cadastrar-chave-pix-através-da-api)
+- [**Executar exemplos**](#executar-exemplos)
+- [**Guia de versão**](#guia-de-versão)
+- [**Documentação Adicional**](#documentação-adicional)
+- [**Validador de Migração**](#validador-de-migração)
+	- [Como usar o Validador:](#como-usar-o-validador)
+- [**Licença**](#licença)
 
 ---
 
@@ -149,7 +169,7 @@ Para registrar suas chaves Pix por meio do aplicativo:
 6. Insira sua Assinatura Eletrônica para confirmar o cadastro.
 
 ### **Cadastrar chave Pix através da API:**
-O endpoint utilizado para criar uma chave Pix aleatória (evp), é o `POST /v2/gn/evp` ([Criar chave evp](https://dev.gerencianet.com.br/docs/api-pix-endpoints#section-criar-chave-evp)). Um detalhe é que, através deste endpoint é realizado o registro somente de chaves Pix do tipo aleatória.
+O endpoint utilizado para criar uma chave Pix aleatória (evp), é o `POST /v2/gn/evp` ([Criar chave evp](https://dev.efipay.com.br/docs/api-pix/endpoints-exclusivos-efi#criar-chave-evp)). Um detalhe é que, através deste endpoint é realizado o registro somente de chaves Pix do tipo aleatória.
 
 Para consumí-lo, basta executar o exemplo  `/examples/exclusive/key/pixCreateEvp.php` da nossa SDK. A requisição enviada para esse endpoint não precisa de um body. 
 
@@ -178,9 +198,25 @@ Você pode executar usando qualquer servidor web, como Apache ou nginx e abrir q
 
 ## **Documentação Adicional**
 
-A documentação completa com todos os endpoints e detalhes das APIs está disponível em https://dev.gerencianet.com.br/.
+A documentação completa com todos os endpoints e detalhes das APIs está disponível em https://dev.efipay.com.br/.
 
-Se você ainda não tem uma conta digital da Gerencianet, [abra a sua agora](https://sistema.gerencianet.com.br/)!
+Se você ainda não tem uma conta digital da Gerencianet, [abra a sua agora](https://app.sejaefi.com.br/)!
+
+
+## **Validador de Migração**
+O Validador de Migração da SDK Efí Pay torna o processo de migração mais suave e eficiente. **Essa ferramenta não modifica o seu código**, somente analisa o código existente em busca de padrões específicos relacionados a classes e métodos que foram modificados na nova versão da SDK.
+
+Antes de realizar qualquer modificação no código de sua aplicação, é altamente aconselhável fazer um backup completo de todo o seu projeto.
+
+### Como usar o Validador:
+1. Faça o download do [Validador de Migração](https://raw.githubusercontent.com/gerencianet/gn-api-sdk-php/master/migrationChecker.php).
+2. Certifique-se de inserir este arquivo `migrationChecker.php` no diretório raiz do seu projeto.
+3. Altere o arquivo `migrationChecker.php` e certifique-se de inserir corretamente na linha *55* e *56* o caminho para os arquivos `composer.json` e `installed.json`.
+4. Execute o *Verificador de Migração*, que analisará seus arquivos em busca de problemas.
+5. Revise os resultados apresentados, identificando os trechos de código que precisam ser atualizados.
+6. Realize as correções recomendadas, seguindo as instruções exibidas.
+
+O verificador ajuda a identificar potenciais problemas de migração e oferece sugestões de correção, mas é essencial lembrar que cada aplicação é única e pode ter peculiaridades que não podem ser abordadas automaticamente. Após realizar as correções sugeridas, é altamente recomendado realizar testes extensivos em sua aplicação para validar o funcionamento adequado da SDK.
 
 ## **Licença**
 [MIT](LICENSE)

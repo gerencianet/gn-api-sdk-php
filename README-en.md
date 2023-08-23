@@ -1,7 +1,19 @@
 <h1 align="center">SDK Gerencianet for PHP</h1>
 
-![SDK Gerencianet for PHP](https://media-exp1.licdn.com/dms/image/C4D1BAQH9taNIaZyh_Q/company-background_10000/0/1603126623964?e=2159024400&v=beta&t=coQC_AK70vTYL3NdvbeIaeYts8nKumNHjvvIGCmq5XA)
+![Gerencianet is now Efí](https://sejaefi.link/rylucSCXT3)
 
+<div style='border: 1px solid rgba(255,105,0,0.47); border-radius: 8px 8px 8px 8px; padding: 10px;'>
+
+<h3 style="color: #f37021; font-weight: bold;">News!</h3>
+
+Initially, the rebranding will not impact the integrations and communication with the system you are already using with Gerencianet.
+
+- **For those of you who are just joining us**, we recommend starting your integration with the new Efí SDK right away. [Visit our new GitHub repository](https://github.com/efipay/sdk-php-apis-efi).
+
+- **If you already have a system using Gerencianet's SDK**, we emphasize the importance of *migrating to the new Efí SDK*, which is crucial to ensure that you are well-prepared for future innovations! To facilitate this process, we have developed the **Migration Validator**. [See more details](#migration-validator).
+</div>
+
+---
 <p align="center">
   <a href="https://github.com/gerencianet/gn-api-sdk-php">Portuguese</a> |
   <span><b>English</b></span>  
@@ -18,17 +30,23 @@ SDK in PHP for integration with Gerencianet APIs for emission Pix, bank slips, c
 For more informations about [parameters](http://dev.gerencianet.com.br) and [values](http://gerencianet.com.br/tarifas) see our website.
 
 Jump To:
-* [Requirements](#requirements)
-* [Teted with](#tested-with)
-* [Installation](#installation)
-* [Getting started](#getting-started)
-  * [How to get Client_Id and Client_Secret credentials](#how-to-get-client-id-and-client-secret-credentials)
-  * [How to generate a Pix certificate](#how-to-generate-a-pix-certificate)
-  * [How to register Pix keys](#how-to-register-pix-keys)
-* [Running examples](#running-examples)
-* [Version Guidance](#version-guidance)
-* [Additional Documentation](#additional-documentation)
-* [License](#license)
+- [**Requirements**](#requirements)
+- [**Tested with**](#tested-with)
+- [**Installation**](#installation)
+- [**Getting started**](#getting-started)
+	- [**For homologation environment**](#for-homologation-environment)
+	- [**For production environment**](#for-production-environment)
+- [**How to get Client-Id and Client-Secret credentials**](#how-to-get-client-id-and-client-secret-credentials)
+- [**How to generate a Pix certificate**](#how-to-generate-a-pix-certificate)
+- [**How to register Pix keys**](#how-to-register-pix-keys)
+	- [**Register Pix key via mobile app:**](#register-pix-key-via-mobile-app)
+	- [**Register Pix key via API:**](#register-pix-key-via-api)
+- [**Running examples**](#running-examples)
+- [**Version Guidance**](#version-guidance)
+- [**Additional Documentation**](#additional-documentation)
+- [**Migration Validator**](#migration-validator)
+	- [How to Use the Validator:](#how-to-use-the-validator)
+- [**License**](#license)
 
 ---
 
@@ -179,6 +197,21 @@ You can run it using any web server like apache or nginx and open any example in
 Complete documentation with all endpoints and API details is available at https://dev.gerencianet.com.br/.
 
 If you don't have a Gerencianet digital account yet, [open yours now](https://sistema.gerencianet.com.br/)!
+
+## **Migration Validator**
+The Efí Pay SDK Migration Validator makes the migration process smoother and more efficient. **This tool does not modify your code**, it only analyzes the existing code for specific patterns related to classes and methods that have been modified in the new version of the SDK.
+
+Before making any modifications to your application's code, it is highly advisable to create a complete backup of your entire project.
+
+### How to Use the Validator:
+1. Download the [Migration Validator](https://raw.githubusercontent.com/gerencianet/gn-api-sdk-php/master/migrationChecker.php).
+2. Make sure to place the `migrationChecker.php` file in the root directory of your project.
+3. Edit the `migrationChecker.php` file and make sure to correctly enter the path to the `composer.json` and `installed.json` files in lines *55* and *56*.
+4. Run the *Migration Checker*, which will analyze your files for issues.
+5. Review the presented results, identifying code snippets that need to be updated.
+6. Implement the recommended fixes following the displayed instructions.
+
+The validator helps identify potential migration problems and offers suggestions for correction, but it's essential to remember that each application is unique and may have intricacies that cannot be automatically addressed. After making the suggested fixes, it's highly recommended to perform extensive testing on your application to ensure the proper functioning of the SDK.
 
 ## **License**
 [MIT](LICENSE)
