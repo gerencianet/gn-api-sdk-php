@@ -213,5 +213,7 @@ Before making any modifications to your application's code, it is highly advisab
 
 The validator helps identify potential migration problems and offers suggestions for correction, but it's essential to remember that each application is unique and may have intricacies that cannot be automatically addressed. After making the suggested fixes, it's highly recommended to perform extensive testing on your application to ensure the proper functioning of the SDK.
 
+![Validador de Migração](https://s3.amazonaws.com/gerencianet-pub-prod-1/printscreen/2023/08/23/guilherme.cota/0e29ad-%25guic.png)
+
 ## **License**
 [MIT](LICENSE)
