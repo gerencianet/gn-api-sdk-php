@@ -188,13 +188,15 @@ Você pode executar usando qualquer servidor web, como Apache ou nginx e abrir q
 
 ## **Guia de versão**
 
+A SDK de PHP da Gerencianet continua em funcionamento, mas foi descontinuada e não receberá mais atualizações. Recomendamos que migre para a nova SDK da Efí para continuar desfrutando de nossos serviços e novidades. Saiba mais em: [github.com/efipay/sdk-php-apis-efi](https://github.com/efipay/sdk-php-apis-efi)
+
 | Versão | Status | Packagist | Repo | Versão PHP |
 | --- | --- | --- | --- | --- |
 | 1.x | Descontinuado | [/gerencianet/gerencianet-sdk-php#1.0.17](https://packagist.org/packages/gerencianet/gerencianet-sdk-php#1.0.17) | [v1](https://github.com/gerencianet/gn-api-sdk-php/tree/1.x) | \>= 5.4 |
 | 2.x | Descontinuado | [/gerencianet/gerencianet-sdk-php#2.4.1](https://packagist.org/packages/gerencianet/gerencianet-sdk-php#2.4.1) | [v2](https://github.com/gerencianet/gn-api-sdk-php/tree/2.x) | \>= 5.5 |
 | 3.x | Descontinuado | [/gerencianet/gerencianet-sdk-php#3.2.0](https://packagist.org/packages/gerencianet/gerencianet-sdk-php#3.2.0) | [v3](https://github.com/gerencianet/gn-api-sdk-php/tree/3.x) | \>= 5.6 |
-| 4.x | Mantido | [/gerencianet/gerencianet-sdk-php#4.1.1](https://packagist.org/packages/gerencianet/gerencianet-sdk-php#4.1.1) | [v4](https://github.com/gerencianet/gn-api-sdk-php/tree/4.x) | \>= 7.2 |
-| 5.x | Mantido | [/gerencianet/gerencianet-sdk-php](https://packagist.org/packages/gerencianet/gerencianet-sdk-php) | [v5](https://github.com/gerencianet/gn-api-sdk-php) | \>= 7.2 |
+| 4.x | Descontinuado | [/gerencianet/gerencianet-sdk-php#4.1.1](https://packagist.org/packages/gerencianet/gerencianet-sdk-php#4.1.1) | [v4](https://github.com/gerencianet/gn-api-sdk-php/tree/4.x) | \>= 7.2 |
+| 5.x | Descontinuado | [/gerencianet/gerencianet-sdk-php](https://packagist.org/packages/gerencianet/gerencianet-sdk-php) | [v5](https://github.com/gerencianet/gn-api-sdk-php) | \>= 7.2 |
 
 ## **Documentação Adicional**
 
