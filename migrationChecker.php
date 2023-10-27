@@ -13,8 +13,8 @@ use RecursiveIteratorIterator;
 class MigrationChecker
 {
 	private const REQUIRED_PACKAGES = [
-		'guzzlehttp/guzzle' => '7.4',
-		'symfony/cache' => '^5.0',
+		'guzzlehttp/guzzle' => '^7.4',
+		'symfony/cache' => '^5.0 || ^6.0'
 	];
 
 	private const CORRECTIONS = [
@@ -23,7 +23,7 @@ class MigrationChecker
 		'new Gerencianet' => 'new EfiPay',
 		'Gerencianet::getInstance' => 'EfiPay::getInstance',
 		'catch (GerencianetException' => 'catch (EfiException',
-		'oneStep' => 'createOneStepCharge',
+		'oneStep(' => 'createOneStepCharge(',
 		'payCharge' => 'definePayMethod',
 		'resendBillet' => 'sendBilletEmail',
 		'chageLink' => 'defineLinkPayMethod',
@@ -61,7 +61,7 @@ class MigrationChecker
 		$resultPhpVersion = [];
 		$phpVersion = PHP_VERSION;
 		$resultPhpVersion['version'] = $phpVersion;
-		if (version_compare($phpVersion, '7.2', '<')) {
+		if (version_compare($phpVersion, '7.2.5', '<')) {
 			$resultPhpVersion['result'] = "A versão do PHP instalada <b>NÃO ATENDE</b> aos requisitos. <b>Instale o PHP 7.2 ou superior</b>.";
 			$resultPhpVersion['icon'] = $this->getIcon('danger');
 		} else {
@@ -133,9 +133,18 @@ class MigrationChecker
 
 			foreach ($this->installedPackages['packages'] as $installedPackage) {
 				if ($installedPackage['name'] === $package) {
-					if (version_compare($installedPackage['version'], $version, '>=')) {
-						$packageFound = true;
-						break;
+					$installedVersion = $installedPackage['version'];
+
+					// Check if the installed version matches any of the allowed versions
+					$allowedVersions = explode(' || ', $version);
+					$installedVersion = $this->addVersionPrefix($installedVersion); // Adicionar 'v' se necessário
+
+					foreach ($allowedVersions as $allowedVersion) {
+						$allowedVersion = $this->addVersionPrefix($allowedVersion); // Adicionar 'v' se necessário
+						if (version_compare($installedVersion, $allowedVersion, '>=')) {
+							$packageFound = true;
+							break;
+						}
 					}
 				}
 			}
@@ -146,6 +155,14 @@ class MigrationChecker
 		}
 
 		return $missingPackages;
+	}
+
+	public function addVersionPrefix($version)
+	{
+		if (strpos($version, 'v') === false) {
+			return 'v' . $version;
+		}
+		return $version;
 	}
 
 	public function checkCodeCorrections(): array
