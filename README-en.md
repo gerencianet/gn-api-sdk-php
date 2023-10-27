@@ -184,6 +184,8 @@ You can run it using any web server like apache or nginx and open any example in
 
 ## **Version Guidance**
 
+The Gerencianet PHP SDK is still operational, but it has been discontinued and will no longer receive updates. We recommend migrating to Efí's new SDK to continue enjoying our services and updates. Learn more at: [github.com/efipay/sdk-php-apis-efi](https://github.com/efipay/sdk-php-apis-efi).
+
 | Version | Status | Packagist | Repo | Version PHP |
 | --- | --- | --- | --- | --- |
 | 1.x | Discontinued | [/gerencianet/gerencianet-sdk-php#1.0.17](https://packagist.org/packages/gerencianet/gerencianet-sdk-php#1.0.17) | [v1](https://github.com/gerencianet/gn-api-sdk-php/tree/1.x) | \>= 5.4 |
