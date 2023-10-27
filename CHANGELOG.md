@@ -1,3 +1,6 @@
+# 5.1.4
+- Fix: version validation of dependencies
+- 
 # 5.1.3
 - New: Added new examples of pix split to Efí SDK
 
