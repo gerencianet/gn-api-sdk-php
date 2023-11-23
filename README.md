@@ -1,20 +1,13 @@
-<h1 align="center">SDK Efí by Gerencianet para PHP</h1>
+<h1 align="center">Aviso - SDK obsoleta</h1>
 
 ![Gerencianet agora é Efí](https://sejaefi.link/rylucSCXT3)
 
-<div style='border: 1px solid rgba(255,105,0,0.47);border-radius: 8px 8px 8px 8px;
-; padding: 10px;'>
+A SDK de PHP da Gerencianet continua em funcionamento, porém não receberá mais atualizações. Recomendamos que migre para a nova [SDK da Efí](https://github.com/efipay/sdk-php-apis-efi) para continuar desfrutando de nossos serviços e novidades.
 
-<h3 style="color: #f37021; font-weight: bold;">Novidade!</h3>
+Para facilitar esse processo desenvolvemos o **Validador de Migração**, [veja mais detalhes](https://github.com/efipay/sdk-php-apis-efi#validador-de-migração).
 
-Inicialmente, a mudança de marca não vai impactar as integrações e a comunicação com o sistema que você já usa na Gerencianet.
+<h1 align="center">SDK Efí by Gerencianet para PHP</h1>
 
-- **Você que está chegando agor**a, recomendamos iniciar a integração já com a nova SDK da Efí. [Acesse nosso novo GitHub](https://github.com/efipay/sdk-php-apis-efi).
-
-- **Se já possui um sistema com a SDK da Gerencianet**, ressaltamos a importância de <u>migrar para a nova SDK Efí</u>, crucial para garantir que você esteja bem preparado para as inovações futuras! Para facilitar esse processo, desenvolvemos o **Validador de Migração**. [Veja mais detalhes](#validador-de-migração).
-</div>
-
----
 <p align="center">
   <span><b>Português</b></span> |
   <a href="https://github.com/gerencianet/gn-api-sdk-php/blob/master/README-en.md">Inglês</a>
@@ -187,8 +180,6 @@ Você pode executar usando qualquer servidor web, como Apache ou nginx e abrir q
 
 
 ## **Guia de versão**
-
-A SDK de PHP da Gerencianet continua em funcionamento, mas foi descontinuada e não receberá mais atualizações. Recomendamos que migre para a nova SDK da Efí para continuar desfrutando de nossos serviços e novidades. Saiba mais em: [github.com/efipay/sdk-php-apis-efi](https://github.com/efipay/sdk-php-apis-efi)
 
 | Versão | Status | Packagist | Repo | Versão PHP |
 | --- | --- | --- | --- | --- |
